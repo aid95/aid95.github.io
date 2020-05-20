@@ -28,7 +28,7 @@
 <meta property="og:description" content="이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.  페이지 기능을 활성화하여 64비트 전환 준비선형 주소와 4단계 페이징 기법페이징에 사용하는 각 테이블은 512개의 엔트리로 구성되며 다음 레벨에서 사용할 테이블의 기준 주소를 포함한다. 그리고 가장 마지막 레벨인 페이지 디렉터리의 엔트리는 2MB 페이">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-15T11:33:52.000Z">
-<meta property="article:modified_time" content="2020-05-15T14:37:53.262Z">
+<meta property="article:modified_time" content="2020-05-20T13:02:34.703Z">
 <meta property="article:author" content="Byeongju Shin(aka. imgomi)">
 <meta property="article:tag" content="os">
 <meta property="article:tag" content="kernel">
@@ -174,10 +174,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-05-15 20:33:52 / Modified: 23:37:53" itemprop="dateCreated datePublished" datetime="2020-05-15T20:33:52+09:00">2020-05-15</time>
+              <time title="Created: 2020-05-15 20:33:52" itemprop="dateCreated datePublished" datetime="2020-05-15T20:33:52+09:00">2020-05-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-20 22:02:34" itemprop="dateModified" datetime="2020-05-20T22:02:34+09:00">2020-05-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -212,6 +218,7 @@
 </blockquote>
 <p>선형 주소를 실제 물리 주소로 변환하는 과정은 CR3 레지스터에 설정된 PML4 테이블의 기준 주소로 PML4 엔트리 -&gt; 페이지 디렉터리 포인터 엔트리 -&gt; 디렉터리 엔트리로 진행하여 2MB 페이지의 기준 주소를 찾은 다음 선형 주소의 하위 21비트 오프셋을 더하면 된다.</p>
 <p>이 과정에서 알 수 있듯이 PML4(Page Map Level 4)에서는 (1)PML4 테이블, (2)페이지 디렉터리 포인터 테이블, (3) 페이지 디렉터리 등 세 가지 자료구조를 생성해야 한다. 각 테이블은 8바이트로 구성되며 각 엔트리는 다음 레벨 테이블의 기준 주소외에도 다양한 필드를 포함한다.</p>
+<a id="more"></a>
 <h2 id="페이지-테이블-구성과-공간-할당"><a href="#페이지-테이블-구성과-공간-할당" class="headerlink" title="페이지 테이블 구성과 공간 할당"></a>페이지 테이블 구성과 공간 할당</h2><p>MINT64 OS는 2MB 크기의 페이지를 사용해 최대 64GB의 물리 메모리를 매핑한다고 하면, <code>페이지 디렉터리</code>는 <code>8바이트</code> 크기의 엔트리 512개로 구성되며 각 엔트리는 2MB 페이지에 대한 정보를 담고 있다. 따라서 한 페이지 디렉터리는 2MB x 512개로 <code>1GB</code>이며 하나의 페이지 디렉터리는 8바이트 x 512개로 <code>4KB</code>의 메모리를 차지한다. 총 64GB를 관리하기 위해서는 4KB의 페이지 디렉터리 64개가 필요하니 총 <code>256KB</code>가 된다.</p>
 <p>앞서 페이지 디렉터리의 포인터를 가지고 있는 <code>페이지 디렉터리 포인터 테이블</code> 역시 페이지 디렉터리와 마찬가지로 8바이트 크기의 엔트리 512개로 구성되고 앞서 페이지 디렉터리 64개를 관리하기 위해서 총 64개의 필드가 필요하다. 64개의 크기는 기존 512개로 충분히 커버가 가능하기 때문에 총 4KB(기본 크기)가 필요하다.</p>
 <p>페이지 디렉터리 포인터 테이블을 가리키는 <code>PML4 테이블</code>은 다른 테이블과 마찬가지로 8바이트 크기인 PML4 테이블 엔트리 512개로 구성되며 각 엔트리는 페이지 디렉터리 포인터 테이블의 정보를 담고 있다. 때문에 앞서 페이지 디렉터리 포인터 테이블을 관리하기 위해선 1개의 엔트리만 있으면 되며, 기본 크기 4KB가 필요하다.</p>
