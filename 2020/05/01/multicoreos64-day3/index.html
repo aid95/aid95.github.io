@@ -1,107 +1,439 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            if (theme.post_meta.date_type === 'both')
-              time.post-meta__date
-                i.fa.fa-calendar(aria-hidden="true")
-                =' '+_p('post.created')+' '+date(page.date, config.date_format)
-                span.post-meta__separator |
-                i.fa.fa-calendar-check-o(aria-hidden="true")
-                =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-            else
-              - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-              time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
+<link rel="stylesheet" href="/css/main.css">
 
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.gomi.land","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.  C언어로 커널을 작성하자실행 가능한 C 코드 커널 생성 방법빌드 조건과 제약 사항지금까지 작성된 코드는 단일 파일로 NASM 컴파일을 통해 바이너리 파일 형태로 만들어졌다. 직전 EntryPoint.s 코드도 단일 파일로 작성되었고, 512byte로">
+<meta property="og:type" content="article">
+<meta property="og:title" content="64bit 멀티코어 OS 원리와 구조 - Day 3">
+<meta property="og:url" content="https://blog.gomi.land/2020/05/01/multicoreos64-day3/index.html">
+<meta property="og:site_name" content="0w0 - Nyaaa...">
+<meta property="og:description" content="이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.  C언어로 커널을 작성하자실행 가능한 C 코드 커널 생성 방법빌드 조건과 제약 사항지금까지 작성된 코드는 단일 파일로 NASM 컴파일을 통해 바이너리 파일 형태로 만들어졌다. 직전 EntryPoint.s 코드도 단일 파일로 작성되었고, 512byte로">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-01T05:05:29.000Z">
+<meta property="article:modified_time" content="2020-05-06T14:39:23.000Z">
+<meta property="article:author" content="Byeongju Shin(aka. imgomi)">
+<meta property="article:tag" content="os">
+<meta property="article:tag" content="kernel">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.gomi.land/2020/05/01/multicoreos64-day3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>64bit 멀티코어 OS 원리와 구조 - Day 3 | 0w0 - Nyaaa...</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">0w0 - Nyaaa...</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.gomi.land/2020/05/01/multicoreos64-day3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Byeongju Shin(aka. imgomi)">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="0w0 - Nyaaa...">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          64bit 멀티코어 OS 원리와 구조 - Day 3
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-01 14:05:29" itemprop="dateCreated datePublished" datetime="2020-05-01T14:05:29+09:00">2020-05-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-06 23:39:23" itemprop="dateModified" datetime="2020-05-06T23:39:23+09:00">2020-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CE/" itemprop="url" rel="index"><span itemprop="name">CE</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CE/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.</p>
+</blockquote>
+<h1 id="C언어로-커널을-작성하자"><a href="#C언어로-커널을-작성하자" class="headerlink" title="C언어로 커널을 작성하자"></a>C언어로 커널을 작성하자</h1><h2 id="실행-가능한-C-코드-커널-생성-방법"><a href="#실행-가능한-C-코드-커널-생성-방법" class="headerlink" title="실행 가능한 C 코드 커널 생성 방법"></a>실행 가능한 C 코드 커널 생성 방법</h2><h3 id="빌드-조건과-제약-사항"><a href="#빌드-조건과-제약-사항" class="headerlink" title="빌드 조건과 제약 사항"></a>빌드 조건과 제약 사항</h3><p>지금까지 작성된 코드는 단일 파일로 NASM 컴파일을 통해 바이너리 파일 형태로 만들어졌다. 직전 EntryPoint.s 코드도 단일 파일로 작성되었고, 512byte로 정렬되어 이미지 파일에 결합(Disk.img 파일에 포함)하는 구조다. 이 장에서는 보호 모드 EntryPoint(이하, 엔트리포인트)의 뒷부분에 C언어로 작성한 커널을 연결하고, C 커널의 시작 부분으로 이동하는 것이 목표이다.</p>
+<p>먼저, 엔트리 포인트가 C언어 코드를 실행하려면 3가지 제약 조건을 만족해야 한다.</p>
+<ul>
+<li>C 라이브러리를 사용하지 않게 빌드해야 한다.<ul>
+<li>부팅된 후 보호 모드 커널이 실행되면 C 라이브러리가 없음으로 라이브러리에 포함된 함수(printf, scanf, …)를 호출할 수 없다.</li>
+</ul>
+</li>
+<li>0x10200 위치에서 실행하게끔 빌드해야 한다.<ul>
+<li>0x10000의 위치에는 이전 장(6장)에서 작성한 EntryPoint.s가 512byte(1 섹터) 만큼 위치하기 때문에 0x1000 + 0x200(512byte) 뒤인 0x10200에 위치해야 한다.</li>
+</ul>
+</li>
+<li>코드나 데이터 외에 기타 정보를 포함하지 않은 순수한 바이너리 파일 형태야 한다.<ul>
+<li>GCC를 통해 컴파일하면 ELF 또는 PE 와 같은 OS에 의존적인 실행 파일 포맷으로 생성된다. 이런 파일을 포맷이 포함되게 되면 이 정보를 처리하기 위한 부가적인 복잡한 코드를 생성해야 하기 때문에 순수한 바이너리 파일을 생성해야 한다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding Main.c</span><br></pre></td></tr></table></figure>
+
+<p>라이브러리를 사용하지 않고 홀로 사용하기 위해서 GCC 컴파일러는 <code>-ffreestanding</code>옵션을 지원하고 있으며, <code>-c</code>과 함께 라이브러리를 사용하지 않는 오브젝트 파일을 생성할 수 있다.</p>
+<a id="more"></a>
+
+<h3 id="섹션-배치와-링커-스크립트-라이브러리를-사용하지-않는-링크"><a href="#섹션-배치와-링커-스크립트-라이브러리를-사용하지-않는-링크" class="headerlink" title="섹션 배치와 링커 스크립트, 라이브러리를 사용하지 않는 링크"></a>섹션 배치와 링커 스크립트, 라이브러리를 사용하지 않는 링크</h3><blockquote>
+<p>이 부분은 불필요한 섹션을 제거(또는 이동)하여 섹션을 재배치하고 보호 모드 엔트리포인트에서 커널로 이동하는 설정을 다루고 있습니다. 따라서 코드는 책의 내용을 참고하시는게 좋습니다.</p>
+</blockquote>
+<p>작성하는 커널의 위치는 0x10000의 보호 모드 엔트리포인트에서 1섹터(512byte)만큼 떨어진 0x10200에 위치하도록 한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; x86_64-pc-linux-ld.exe -Ttext 0x10200 Main.o -o Main.elf</span><br></pre></td></tr></table></figure>
+
+<p>그리고 커널의 엔트리 포인터를 Main함수로 만들기 위해서 다음과 같이 엔트리 포인터를 설정한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; x86_64-pc-linux-ld.exe -e Main Main.o -o Main.elf</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/os/" rel="tag"># os</a>
+              <a href="/tags/kernel/" rel="tag"># kernel</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/30/archlinux-install/" rel="prev" title="Arch linux 설치하기">
+      <i class="fa fa-chevron-left"></i> Arch linux 설치하기
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/03/multicoreos64-day4/" rel="next" title="64bit 멀티코어 OS 원리와 구조 - Day 4">
+      64bit 멀티코어 OS 원리와 구조 - Day 4 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C언어로-커널을-작성하자"><span class="nav-number">1.</span> <span class="nav-text">C언어로 커널을 작성하자</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#실행-가능한-C-코드-커널-생성-방법"><span class="nav-number">1.1.</span> <span class="nav-text">실행 가능한 C 코드 커널 생성 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#빌드-조건과-제약-사항"><span class="nav-number">1.1.1.</span> <span class="nav-text">빌드 조건과 제약 사항</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#섹션-배치와-링커-스크립트-라이브러리를-사용하지-않는-링크"><span class="nav-number">1.1.2.</span> <span class="nav-text">섹션 배치와 링커 스크립트, 라이브러리를 사용하지 않는 링크</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Byeongju Shin(aka. imgomi)</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Byeongju Shin(aka. imgomi)</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
