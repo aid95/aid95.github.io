@@ -3,26 +3,27 @@
 <head>
     <meta charset="utf-8">
     
-    <title>64bit 멀티코어 OS 원리와 구조 - Day 1 | GOMI🏝️LAND</title>
+    <title>기초 DP알고리즘 문제 | GOMI🏝️LAND</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="os,kernel,bootloader" />
+        <meta name="keywords" content="algorithm,rust-lang" />
     
-    <meta name="description" content="이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.  세상에서 가장 간단한 BootLoader부트 로더를 정상적으로 불러오기 위해서는 한가지 규칙이 있다. 먼저 부트 섹터 512Byte의 마지막 2Byte는 반드시 0x55, 0xAA를 가져야 한다. 아래는 세상에서 가장 간단한 부트로더를 작성한 소스 코">
+    <meta name="description" content="배낭 알고리즘(a.k.a Knapsack problem)배낭 알고리즘은 쪼갤 수 없는 물건이 제한된 가방에 최대한의 가치로 담는 문제이다. Fractional Knapsack 문제는 탐욕 알고리즘으로 풀 수 있었지만, 조건에서 쪼갤 수 있어서 가능했다. 앞서 쪼갤 수 없는 물건을 최대한의 가치를 가지며 담기 위해서는 DP를 통해서 해결하게 된다.  알고리즘">
 <meta property="og:type" content="article">
-<meta property="og:title" content="64bit 멀티코어 OS 원리와 구조 - Day 1">
-<meta property="og:url" content="https://blog.gomi.land/2020/04/28/multicoreos64-day1/index.html">
+<meta property="og:title" content="기초 DP알고리즘 문제">
+<meta property="og:url" content="https://blog.gomi.land/2020/06/10/basic-dp-algorithm/index.html">
 <meta property="og:site_name" content="GOMI🏝️LAND">
-<meta property="og:description" content="이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.  세상에서 가장 간단한 BootLoader부트 로더를 정상적으로 불러오기 위해서는 한가지 규칙이 있다. 먼저 부트 섹터 512Byte의 마지막 2Byte는 반드시 0x55, 0xAA를 가져야 한다. 아래는 세상에서 가장 간단한 부트로더를 작성한 소스 코">
+<meta property="og:description" content="배낭 알고리즘(a.k.a Knapsack problem)배낭 알고리즘은 쪼갤 수 없는 물건이 제한된 가방에 최대한의 가치로 담는 문제이다. Fractional Knapsack 문제는 탐욕 알고리즘으로 풀 수 있었지만, 조건에서 쪼갤 수 있어서 가능했다. 앞서 쪼갤 수 없는 물건을 최대한의 가치를 가지며 담기 위해서는 DP를 통해서 해결하게 된다.  알고리즘">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-28T12:47:45.000Z">
-<meta property="article:modified_time" content="2020-05-06T14:39:40.000Z">
+<meta property="og:image" content="https://blog.gomi.land/img/basic-dp-algorithm/dp-algorithm-1.png">
+<meta property="article:published_time" content="2020-06-10T14:09:23.000Z">
+<meta property="article:modified_time" content="2020-06-10T14:43:39.923Z">
 <meta property="article:author" content="Byeongju Shin(aka. imgomi)">
-<meta property="article:tag" content="os">
-<meta property="article:tag" content="kernel">
-<meta property="article:tag" content="bootloader">
+<meta property="article:tag" content="algorithm">
+<meta property="article:tag" content="rust-lang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.gomi.land/img/basic-dp-algorithm/dp-algorithm-1.png">
     
 
     
@@ -147,18 +148,18 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/CE/OS/">OS</a>
+    <a class="page-title-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/CE/Algorithm/">Algorithm</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-multicoreos64-day1" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-basic-dp-algorithm" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        64bit 멀티코어 OS 원리와 구조 - Day 1
+        기초 DP알고리즘 문제
         </h1>
     
 
@@ -168,56 +169,43 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2020/04/28/multicoreos64-day1/" class="article-date">
-            <time datetime="2020-04-28T12:47:45.000Z" itemprop="datePublished">2020-04-28</time>
+        <a href="/2020/06/10/basic-dp-algorithm/" class="article-date">
+            <time datetime="2020-06-10T14:09:23.000Z" itemprop="datePublished">2020-06-10</time>
         </a>
     </div>
 
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/bootloader/" rel="tag">bootloader</a>, <a class="tag-link" href="/tags/kernel/" rel="tag">kernel</a>, <a class="tag-link" href="/tags/os/" rel="tag">os</a>
+        <a class="tag-link" href="/tags/algorithm/" rel="tag">algorithm</a>, <a class="tag-link" href="/tags/rust-lang/" rel="tag">rust-lang</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <blockquote>
-<p>이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.</p>
-</blockquote>
-<h2 id="세상에서-가장-간단한-BootLoader"><a href="#세상에서-가장-간단한-BootLoader" class="headerlink" title="세상에서 가장 간단한 BootLoader"></a>세상에서 가장 간단한 BootLoader</h2><p>부트 로더를 정상적으로 불러오기 위해서는 한가지 규칙이 있다. 먼저 부트 섹터 512Byte의 마지막 2Byte는 반드시 0x55, 0xAA를 가져야 한다. 아래는 세상에서 가장 간단한 부트로더를 작성한 소스 코드이다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[ORG 0x00]</span><br><span class="line">[BITS 16]</span><br><span class="line"></span><br><span class="line">SECTION .text</span><br><span class="line">jmp $</span><br><span class="line">times 510 - ($ - $$)	db	0x00</span><br><span class="line">db 0x55</span><br><span class="line">db 0xAA</span><br></pre></td></tr></table></figure>
+            <h1 id="배낭-알고리즘-a-k-a-Knapsack-problem"><a href="#배낭-알고리즘-a-k-a-Knapsack-problem" class="headerlink" title="배낭 알고리즘(a.k.a Knapsack problem)"></a>배낭 알고리즘(a.k.a Knapsack problem)</h1><p>배낭 알고리즘은 쪼갤 수 없는 물건이 제한된 가방에 최대한의 가치로 담는 문제이다. Fractional Knapsack 문제는 탐욕 알고리즘으로 풀 수 있었지만, 조건에서 쪼갤 수 있어서 가능했다. 앞서 쪼갤 수 없는 물건을 최대한의 가치를 가지며 담기 위해서는 DP를 통해서 해결하게 된다.</p>
+<p><img src="/img/basic-dp-algorithm/dp-algorithm-1.png" alt="Knapsack problem 점화식"></p>
+<p>알고리즘 설명에 대략적인 설명은 다음과 같다.</p>
+<ul>
+<li>넣을 물건 또는 가방이 있는가?</li>
+<li>현재 들고 있는 물건을 넣기 위한 공간이 충분한가?</li>
+<li>들고 있는 물건을 넣었을때와 넣지 않았을 때 어느것이 더 좋은가?<ul>
+<li>들고 있는 물건을 넣었을 때 : (현재 가방에서 들고 있는 물건의 무게 만큼 뺏을때의 가방의 가치) + 들고 있는 물건의 가치</li>
+<li>들고 있는 물건을 넣지 않았을 때 : 상태를 그대로 유지한다.<br>치</li>
+</ul>
+</li>
+</ul>
+<p>위 과정을 보면 알 수 있듯 문제를 해결하기 위해서는 모든 경우(물건을 담았을 경우, 담지 않았을 경우)를 계산하여 항상 최선의 선택을 유지하며 계산해야 한다. 이때 사용되는 기법이 메모제이션으로 아래와 같이 사용된다.</p>
+<p><img src="/img/basic-dp-algorithm/dp-algorithm-2.jpg" alt="Knapsack problem 과정"></p>
 
-<p>위 코드에서 <code>[ORG 0x00]</code>은 0x00 메모리 주소에서 시작한다는 의미이며, <code>[BITS 16]</code>은 아래 코드는 16bit라고 알려준다. <code>SECTION .text</code>은 .text 섹션의 시작을 의미하고 <code>jmp $</code>은 현재 위치에서 무한 Loop을 하며 대기하게 한다. 여기까지 총 몇 Byte가 작성된 지 소스 코드로는 확인이 어렵기에 510byte (512byte에서 마지막 0x55, 0xAA 2byte를 뺀 숫자)만큼 채우기 위해서 <code>times 510 - ($ - $$) db 0x00</code>이라고 표현한다. 이 의미는 $(현재 주소)이에서 $$(섹션의 주소)를 뺀 값, 다시 말해 총 생성된 opcode 크기를 뺀 나머지를 <code>0x00</code>으로 채우겠다는 의미이다. 이후 <code>0x55, 0xAA</code>를 채우면 정확히 512byte 크기의 바이너리 파일이 생성되게 된다.</p>
-<h2 id="화면-버퍼-제어"><a href="#화면-버퍼-제어" class="headerlink" title="화면 버퍼 제어"></a>화면 버퍼 제어</h2><p>어릴 적 컴퓨터를 키면 깜빡이는 커서와 함께 뜻 모를 영어들이 주룩주룩 나오는 걸 본 기억이 있다. 현재 작성된 Boot Loader에 위와 같은 기능을 구현하기 위해서는 <code>비디오 메모리</code>에 형식에 맞춰 데이터를 넣어주는 거로 구현할 수 있다. 그러기 위해선 비디오 메모리의 시작 주소 <code>0xB8000</code>에 문자 1 Byte, 속성 1 Byte 총 2 Byte인 형식에 맞춰 가로 80, 세로 25자 총 <code>4000 Byte</code>에 작성하게 된다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">... 생략 ...</span><br><span class="line">SECTION .text</span><br><span class="line">mov ax, 0xb800</span><br><span class="line">mov ds, ax</span><br><span class="line">mov byte[0x00], &#39;J&#39;</span><br><span class="line">mov byte[0x01], 0x4A</span><br><span class="line">jmp $</span><br><span class="line">... 생략 ...</span><br></pre></td></tr></table></figure>
-
-<p>이렇게 작성하고 QEMU를 실행하면 첫 글자가 빨간 배경의 J가 보이게 된다.</p>
-<h2 id="세그먼트-초기화"><a href="#세그먼트-초기화" class="headerlink" title="세그먼트 초기화"></a>세그먼트 초기화</h2><a id="more"></a>
-<p>BIOS가 Boot Loader를 디스크에서 메모리(메모리의 0x7c00에 복사한다.)에 복사를 하게 되고 Boot Loader가 코드를 수행하기 전 세그먼트를 초기화하지 않으면 BIOS에서 사용했던 세그먼트 값으로 인해 예기치 못한 오류가 생길 수 있다. 그렇기 때문에 Boot Loader에선 먼저 세그먼트를 초기화 해주는 게 중요하다. 이 책에서는 CS(코드 세그먼트), DS(데이터 세그먼트), ES(비디오 메모리를 위해 사용될 세그먼트)를 각각 0x07c0, 0x07c0, 0xb800으로 초기화한다. 여기서 CS는 mov 명령어로 수정할 수 없기 때문에 jmp 명령어를 이용하는데 코드는 다음과 같다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jmp 0x07c0:START</span><br><span class="line">START:</span><br><span class="line">	mov ax, 0x07c0</span><br><span class="line">	mov ds, ax</span><br><span class="line">	mov ax, 0xb800</span><br><span class="line">	mov es, ax</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="화면-정리-및-메세지-출력"><a href="#화면-정리-및-메세지-출력" class="headerlink" title="화면 정리 및 메세지 출력"></a>화면 정리 및 메세지 출력</h2><p>우리는 지금까지 Boot loader를 만들고, 세그먼트를 초기화했다. 이제 미리 출력된 메시지를 지우고, 우리의 메시지를 출력하도록 해보자.</p>
-<p>먼저 화면을 정리하기 위해서는 기존 비디오 메모리에 있던 내용을 지워줄 필요가 있다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i&lt;<span class="number">80</span>*<span class="number">25</span>*<span class="number">2</span></span><br><span class="line">    vdomem[i]=<span class="number">0</span></span><br><span class="line">    vdomem[i+<span class="number">1</span>]=<span class="number">0x0A</span></span><br><span class="line">    i+=<span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p>의사 코드로 표현하면 위 코드처럼 표현할 수 있다. 이를 어셈블리어로 움기면 다음과 같다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">	mov si, 0</span><br><span class="line">.SCREENCLEARLOOP:</span><br><span class="line">	mov byte[es:si], 0</span><br><span class="line">	mov byte[es:si+1], 0x0a</span><br><span class="line">	add si, 2</span><br><span class="line">	cmp si, 80*25*2</span><br><span class="line">	jl .SCREENCLEARLOOP</span><br></pre></td></tr></table></figure>
-
-<p>다음으로 문자열을 출력하는 코드를 작성한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">	mov si, 0</span><br><span class="line">	mov di, 0</span><br><span class="line">.MESSAGELOOP:</span><br><span class="line">	mov cl, byte[si+MESSAGE1]</span><br><span class="line">	cmp cl, 0</span><br><span class="line">	je .MESSAGED</span><br><span class="line">	</span><br><span class="line">	mov byte [es:di], cl</span><br><span class="line">	add si, 1</span><br><span class="line">	add di, 2</span><br><span class="line">	</span><br><span class="line">	jmp .MESSAGELOOP</span><br><span class="line">.MESSAGED:</span><br><span class="line">	</span><br><span class="line">MESSAGE1: db &#39;JUNOS BootLoader...!&#39;, 0</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="최종-BootLoader"><a href="#최종-BootLoader" class="headerlink" title="최종 BootLoader"></a>최종 BootLoader</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">[ORG 0x00]</span><br><span class="line">[BITS 16]</span><br><span class="line"></span><br><span class="line">SECTION .text</span><br><span class="line"></span><br><span class="line">jmp 0x07c0:START</span><br><span class="line">START:</span><br><span class="line">	mov ax, 0x07c0</span><br><span class="line">	mov ds, ax</span><br><span class="line">	mov ax, 0xb800</span><br><span class="line">	mov es, ax</span><br><span class="line">	</span><br><span class="line">	mov si, 0</span><br><span class="line">.SCREENCLEARLOOP:</span><br><span class="line">	mov byte[es:si], 0</span><br><span class="line">	mov byte[es:si+1], 0x0a</span><br><span class="line">	add si, 2</span><br><span class="line">	cmp si, 80*25*2</span><br><span class="line">	jl .SCREENCLEARLOOP</span><br><span class="line">	</span><br><span class="line">	mov si, 0</span><br><span class="line">	mov di, 0</span><br><span class="line">.MESSAGELOOP:</span><br><span class="line">	mov cl, byte[si+MESSAGE1]</span><br><span class="line">	cmp cl, 0</span><br><span class="line">	je .MESSAGED</span><br><span class="line">	mov byte [es:di], cl</span><br><span class="line">	add si, 1</span><br><span class="line">	add di, 2</span><br><span class="line">	jmp .MESSAGELOOP</span><br><span class="line">.MESSAGED:</span><br><span class="line">	jmp $</span><br><span class="line">	</span><br><span class="line">MESSAGE1: db &#39;JUNOS BootLoader...!&#39;, 0</span><br><span class="line"></span><br><span class="line">times 510 - ($ - $$)	db	0x00</span><br><span class="line">db 0x55</span><br><span class="line">db 0xAA</span><br></pre></td></tr></table></figure>
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="https://blog.gomi.land/2020/04/28/multicoreos64-day1/" data-id="ckai8kz1100056o1vc7xo6uiu" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://blog.gomi.land/2020/06/10/basic-dp-algorithm/" data-id="ckb9gr5bo0000lsuddjf13df2" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -354,20 +342,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2020/04/29/multicoreos64-day2/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            64bit 멀티코어 OS 원리와 구조 - Day 2
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2020/04/27/merge-sort/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2020/05/15/multicoreos64-day5/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Merge sort algorithm</p>
+        <p class="article-nav-title">64bit 멀티코어 OS 원리와 구조 - Day 5</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -570,7 +548,7 @@
     var disqus_shortname = 'cou9ar';
     
     
-    var disqus_url = 'https://blog.gomi.land/2020/04/28/multicoreos64-day1/';
+    var disqus_url = 'https://blog.gomi.land/2020/06/10/basic-dp-algorithm/';
     
     (function() {
     var dsq = document.createElement('script');
