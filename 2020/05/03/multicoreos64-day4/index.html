@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>64bit 멀티코어 OS 원리와 구조 - Day 4 | GOMI🏝️LAND</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="os,kernel" />
+    
+    <meta name="description" content="이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.  A20 게이트를 활성화하여 1MB 이상 영역에 접근해보자IA-32e 모드 커널과 메모리 맵왜 1MB 이상의 메모리에 접근해야 하는가에 대해서는 앞서 부트 로더에 의해 커널 이미지가 0x10000 메모리에 로딩되고, 1MB 이하의 어드레스 중에서 비디오">
+<meta property="og:type" content="article">
+<meta property="og:title" content="64bit 멀티코어 OS 원리와 구조 - Day 4">
+<meta property="og:url" content="https://blog.gomi.land/2020/05/03/multicoreos64-day4/index.html">
+<meta property="og:site_name" content="GOMI🏝️LAND">
+<meta property="og:description" content="이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.  A20 게이트를 활성화하여 1MB 이상 영역에 접근해보자IA-32e 모드 커널과 메모리 맵왜 1MB 이상의 메모리에 접근해야 하는가에 대해서는 앞서 부트 로더에 의해 커널 이미지가 0x10000 메모리에 로딩되고, 1MB 이하의 어드레스 중에서 비디오">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-03T11:33:52.000Z">
+<meta property="article:modified_time" content="2020-05-15T13:37:13.000Z">
+<meta property="article:author" content="Byeongju Shin(aka. imgomi)">
+<meta property="article:tag" content="os">
+<meta property="article:tag" content="kernel">
+<meta name="twitter:card" content="summary">
+    
+
+    
+        <link rel="alternate" href="/" title="GOMI🏝️LAND" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/">CE</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/Algorithm/">Algorithm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/Embedded/">Embedded</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/OS/">OS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/Study/">Study</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/CE/OS/">OS</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-multicoreos64-day4" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        64bit 멀티코어 OS 원리와 구조 - Day 4
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2020/05/03/multicoreos64-day4/" class="article-date">
+            <time datetime="2020-05-03T11:33:52.000Z" itemprop="datePublished">2020-05-03</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/kernel/" rel="tag">kernel</a>, <a class="tag-link" href="/tags/os/" rel="tag">os</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p>이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.</p>
+</blockquote>
+<h1 id="A20-게이트를-활성화하여-1MB-이상-영역에-접근해보자"><a href="#A20-게이트를-활성화하여-1MB-이상-영역에-접근해보자" class="headerlink" title="A20 게이트를 활성화하여 1MB 이상 영역에 접근해보자"></a>A20 게이트를 활성화하여 1MB 이상 영역에 접근해보자</h1><h2 id="IA-32e-모드-커널과-메모리-맵"><a href="#IA-32e-모드-커널과-메모리-맵" class="headerlink" title="IA-32e 모드 커널과 메모리 맵"></a>IA-32e 모드 커널과 메모리 맵</h2><p>왜 1MB 이상의 메모리에 접근해야 하는가에 대해서는 앞서 부트 로더에 의해 커널 이미지가 0x10000 메모리에 로딩되고, 1MB 이하의 어드레스 중에서 비디오 메모리가 위치하는 0xA0000 이하를 커널 공간으로 사용한다고 하면, 보호 모드 커널과 IA-32e 모드 커널의 최대 크기는 <code>0xA0000-0x10000(576KB)</code>이 됩니다. 그리고 이후에 초기화되지 않은 영역(.bss 섹션)이 포함된다면 더 작은 크기를 사용해야 합니다. 이 처럼 별다른 기능을 하지 않는 커널을 사용하게 된다면 문제가 없지만 계속해서 이 상태로 유지한다면 이후 다양한 기능이 추가되며 커널이 커지게 되면 메모리가 부족한 현상이 발생하게 됩니다.</p>
+<p>MINT64 OS는 이러한 문제를 해결하려고 커널 이미지를 모두 0x10000 어드레스에 복사하되, 덩치가 큰 IA-32e 모드 커널은 2MB의 어드레스로 복사하여 2MB~6MB(총 4MB의 크기)의 영역을 별도로 할당했습니다. (책 231p의 그림을 보시는게 이해하기 더 좋습니다.)</p>
+<h2 id="1MB-어드레스와-A20-게이트"><a href="#1MB-어드레스와-A20-게이트" class="headerlink" title="1MB 어드레스와 A20 게이트"></a>1MB 어드레스와 A20 게이트</h2><p>초창기 XT PC의 최대 어드레스는 1MB였습니다. 만약 하드웨어의 한계로 1MB 이상의 어드레스에 접근하면 하위 주소만 남아 접근하게 되었습니다 (0x10FFEF -&gt; 0xFFEF). 하지만 이후 16MB 주소까지 접근할 수 있는 AT PC가 탄생하면서 XT PC의 특수한 주소 계산법(1MB 이상의 주소를 1MB 이하의 주소로 맵핑) 때문에 문제가 발생합니다. 이 호환성 문제를 해결하기 위해 탄생한게 <code>A20 게이트</code> 입니다.</p>
+<p>A20은 주소의 20번째 비트를 의미하며, 이를 활성화/비활성화 함으로 20번째 비트를 항상 0으로 고정할 수 있었습니다. A20 게이트가 비활성화된 상태에서는 20번째 비트가 항상 0을 유지하기 때문에 홀수 MB에 접근할 수 없습니다. 그래서 최초 부팅 이후 1MB<del>4MB의 초기화를 하면 0</del>1MB, 2<del>3MB가 초기화되고 0</del>1MB 영역은 BIOS와 보호 모드 커널 영역으로 사용하고 있으므로 수행중인 부분이 초기화가 되어버립니다.</p>
+<a id="more"></a>
+<h3 id="A20-게이트-활성화-방법"><a href="#A20-게이트-활성화-방법" class="headerlink" title="A20 게이트 활성화 방법"></a>A20 게이트 활성화 방법</h3><p>A20 게이트를 활성화하는 방법은 크게 세 가지가 있습니다.</p>
+<ul>
+<li>키보드 컨트롤러로 활성화<ul>
+<li>키보드 컨트롤러에 A20 게이트를 연결하여 제어, 느리고 소스 코드가 복잡하지만 마우스와 키보드가 있는 환경에선 쉽게 접근할 수 있다.</li>
+</ul>
+</li>
+<li>시스템 컨트롤 포트로 활성화<ul>
+<li>시스템 제어에 관련된 I/O 포트를 통해 A20 게이트를 활성화한다. 키보드 컨트롤러보다 속도가 빠르고 소스 코드가 간략</li>
+</ul>
+</li>
+<li>BIOS 서비스로 활성화<ul>
+<li>BIOS를 활용하기에 세 가지 방법중 가장 확실하다.</li>
+</ul>
+</li>
+</ul>
+<p>이 방법중 책에서는 시스템 컨트롤러 포트, BIOS 방법을 활용합니다.</p>
+<h4 id="시스템-컨트롤러-포트"><a href="#시스템-컨트롤러-포트" class="headerlink" title="시스템 컨트롤러 포트"></a>시스템 컨트롤러 포트</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">in</span> al, 0x92</span><br><span class="line">or al, 0x02</span><br><span class="line">and al, 0xFE</span><br><span class="line">out 0x92, al</span><br></pre></td></tr></table></figure>
+
+<h4 id="BIOS"><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mov ax, 0x2401</span><br><span class="line">int 0x15</span><br><span class="line"></span><br><span class="line">jc .A20GATEERROR</span><br><span class="line">jmp .A20GATESUCCESS</span><br><span class="line">.A20GATEERROR</span><br><span class="line">    ..error handling..</span><br><span class="line"></span><br><span class="line">.A20GATESUCCESS</span><br><span class="line">    ..success logic..</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://blog.gomi.land/2020/05/03/multicoreos64-day4/" data-id="ckdpsg0rf000jcctob72a7e2n" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/aid95" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2020/05/07/raspberry-install/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            라즈베리파리 사용
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2020/05/01/multicoreos64-day3/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">64bit 멀티코어 OS 원리와 구조 - Day 3</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/08/11/nodejs-study-day1/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CE/Study/">Study</a></p>
+                            <p class="item-title"><a href="/2020/08/11/nodejs-study-day1/" class="title">Express.js 스터디 1</a></p>
+                            <p class="item-date"><time datetime="2020-08-11T08:40:11.000Z" itemprop="datePublished">2020-08-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/06/10/basic-dp-algorithm/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/basic-dp-algorithm/dp-algorithm-1.png)" alt="기초 DP알고리즘 문제" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CE/Algorithm/">Algorithm</a></p>
+                            <p class="item-title"><a href="/2020/06/10/basic-dp-algorithm/" class="title">기초 DP알고리즘 문제</a></p>
+                            <p class="item-date"><time datetime="2020-06-10T14:09:23.000Z" itemprop="datePublished">2020-06-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/05/15/multicoreos64-day5/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CE/OS/">OS</a></p>
+                            <p class="item-title"><a href="/2020/05/15/multicoreos64-day5/" class="title">64bit 멀티코어 OS 원리와 구조 - Day 5</a></p>
+                            <p class="item-date"><time datetime="2020-05-15T11:33:52.000Z" itemprop="datePublished">2020-05-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/05/07/raspberry-install/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/raspberry-install/install.png)" alt="라즈베리파리 사용" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CE/Embedded/">Embedded</a></p>
+                            <p class="item-title"><a href="/2020/05/07/raspberry-install/" class="title">라즈베리파리 사용</a></p>
+                            <p class="item-date"><time datetime="2020-05-07T04:13:58.000Z" itemprop="datePublished">2020-05-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/05/03/multicoreos64-day4/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CE/OS/">OS</a></p>
+                            <p class="item-title"><a href="/2020/05/03/multicoreos64-day4/" class="title">64bit 멀티코어 OS 원리와 구조 - Day 4</a></p>
+                            <p class="item-date"><time datetime="2020-05-03T11:33:52.000Z" itemprop="datePublished">2020-05-03</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CE/">CE</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CE/Algorithm/">Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CE/Embedded/">Embedded</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CE/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CE/OS/">OS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CE/Study/">Study</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/archlinux/" rel="tag">archlinux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootloader/" rel="tag">bootloader</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/embedded/" rel="tag">embedded</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/express-js/" rel="tag">express.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kernel/" rel="tag">kernel</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/" rel="tag">node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/os/" rel="tag">os</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberry/" rel="tag">raspberry</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rust-lang/" rel="tag">rust-lang</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/" rel="tag">sort</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webdev/" rel="tag">webdev</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/bootloader/" style="font-size: 10px;">bootloader</a> <a href="/tags/embedded/" style="font-size: 10px;">embedded</a> <a href="/tags/express-js/" style="font-size: 10px;">express.js</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/kernel/" style="font-size: 17.5px;">kernel</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/os/" style="font-size: 20px;">os</a> <a href="/tags/raspberry/" style="font-size: 10px;">raspberry</a> <a href="/tags/rust-lang/" style="font-size: 15px;">rust-lang</a> <a href="/tags/sort/" style="font-size: 12.5px;">sort</a> <a href="/tags/webdev/" style="font-size: 10px;">webdev</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://www.youtube.com/channel/UCritGVo7pLJLUS8wEu32vow" target="_blank" rel="noopener">(G)I-DLE Youtube</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.facebook.com/G.I.DLE.CUBE" target="_blank" rel="noopener">(G)I-DLE Instagram</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://twitter.com/G_I_DLE" target="_blank" rel="noopener">(G)I-DLE Twitter</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 Byeongju Shin(aka. imgomi)</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'cou9ar';
+    
+    
+    var disqus_url = 'https://blog.gomi.land/2020/05/03/multicoreos64-day4/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>
