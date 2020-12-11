@@ -1,358 +1,495 @@
-<!DOCTYPE html><html><head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  
-  
-  <title>  Express.js 스터디 1 |   Lemon </title>
+<!DOCTYPE html>
+<html lang="zh-CN">
 
- 
+  <head>
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   
+  
+  <title>Express.js 스터디 1   | GOMI🏝️LAND</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
     <link rel="icon" href="/images/favicon.png">
   
 
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
 
   
-<link rel="stylesheet" href="/nayo.min.css">
- 
-<meta name="generator" content="Hexo 5.2.0"></head>  
-  <body>   
-    
-      <header class="header-wrapper">
 
-  <nav class="inner">
-    <div class="title">
-      <a href="/">
-        <img class="logo" src="/images/logo.png">
-      </a>
-    </div>
+<meta name="generator" content="Hexo 5.2.0"></head>
 
-    <ul class="menu">
-      
-      
-      <li class="item">
-        <a class="link" id="menu-home" href="/">
-          <i class="iconfont icon-home">
-        </i></a><i class="iconfont icon-home">
-      </i></li><i class="iconfont icon-home">
-      
-      
-      
-      <li class="item">
-        <a class="link" id="menu-archives" href="/archives">
-          <i class="iconfont icon-archives">
-        </i></a><i class="iconfont icon-archives">
-      </i></li><i class="iconfont icon-archives">
-      
-      
-      
-      <li class="item">
-        <a class="link" id="menu-tags" href="/tags">
-          <i class="iconfont icon-tags">
-        </i></a><i class="iconfont icon-tags">
-      </i></li><i class="iconfont icon-tags">
-      
-      
-      
-      <li class="item">
-        <a class="link" id="menu-about" href="/about">
-          <i class="iconfont icon-about">
-        </i></a><i class="iconfont icon-about">
-      </i></li><i class="iconfont icon-about">
-      
-      
-      
-      <li class="item">
-        <a class="link" id="menu-search">
-          <i class="iconfont icon-search">
-        </i></a><i class="iconfont icon-search">
-        
 
-        
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
       
-    </i></li></i></i></i></i></ul><i class="iconfont icon-home"><i class="iconfont icon-archives"><i class="iconfont icon-tags"><i class="iconfont icon-about"><i class="iconfont icon-search">
-  </i></i></i></i></i></nav><i class="iconfont icon-home"><i class="iconfont icon-archives"><i class="iconfont icon-tags"><i class="iconfont icon-about"><i class="iconfont icon-search">
-</i></i></i></i></i></header><i class="iconfont icon-home"><i class="iconfont icon-archives"><i class="iconfont icon-tags"><i class="iconfont icon-about"><i class="iconfont icon-search">
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
 
-<header class="mobile-header-wrapper">
-  <i id="mobile-toggle" class="iconfont icon-menu mobile-toggle"></i>
-</header>   
 
-      <div class="container">       
-          
-          
-            <div class="container-inner">  
-          
+<script src="/js/activeNav.js"></script>
 
-          <article class="post slideDownMin">
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
   
-	
-<div class="header">
-		<p class="title">	
-			Express.js 스터디 1
-		</p>
-		<div class="info">	
-			<time>
-				Aug 11, 2020
-			</time>
 
-			
-			
-				<i class="iconfont icon-words"></i>
-				<span class="words">2336
-				</span>
-			
-		</div>
-</div> 
-	
+  
 
-    <script type="text/x-mathjax-config">
-        var post = document.getElementsByClassName("post")[0];  
-        MathJax.Hub.Config({
-            showProcessingMessages: false,
-            messageStyle: "none",    
-            tex2jax: {
-                inlineMath:  [ ["$", "$"] , ["\\(","\\)"]],
-                displayMath: [ ["$$","$$"] , ["\\[","\\]"]],
-                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'],
-            },
-            "HTML-CSS": {            
-                showMathMenu: false
-            }
-        });
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub,post]);
-    </script>
-    <style>.MathJax{outline:0;}</style>
+  
 
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.2/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
- 
-
-	  <div class="typo post-content ">
-
-		
-
-			
-					<h1 id="Express-js-스터디-1일"><a href="#Express-js-스터디-1일" class="headerlink" title="Express.js 스터디 1일"></a>Express.js 스터디 1일</h1><h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><p>Express.js를 사용하기 위해서는 먼저 node.js와 NPM이 설치된 상황에서 진행할 수 있다. 윈도우 기준으로 <a target="_blank" rel="noopener" href="https://nodejs.org/ko/">Node.js 공식 홈페이지</a>에서 설치파일을 다운로드 받을 수 있다.</p>
-<p>설치가 완려되면 아래의 명령어를 통해 express.js를 설치한다.</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 종속성 항목을 추가하며 설치</span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install express --save</span></span><br><span class="line"></span><br><span class="line">// 종속성 항목을 추가하지 않고 설치</span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install express</span></span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello, World!"></a>Hello, World!</h2><p>설치가 완료되면 app.js를 통해 간단한 예제를 작성하여 테스트할 수 있다.</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function">(<span class="params">req, res</span>) =></span> {</span><br><span class="line">  res.send(<span class="string">'Hello World!'</span>)</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="function">() =></span> {</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Example app listening at http://localhost:<span class="subst">${port}</span>`</span>)</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
-
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">node app.js</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>1행에서 express 모듈을 불러와 2행에 express 모듈의 인스턴스를 생성한다. 생성된 express 인스턴스인 app을 통해 5행에서 ‘/‘ 경로에 대한 GET메소드 라우트를 지정하고 listen을 통해 서버를 열게 된다. 이렇듯 node.js는 매우 간단하게 웹 애플리케이션을 생성할 수 있게 된다.</p>
-<h2 id="Express-generator"><a href="#Express-generator" class="headerlink" title="Express generator"></a>Express generator</h2><p>Express generator를 통해 간편하게 애플리케이션의 골격을 생성할 수 있다.</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install express-generator -g</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npx express-generator <APP NAME> --view=pug</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>첫번째 명령어를 통해서 express-generator를 전역으로 설치하고, 두번째 명령어를 통해서 <code>APP NAME</code>에 해당하는 express 애플리케이션이 생성된다. 여기서 <code>--view=pug</code>는 뷰 엔진에 해당하며 <code>ejs, hbs, hjs, jade, pug, twig, vash</code>등이 있다. 기본으로 jade로 지정되며 만약 뷰 엔진이 필요없는 경우 <code>--no-view</code>를 이용해 생성할 수 있다뷰</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> myapp</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>생성 이후 express 애플리케이션 내부로 폴더를 이용해 종속성을 설치하면 기초 개발 준비가 끝나게 된다.</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── app.js</span><br><span class="line">├── bin</span><br><span class="line">│   └── www</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">│   ├── images</span><br><span class="line">│   ├── javascripts</span><br><span class="line">│   └── stylesheets</span><br><span class="line">│       └── style.css</span><br><span class="line">├── routes</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   └── users.js</span><br><span class="line">└── views</span><br><span class="line">    ├── error.pug</span><br><span class="line">    ├── index.pug</span><br><span class="line">    └── layout.pug</span><br></pre></td></tr></tbody></table></figure>
-
-<p>파일의 구조에서 Javascript와 관련된 폴더 및 파일은 <code>app.js, bin/www, routes/*</code>이며 웹 리소스&템플릿에 관련된 폴더는 <code>public/*, views/*</code>에 해당된다.</p>
-<p>bin/www에서는 서버 구동과 관련된 코드가 포함되어 있고, app.js에서는 routes/*의 라우터들과 리소스 폴더 및 뷰 템플릿 폴더를 지정하는 등 서버 구동 이전에 필요한 설정을 하게 된다.</p>
-<h2 id="기본-라우팅"><a href="#기본-라우팅" class="headerlink" title="기본 라우팅"></a>기본 라우팅</h2><p>app.js를 자세히 보면</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// view engine setup</span></span><br><span class="line">app.set(<span class="string">'views'</span>, path.join(__dirname, <span class="string">'views'</span>));</span><br><span class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'pug'</span>)</span><br></pre></td></tr></tbody></table></figure>
-
-<p>먼저 뷰 엔진을 지정하며 뷰 엔진의 종류는 위 express-generator에 –view 인자를 지정된 엔진을 사용한다.</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(logger(<span class="string">'dev'</span>));</span><br><span class="line">app.use(express.json());</span><br><span class="line">app.use(express.urlencoded({ <span class="attr">extended</span>: <span class="literal">false</span> }));</span><br><span class="line">app.use(cookieParser());</span><br></pre></td></tr></tbody></table></figure>
-
-<p>개발에 유용한 다양한 미들웨어를 추가하고 리소스파일(js, css, image등)의 경로를 지정하게 된다.</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/'</span>, indexRouter);</span><br><span class="line">app.use(<span class="string">'/users'</span>, usersRouter);</span><br></pre></td></tr></tbody></table></figure>
-
-<p>use는 미들웨어로 등록할 callback함수를 인자로 받는데, 첫번째 인자로 경로를 줄 경우 해당 경로에 대한 미들웨어를 추가할 수 있다. 이 경우 routes/*에 있는 라우트를 미들웨어로 등록하는데 각각 ‘/‘, ‘/users’경로를 구분하여 등록하게 된다. 때문에 두 라우터는 별개의 상황에서 동작하게 된다.</p>
-<h2 id="정적-파일-제공"><a href="#정적-파일-제공" class="headerlink" title="정적 파일 제공"></a>정적 파일 제공</h2><figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(express.static(path.join(__dirname, <span class="string">'public'</span>)))</span><br></pre></td></tr></tbody></table></figure>
-
-<p>정적 파일을 제공하기 위해서는 정적 파일이 존재하는 경로를 static 미들웨어 함수를 통해 등록할 필요가 있다.</p>
-<p>static을 통해 여러 정적 파일 경로를 등록할 경우 등록된 순서에 따라 정적 파일을 검색한다. 이 부분도 use의 첫번째 인자로 경로를 주게 되면 가상 경로로 지정할 수 있다.</p>
-<a id="more"></a>
-
-<h2 id="레퍼런스"><a href="#레퍼런스" class="headerlink" title="레퍼런스"></a>레퍼런스</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=JpV6eW_4JQk">How to Install Arch Linux on VirtualBox</a></p>
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Express.js 스터디 1</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2020-08-11
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="Tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/javascript/" title="javascript">
+                    <b>#</b> javascript
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/node-js/" title="node.js">
+                    <b>#</b> node.js
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/express-js/" title="express.js">
+                    <b>#</b> express.js
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/webdev/" title="webdev">
+                    <b>#</b> webdev
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h2 id="레퍼런스"><a href="#레퍼런스" class="headerlink" title="레퍼런스"></a>레퍼런스</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=JpV6eW_4JQk">How to Install Arch Linux on VirtualBox</a></p>
 <p><a target="_blank" rel="noopener" href="https://whjeon.com/arch-install/#seolchi_junbi_seolchiyong_usb_jejag">아치 리눅스 설치 가이드</a></p>
-  	
-					
-	  </div>     
-	  
-
-	<div class="bottom">
-  <div class="other">
-    <div class="meta">
+      </div>
       
-      <i class="iconfont icon-category"></i>
-      <a class="category-link" href="/categories/CE/">CE</a> <a class="category-link" href="/categories/CE/Study/">Study</a>
-
-      
-
-      
-      <i class="iconfont icon-tag"></i>
-      <a class="tag-none-link" href="/tags/express-js/" rel="tag">express.js</a> <a class="tag-none-link" href="/tags/javascript/" rel="tag">javascript</a> <a class="tag-none-link" href="/tags/node-js/" rel="tag">node.js</a> <a class="tag-none-link" href="/tags/webdev/" rel="tag">webdev</a>
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2020/06/10/basic-dp-algorithm/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2020-08-11
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="Tags"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/javascript/" title="javascript">
+                        <b>#</b> javascript
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/node-js/" title="node.js">
+                        <b>#</b> node.js
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/express-js/" title="express.js">
+                        <b>#</b> express.js
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/webdev/" title="webdev">
+                        <b>#</b> webdev
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2020/08/12/multicoreos64-day6/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
       
     </div>
-
-    <div class="operate">
-      
-      <span class="text">Share</span>
-      <ul class="share">
-	   			             
-        <li class="iconfont 
-		icon-share-qq 
-		-mob-share-qq 
-		item"></li>		
-   	   			             
-        <li class="iconfont 
-		icon-share-weixin 
-		-mob-share-weixin 
-		item"></li>		
-   	   			             
-        <li class="iconfont 
-		icon-share-weibo 
-		-mob-share-weibo 
-		item"></li>		
-   	   
-</ul>	
-
-<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
-      
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Express-js-%EC%8A%A4%ED%84%B0%EB%94%94-1%EC%9D%BC"><span class="toc-text">Express.js 스터디 1일</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%84%A4%EC%B9%98"><span class="toc-text">설치</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-World"><span class="toc-text">Hello, World!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Express-generator"><span class="toc-text">Express generator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%B0%EB%B3%B8-%EB%9D%BC%EC%9A%B0%ED%8C%85"><span class="toc-text">기본 라우팅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A0%95%EC%A0%81-%ED%8C%8C%EC%9D%BC-%EC%A0%9C%EA%B3%B5"><span class="toc-text">정적 파일 제공</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4"><span class="toc-text">레퍼런스</span></a></li></ol></li></ol>
     </div>
   </div>
 
+  
+<script src="/js/catalog.js"></script>
 
-  
-  <nav class="nav">
-    <div class="link">
-      
-      <a href="/2020/06/10/basic-dp-algorithm/" class="link-wrap">
-        <strong class="caption">older</strong>
-        
-        <span class="title">
-          기초 DP알고리즘 문제
-        </span>
-      </a>
-      
-    </div>
-    <div class="link">
-      
-      <a href="/2020/08/12/multicoreos64-day6/" class="link-wrap">
-        <strong class="caption">newer</strong>
-        
-        <span class="title">
-          64bit 멀티코어 OS 원리와 구조 - Day 6
-        </span>
-      </a>
-      
-    </div>
-  </nav>
-  
-</div> 
-	
-<div class="comment">
+
+
 
     
-
-    <div id="comment">
-    </div>
-
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-
-    <script src="//unpkg.com/valine@v1.1.8-beta/dist/Valine.min.js"></script>
-
-    <script>
-        new Valine({
-            el: '#comment',
-            notify: false,
-            verify: false,
-            app_id: 'cFM0eCo0CQ9xmBXmHi1eltol-gzGzoHsz',
-            app_key: 'oh9tizsnvV2vNvWgqEvoNtQO',
-            path: window.location.pathname,
-            avatar: 'mm',
-            guest_info: ['nick', 'mail']
-        });
-    </script>
-    
-</div>	
-</article>
-
-          </div> 
-      </div>            
-    
-        <i id="toTop" class="iconfont icon-backtotop"></i>
-
-  
-    <div class="none" id="search">
-    <div class="header">
-        <input type="text" placeholder="Typing Something here." id="search-input" class="input">
+      <div class="comments-container">
         
-        <i id="search-cancel" class="iconfont icon-cancel"></i>
-    </div>
 
-    <div id="search-result" class="result"></div>
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
 </div>
-     <div class="mobile-menu">      
 
-      
-      <img class="mobile-menu-icon" src="/images/favicon.png">  
-      
+      </div>
 
-         
-            
-
-            <a class="mobile-menu-link" href="/">Home
-            </a>
-            
-         
-            
-
-            <a class="mobile-menu-link" href="/archives">Archives
-            </a>
-            
-         
-            
-
-            <a class="mobile-menu-link" href="/tags">Tags
-            </a>
-            
-         
-            
-
-            <a class="mobile-menu-link" href="/about">About
-            </a>
-            
-         
-                          
-
-            <a class="mobile-menu-link mobile-menu-search" href="#">Search </a>                 
-            
-         
-      
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
 </div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+      
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
         
-    
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
 
 
 
-     
-    
 
-
-<footer class="footer">
-	<div class="inner">
-		<div class="copyright">
-			©
-			
-			2019 -
-			
-			2020
-			Lemon
-
-			<br>
-			By <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
-		</div>
-	</div>
-</footer>   
-
-    
-<script src="/nayo.bundle.js"></script>
-           
-          
-</i></i></i></i></i></body></html>
+    </div>
+  </body>
+</html>
