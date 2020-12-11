@@ -126,7 +126,29 @@
           
       </div>
       <div class="markdown-body">
-        <h3 id="섹션-배치와-링커-스크립트-라이브러리를-사용하지-않는-링크"><a href="#섹션-배치와-링커-스크립트-라이브러리를-사용하지-않는-링크" class="headerlink" title="섹션 배치와 링커 스크립트, 라이브러리를 사용하지 않는 링크"></a>섹션 배치와 링커 스크립트, 라이브러리를 사용하지 않는 링크</h3><blockquote>
+        <blockquote>
+<p>이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.</p>
+</blockquote>
+<h1 id="C언어로-커널을-작성하자"><a href="#C언어로-커널을-작성하자" class="headerlink" title="C언어로 커널을 작성하자"></a>C언어로 커널을 작성하자</h1><h2 id="실행-가능한-C-코드-커널-생성-방법"><a href="#실행-가능한-C-코드-커널-생성-방법" class="headerlink" title="실행 가능한 C 코드 커널 생성 방법"></a>실행 가능한 C 코드 커널 생성 방법</h2><h3 id="빌드-조건과-제약-사항"><a href="#빌드-조건과-제약-사항" class="headerlink" title="빌드 조건과 제약 사항"></a>빌드 조건과 제약 사항</h3><p>지금까지 작성된 코드는 단일 파일로 NASM 컴파일을 통해 바이너리 파일 형태로 만들어졌다. 직전 EntryPoint.s 코드도 단일 파일로 작성되었고, 512byte로 정렬되어 이미지 파일에 결합(Disk.img 파일에 포함)하는 구조다. 이 장에서는 보호 모드 EntryPoint(이하, 엔트리포인트)의 뒷부분에 C언어로 작성한 커널을 연결하고, C 커널의 시작 부분으로 이동하는 것이 목표이다.</p>
+<p>먼저, 엔트리 포인트가 C언어 코드를 실행하려면 3가지 제약 조건을 만족해야 한다.</p>
+<ul>
+<li>C 라이브러리를 사용하지 않게 빌드해야 한다.<ul>
+<li>부팅된 후 보호 모드 커널이 실행되면 C 라이브러리가 없음으로 라이브러리에 포함된 함수(printf, scanf, …)를 호출할 수 없다.</li>
+</ul>
+</li>
+<li>0x10200 위치에서 실행하게끔 빌드해야 한다.<ul>
+<li>0x10000의 위치에는 이전 장(6장)에서 작성한 EntryPoint.s가 512byte(1 섹터) 만큼 위치하기 때문에 0x1000 + 0x200(512byte) 뒤인 0x10200에 위치해야 한다.</li>
+</ul>
+</li>
+<li>코드나 데이터 외에 기타 정보를 포함하지 않은 순수한 바이너리 파일 형태야 한다.<ul>
+<li>GCC를 통해 컴파일하면 ELF 또는 PE 와 같은 OS에 의존적인 실행 파일 포맷으로 생성된다. 이런 파일을 포맷이 포함되게 되면 이 정보를 처리하기 위한 부가적인 복잡한 코드를 생성해야 하기 때문에 순수한 바이너리 파일을 생성해야 한다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding Main.c</span><br></pre></td></tr></table></figure>
+
+<p>라이브러리를 사용하지 않고 홀로 사용하기 위해서 GCC 컴파일러는 <code>-ffreestanding</code>옵션을 지원하고 있으며, <code>-c</code>과 함께 라이브러리를 사용하지 않는 오브젝트 파일을 생성할 수 있다.</p>
+<h3 id="섹션-배치와-링커-스크립트-라이브러리를-사용하지-않는-링크"><a href="#섹션-배치와-링커-스크립트-라이브러리를-사용하지-않는-링크" class="headerlink" title="섹션 배치와 링커 스크립트, 라이브러리를 사용하지 않는 링크"></a>섹션 배치와 링커 스크립트, 라이브러리를 사용하지 않는 링크</h3><blockquote>
 <p>이 부분은 불필요한 섹션을 제거(또는 이동)하여 섹션을 재배치하고 보호 모드 엔트리포인트에서 커널로 이동하는 설정을 다루고 있습니다. 따라서 코드는 책의 내용을 참고하시는게 좋습니다.</p>
 </blockquote>
 <p>작성하는 커널의 위치는 0x10000의 보호 모드 엔트리포인트에서 1섹터(512byte)만큼 떨어진 0x10200에 위치하도록 한다.</p>
@@ -134,6 +156,7 @@
 
 <p>그리고 커널의 엔트리 포인터를 Main함수로 만들기 위해서 다음과 같이 엔트리 포인터를 설정한다.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; x86_64-pc-linux-ld.exe -e Main Main.o -o Main.elf</span><br></pre></td></tr></table></figure>
+
       </div>
       
         <div class="prev-or-next">
