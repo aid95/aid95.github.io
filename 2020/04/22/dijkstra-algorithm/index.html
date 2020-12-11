@@ -1,472 +1,322 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html><html><head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  Dijkstra Algorithm |   Lemon </title>
 
-  <head>
-  <meta charset="utf-8">
-  <meta name="author" content="zchengsite, 1451426471@qq.com" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+ 
   
-  
-  <title>Dijkstra Algorithm   | GOMI🏝️LAND</title>
-
-  
-    <link rel="apple-touch-icon" href="/images/favicon.png">
     <link rel="icon" href="/images/favicon.png">
   
 
-  <!-- Raleway-Font -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-
-  <!-- hexo site css -->
-  
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/iconfont/iconfont.css">
-<link rel="stylesheet" href="/css/github-markdown.css">
-<link rel="stylesheet" href="/css/highlight.css">
-
-
-  <!-- jquery3.3.1 -->
-  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-
-  <!-- fancybox -->
-  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
-  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
-  
-<script src="/js/fancybox.js"></script>
-
 
   
+<link rel="stylesheet" href="/nayo.min.css">
+ 
+<meta name="generator" content="Hexo 5.2.0"></head>  
+  <body>   
+    
+      <header class="header-wrapper">
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+  <nav class="inner">
+    <div class="title">
+      <a href="/">
+        <img class="logo" src="/images/logo.png">
+      </a>
+    </div>
 
-
-  <body>
-    <div id="app">
-      <div class="header">
-  <div class="avatar">
-    <a href="/">
-      <!-- 头像取消懒加载，添加no-lazy -->
+    <ul class="menu">
       
-        <img src="/images/avatar.png" alt="">
       
-    </a>
-    <div class="nickname"><a href="/">Oranges</a></div>
-  </div>
-  <div class="navbar">
-    <ul>
+      <li class="item">
+        <a class="link" id="menu-home" href="/">
+          <i class="iconfont icon-home">
+        </i></a><i class="iconfont icon-home">
+      </i></li><i class="iconfont icon-home">
       
-        <li class="nav-item" data-path="/">
-          <a href="/">Home</a>
-        </li>
       
-        <li class="nav-item" data-path="/archives/">
-          <a href="/archives/">Archives</a>
-        </li>
       
-        <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">Tags</a>
-        </li>
+      <li class="item">
+        <a class="link" id="menu-archives" href="/archives">
+          <i class="iconfont icon-archives">
+        </i></a><i class="iconfont icon-archives">
+      </i></li><i class="iconfont icon-archives">
       
-        <li class="nav-item" data-path="/friends/">
-          <a href="/friends/">Friends</a>
-        </li>
       
-        <li class="nav-item" data-path="/about/">
-          <a href="/about/">About</a>
-        </li>
       
-    </ul>
-  </div>
-</div>
-
-
-<script src="/js/activeNav.js"></script>
-
-
-
-      <div class="flex-container">
-        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
-<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
-
-
-
-  
-
-  
-
-  
-
-  
-  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
-  <div class="container post-details" id="post-details">
-    <div class="post-content">
-      <div class="post-title">Dijkstra Algorithm</div>
-      <div class="post-attach">
-        <span class="post-pubtime">
-          <i class="iconfont icon-updatetime" title="Update time"></i>
-          2020-04-22
-        </span>
+      <li class="item">
+        <a class="link" id="menu-tags" href="/tags">
+          <i class="iconfont icon-tags">
+        </i></a><i class="iconfont icon-tags">
+      </i></li><i class="iconfont icon-tags">
+      
+      
+      
+      <li class="item">
+        <a class="link" id="menu-about" href="/about">
+          <i class="iconfont icon-about">
+        </i></a><i class="iconfont icon-about">
+      </i></li><i class="iconfont icon-about">
+      
+      
+      
+      <li class="item">
+        <a class="link" id="menu-search">
+          <i class="iconfont icon-search">
+        </i></a><i class="iconfont icon-search">
         
-              <span class="post-tags">
-                <i class="iconfont icon-tags" title="Tags"></i>
-                
-                <span class="span--tag">
-                  <a href="/tags/algorithm/" title="algorithm">
-                    <b>#</b> algorithm
-                  </a>
-                </span>
-                
-                <span class="span--tag">
-                  <a href="/tags/rust-lang/" title="rust-lang">
-                    <b>#</b> rust-lang
-                  </a>
-                </span>
-                
-              </span>
+
+        
+      
+    </i></li></i></i></i></i></ul><i class="iconfont icon-home"><i class="iconfont icon-archives"><i class="iconfont icon-tags"><i class="iconfont icon-about"><i class="iconfont icon-search">
+  </i></i></i></i></i></nav><i class="iconfont icon-home"><i class="iconfont icon-archives"><i class="iconfont icon-tags"><i class="iconfont icon-about"><i class="iconfont icon-search">
+</i></i></i></i></i></header><i class="iconfont icon-home"><i class="iconfont icon-archives"><i class="iconfont icon-tags"><i class="iconfont icon-about"><i class="iconfont icon-search">
+
+<header class="mobile-header-wrapper">
+  <i id="mobile-toggle" class="iconfont icon-menu mobile-toggle"></i>
+</header>   
+
+      <div class="container">       
           
-      </div>
-      <div class="markdown-body">
-        <h2 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::&#123;HashMap, HashSet&#125;;</span><br><span class="line"><span class="keyword">use</span> std::collections::BinaryHeap;</span><br><span class="line"><span class="keyword">use</span> std::cmp::Ordering;</span><br><span class="line"><span class="keyword">use</span> std::fmt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> v1 = Vertex::new(<span class="string">"v1"</span>);</span><br><span class="line">    <span class="keyword">let</span> v2 = Vertex::new(<span class="string">"v2"</span>);</span><br><span class="line">    <span class="keyword">let</span> v3 = Vertex::new(<span class="string">"v3"</span>);</span><br><span class="line">    <span class="keyword">let</span> v4 = Vertex::new(<span class="string">"v4"</span>);</span><br><span class="line">    <span class="keyword">let</span> v5 = Vertex::new(<span class="string">"v5"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> vertex_graph = HashMap::new();</span><br><span class="line">    vertex_graph.insert(v1, <span class="built_in">vec!</span>[(v2, <span class="number">10</span>), (v4, <span class="number">5</span>)]);</span><br><span class="line">    vertex_graph.insert(v2, <span class="built_in">vec!</span>[(v4, <span class="number">2</span>), (v3, <span class="number">1</span>)]);</span><br><span class="line">    vertex_graph.insert(v3, <span class="built_in">vec!</span>[(v4, <span class="number">4</span>)]);</span><br><span class="line">    vertex_graph.insert(v4, <span class="built_in">vec!</span>[(v2, <span class="number">3</span>), (v3, <span class="number">9</span>), (v5, <span class="number">2</span>)]);</span><br><span class="line">    vertex_graph.insert(v5, <span class="built_in">vec!</span>[(v1, <span class="number">7</span>), (v3, <span class="number">6</span>)]);</span><br><span class="line">    <span class="keyword">let</span> distances = dijkstra(v1, &amp;vertex_graph);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (v, d) <span class="keyword">in</span> &amp;distances &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"&#123;&#125; &#123;&#125;"</span>, v, d);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">dijkstra</span></span>&lt;<span class="symbol">'a</span>&gt;(</span><br><span class="line">    s: Vertex&lt;<span class="symbol">'a</span>&gt;,</span><br><span class="line">    vl: &amp;HashMap&lt;Vertex&lt;<span class="symbol">'a</span>&gt;, <span class="built_in">Vec</span>&lt;(Vertex&lt;<span class="symbol">'a</span>&gt;, <span class="built_in">usize</span>)&gt;&gt;,</span><br><span class="line">) -&gt; HashMap&lt;Vertex&lt;<span class="symbol">'a</span>&gt;, <span class="built_in">usize</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> result = HashMap::new();</span><br><span class="line">    result.insert(s, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> to_visit = BinaryHeap::new();</span><br><span class="line">    to_visit.push(Visit &#123;</span><br><span class="line">        vertex: s,</span><br><span class="line">        distance: <span class="number">0</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> visited = HashSet::new();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">let</span> <span class="literal">Some</span>(Visit &#123; vertex, distance &#125;) = to_visit.pop() &#123;</span><br><span class="line">        <span class="keyword">if</span> !visited.insert(vertex) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">Some</span>(other_vertexs) = vl.get(&amp;vertex) &#123;</span><br><span class="line">            <span class="keyword">for</span> (other_vertex, cost) <span class="keyword">in</span> other_vertexs &#123;</span><br><span class="line">                <span class="keyword">let</span> accu_distance = distance + cost;</span><br><span class="line">                <span class="keyword">let</span> is_shorter = </span><br><span class="line">                    result.get(other_vertex)</span><br><span class="line">                        .map_or(<span class="literal">true</span>, |&amp;d| accu_distance &lt; d);</span><br><span class="line">                <span class="keyword">if</span> is_shorter &#123;</span><br><span class="line">                    result.insert(*other_vertex, accu_distance);</span><br><span class="line">                    to_visit.push(Visit &#123;</span><br><span class="line">                        vertex: *other_vertex,</span><br><span class="line">                        distance: accu_distance,</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Vertex</span></span>&lt;<span class="symbol">'a</span>&gt; &#123;</span><br><span class="line">    name: &amp;<span class="symbol">'a</span> <span class="built_in">str</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;<span class="symbol">'a</span>&gt; Vertex&lt;<span class="symbol">'a</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">new</span></span>(name: &amp;<span class="symbol">'a</span> <span class="built_in">str</span>) -&gt; Vertex&lt;<span class="symbol">'a</span>&gt; &#123;</span><br><span class="line">        Vertex &#123; name &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;<span class="symbol">'a</span>&gt; fmt::Display <span class="keyword">for</span> Vertex&lt;<span class="symbol">'a</span>&gt; &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">fmt</span></span>(&amp;<span class="keyword">self</span>, f: &amp;<span class="keyword">mut</span> fmt::Formatter&lt;<span class="symbol">'_</span>&gt;) -&gt; fmt::<span class="built_in">Result</span> &#123;</span><br><span class="line">        <span class="built_in">write!</span>(f, <span class="string">"&#123;&#125;"</span>, <span class="keyword">self</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Visit</span></span>&lt;V&gt; &#123;</span><br><span class="line">    vertex: V,</span><br><span class="line">    distance: <span class="built_in">usize</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;V&gt; <span class="built_in">Eq</span> <span class="keyword">for</span> Visit&lt;V&gt; &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;V&gt; <span class="built_in">PartialEq</span> <span class="keyword">for</span> Visit&lt;V&gt; &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">eq</span></span>(&amp;<span class="keyword">self</span>, other: &amp;<span class="keyword">Self</span>) -&gt; <span class="built_in">bool</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.distance.eq(&amp;other.distance)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;V&gt; <span class="built_in">Ord</span> <span class="keyword">for</span> Visit&lt;V&gt; &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">cmp</span></span>(&amp;<span class="keyword">self</span>, other: &amp;<span class="keyword">Self</span>) -&gt; Ordering &#123;</span><br><span class="line">        other.distance.cmp(&amp;<span class="keyword">self</span>.distance)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;V&gt; <span class="built_in">PartialOrd</span> <span class="keyword">for</span> Visit&lt;V&gt; &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">partial_cmp</span></span>(&amp;<span class="keyword">self</span>, other: &amp;<span class="keyword">Self</span>) -&gt; <span class="built_in">Option</span>&lt;Ordering&gt; &#123;</span><br><span class="line">        <span class="literal">Some</span>(other.distance.cmp(&amp;<span class="keyword">self</span>.distance))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+            <div class="container-inner">  
+          
+
+          <article class="post slideDownMin">
+  
+	
+<div class="header">
+		<p class="title">	
+			Dijkstra Algorithm
+		</p>
+		<div class="info">	
+			<time>
+				Apr 22, 2020
+			</time>
+
+			
+			
+				<i class="iconfont icon-words"></i>
+				<span class="words">3021
+				</span>
+			
+		</div>
+</div> 
+	
+
+    <script type="text/x-mathjax-config">
+        var post = document.getElementsByClassName("post")[0];  
+        MathJax.Hub.Config({
+            showProcessingMessages: false,
+            messageStyle: "none",    
+            tex2jax: {
+                inlineMath:  [ ["$", "$"] , ["\\(","\\)"]],
+                displayMath: [ ["$$","$$"] , ["\\[","\\]"]],
+                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'],
+            },
+            "HTML-CSS": {            
+                showMathMenu: false
+            }
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,post]);
+    </script>
+    <style>.MathJax{outline:0;}</style>
+
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.2/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+ 
+
+	  <div class="typo post-content ">
+
+		
+
+			
+					<h1 id="다익스트라-알고리즘"><a href="#다익스트라-알고리즘" class="headerlink" title="다익스트라 알고리즘"></a>다익스트라 알고리즘</h1><p>Dijkstra algorithm(이하 다익스트라 알고리즘)은 음의 가중치가 없는 그래프에서 한 노드에서 다른 모든 노드까지의 가장 짧은 거리를 구하는 알고리즘 중 하나이다.</p>
+<p>선형구조로 구현된 다익스트라 알고리즘은 O(N^2)의 시간복잡도를 가지지만 힙을 이용해 구현하게 되면 O(NlogN)의 시간복잡도를 가지게 된다. 최단 거리를 구하는 경우는 현실에서도 흔하기 때문에 많이 사용되는 알고리즘이다.</p>
+<a id="more"></a>
+<h2 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h2><figure class="highlight rust"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::{HashMap, HashSet};</span><br><span class="line"><span class="keyword">use</span> std::collections::BinaryHeap;</span><br><span class="line"><span class="keyword">use</span> std::cmp::Ordering;</span><br><span class="line"><span class="keyword">use</span> std::fmt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() {</span><br><span class="line">    <span class="keyword">let</span> v1 = Vertex::new(<span class="string">"v1"</span>);</span><br><span class="line">    <span class="keyword">let</span> v2 = Vertex::new(<span class="string">"v2"</span>);</span><br><span class="line">    <span class="keyword">let</span> v3 = Vertex::new(<span class="string">"v3"</span>);</span><br><span class="line">    <span class="keyword">let</span> v4 = Vertex::new(<span class="string">"v4"</span>);</span><br><span class="line">    <span class="keyword">let</span> v5 = Vertex::new(<span class="string">"v5"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> vertex_graph = HashMap::new();</span><br><span class="line">    vertex_graph.insert(v1, <span class="built_in">vec!</span>[(v2, <span class="number">10</span>), (v4, <span class="number">5</span>)]);</span><br><span class="line">    vertex_graph.insert(v2, <span class="built_in">vec!</span>[(v4, <span class="number">2</span>), (v3, <span class="number">1</span>)]);</span><br><span class="line">    vertex_graph.insert(v3, <span class="built_in">vec!</span>[(v4, <span class="number">4</span>)]);</span><br><span class="line">    vertex_graph.insert(v4, <span class="built_in">vec!</span>[(v2, <span class="number">3</span>), (v3, <span class="number">9</span>), (v5, <span class="number">2</span>)]);</span><br><span class="line">    vertex_graph.insert(v5, <span class="built_in">vec!</span>[(v1, <span class="number">7</span>), (v3, <span class="number">6</span>)]);</span><br><span class="line">    <span class="keyword">let</span> distances = dijkstra(v1, &vertex_graph);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (v, d) <span class="keyword">in</span> &distances {</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"{} {}"</span>, v, d);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">dijkstra</span></span><<span class="symbol">'a</span>>(</span><br><span class="line">    s: Vertex<<span class="symbol">'a</span>>,</span><br><span class="line">    vl: &HashMap<Vertex<<span class="symbol">'a</span>>, <span class="built_in">Vec</span><(Vertex<<span class="symbol">'a</span>>, <span class="built_in">usize</span>)>>,</span><br><span class="line">) -> HashMap<Vertex<<span class="symbol">'a</span>>, <span class="built_in">usize</span>> {</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> result = HashMap::new();</span><br><span class="line">    result.insert(s, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> to_visit = BinaryHeap::new();</span><br><span class="line">    to_visit.push(Visit {</span><br><span class="line">        vertex: s,</span><br><span class="line">        distance: <span class="number">0</span>,</span><br><span class="line">    });</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> visited = HashSet::new();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">let</span> <span class="literal">Some</span>(Visit { vertex, distance }) = to_visit.pop() {</span><br><span class="line">        <span class="keyword">if</span> !visited.insert(vertex) {</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">Some</span>(other_vertexs) = vl.get(&vertex) {</span><br><span class="line">            <span class="keyword">for</span> (other_vertex, cost) <span class="keyword">in</span> other_vertexs {</span><br><span class="line">                <span class="keyword">let</span> accu_distance = distance + cost;</span><br><span class="line">                <span class="keyword">let</span> is_shorter = </span><br><span class="line">                    result.get(other_vertex)</span><br><span class="line">                        .map_or(<span class="literal">true</span>, |&d| accu_distance < d);</span><br><span class="line">                <span class="keyword">if</span> is_shorter {</span><br><span class="line">                    result.insert(*other_vertex, accu_distance);</span><br><span class="line">                    to_visit.push(Visit {</span><br><span class="line">                        vertex: *other_vertex,</span><br><span class="line">                        distance: accu_distance,</span><br><span class="line">                    })</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    result</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Vertex</span></span><<span class="symbol">'a</span>> {</span><br><span class="line">    name: &<span class="symbol">'a</span> <span class="built_in">str</span>,</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span><<span class="symbol">'a</span>> Vertex<<span class="symbol">'a</span>> {</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">new</span></span>(name: &<span class="symbol">'a</span> <span class="built_in">str</span>) -> Vertex<<span class="symbol">'a</span>> {</span><br><span class="line">        Vertex { name }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span><<span class="symbol">'a</span>> fmt::Display <span class="keyword">for</span> Vertex<<span class="symbol">'a</span>> {</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">fmt</span></span>(&<span class="keyword">self</span>, f: &<span class="keyword">mut</span> fmt::Formatter<<span class="symbol">'_</span>>) -> fmt::<span class="built_in">Result</span> {</span><br><span class="line">        <span class="built_in">write!</span>(f, <span class="string">"{}"</span>, <span class="keyword">self</span>.name)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Visit</span></span><V> {</span><br><span class="line">    vertex: V,</span><br><span class="line">    distance: <span class="built_in">usize</span>,</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span><V> <span class="built_in">Eq</span> <span class="keyword">for</span> Visit<V> { }</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span><V> <span class="built_in">PartialEq</span> <span class="keyword">for</span> Visit<V> {</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">eq</span></span>(&<span class="keyword">self</span>, other: &<span class="keyword">Self</span>) -> <span class="built_in">bool</span> {</span><br><span class="line">        <span class="keyword">self</span>.distance.eq(&other.distance)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span><V> <span class="built_in">Ord</span> <span class="keyword">for</span> Visit<V> {</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">cmp</span></span>(&<span class="keyword">self</span>, other: &<span class="keyword">Self</span>) -> Ordering {</span><br><span class="line">        other.distance.cmp(&<span class="keyword">self</span>.distance)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span><V> <span class="built_in">PartialOrd</span> <span class="keyword">for</span> Visit<V> {</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">partial_cmp</span></span>(&<span class="keyword">self</span>, other: &<span class="keyword">Self</span>) -> <span class="built_in">Option</span><Ordering> {</span><br><span class="line">        <span class="literal">Some</span>(other.distance.cmp(&<span class="keyword">self</span>.distance))</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 
 <h2 id="필기노트"><a href="#필기노트" class="headerlink" title="필기노트"></a>필기노트</h2><p><img src="/img/dijkstra-algorithm/Dijkstra-2.jpg" alt="Dijkstra algorithm1"></p>
 <p><img src="/img/dijkstra-algorithm/Dijkstra-3.jpg" alt="Dijkstra algorithm2"></p>
-<h2 id="레퍼런스"><a href="#레퍼런스" class="headerlink" title="레퍼런스"></a>레퍼런스</h2><p><a href="https://namu.wiki/w/%EB%8B%A4%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9D%BC%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" target="_blank" rel="noopener">다익스트라 알고리즘 - 니무위키</a></p>
-<p><a href="https://blog.naver.com/ndb796/221234424646" target="_blank" rel="noopener">23. 다익스트라(Dijkstra) 알고리즘</a></p>
-<p><a href="https://codereview.stackexchange.com/questions/202677/dijkstras-algorithm-in-rust" target="_blank" rel="noopener">dijkstra-algorithm-in-rust</a></p>
-      </div>
+<h2 id="레퍼런스"><a href="#레퍼런스" class="headerlink" title="레퍼런스"></a>레퍼런스</h2><p><a target="_blank" rel="noopener" href="https://namu.wiki/w/%EB%8B%A4%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9D%BC%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">다익스트라 알고리즘 - 니무위키</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.naver.com/ndb796/221234424646">23. 다익스트라(Dijkstra) 알고리즘</a></p>
+<p><a target="_blank" rel="noopener" href="https://codereview.stackexchange.com/questions/202677/dijkstras-algorithm-in-rust">dijkstra-algorithm-in-rust</a></p>
+  	
+					
+	  </div>     
+	  
+
+	<div class="bottom">
+  <div class="other">
+    <div class="meta">
       
-        <div class="prev-or-next">
-          <div class="post-foot-next">
-            
-          </div>
-          <div class="post-attach">
-            <span class="post-pubtime">
-              <i class="iconfont icon-updatetime" title="Update time"></i>
-              2020-04-22
-            </span>
-            
-                  <span class="post-tags">
-                    <i class="iconfont icon-tags" title="Tags"></i>
-                    
-                    <span class="span--tag">
-                      <a href="/tags/algorithm/" title="algorithm">
-                        <b>#</b> algorithm
-                      </a>
-                    </span>
-                    
-                    <span class="span--tag">
-                      <a href="/tags/rust-lang/" title="rust-lang">
-                        <b>#</b> rust-lang
-                      </a>
-                    </span>
-                    
-                  </span>
-              
-          </div>
-          <div class="post-foot-prev">
-            
-              <a href="/2020/04/24/quick-sort/" target="_self">
-                <span>Next</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
-            
-          </div>
-        </div>
+      <i class="iconfont icon-category"></i>
+      <a class="category-link" href="/categories/CE/">CE</a> <a class="category-link" href="/categories/CE/Algorithm/">Algorithm</a>
+
+      
+
+      
+      <i class="iconfont icon-tag"></i>
+      <a class="tag-none-link" href="/tags/algorithm/" rel="tag">algorithm</a> <a class="tag-none-link" href="/tags/rust-lang/" rel="tag">rust-lang</a>
       
     </div>
-    
-  <div class="post-catalog" id="catalog">
-    <div class="title">Contents</div>
-    <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EB%8B%A4%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9D%BC-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98"><span class="toc-text">다익스트라 알고리즘</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B5%AC%ED%98%84"><span class="toc-text">구현</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%95%84%EA%B8%B0%EB%85%B8%ED%8A%B8"><span class="toc-text">필기노트</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4"><span class="toc-text">레퍼런스</span></a></li></ol></li></ol>
+
+    <div class="operate">
+      
+      <span class="text">Share</span>
+      <ul class="share">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		item"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		item"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		item"></li>		
+   	   
+</ul>	
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      
     </div>
   </div>
 
+
   
-<script src="/js/catalog.js"></script>
-
-
-
-
-    
-      <div class="comments-container">
+  <nav class="nav">
+    <div class="link">
+      
+    </div>
+    <div class="link">
+      
+      <a href="/2020/04/24/quick-sort/" class="link-wrap">
+        <strong class="caption">newer</strong>
         
-
-
-
-
-
-      </div>
-    
-  </div>
-
-
-        <div class="footer">
-  <div class="social">
-    <ul>
-      
-        <li>
-          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
-            <i class="iconfont icon-github"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="email" href="">
-            <i class="iconfont icon-envelope"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="facebook" href="">
-            <i class="iconfont icon-facebooksquare"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="twitter" href="">
-            <i class="iconfont icon-twitter"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="wechat" href="">
-            <i class="iconfont icon-wechat"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="weibo" href="">
-            <i class="iconfont icon-weibo"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="rss" href="/atom.xml">
-            <i class="iconfont icon-rss"></i>
-          </a>
-        </li>
-      
-    </ul>
-  </div>
-  
-    <div class="footer-more">
-      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2020</a>
-    </div>
-  
-    <div class="footer-more">
-      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
-    </div>
-  
-</div>
-
-      </div>
-
-      <div class="back-to-top hidden">
-  <a href="javascript: void(0)">
-    <i class="iconfont icon-chevronup"></i>
-  </a>
-</div>
-
-
-<script src="/js/backtotop.js"></script>
-
-
-
-      
-  <div class="search-icon" id="search-icon">
-    <a href="javascript: void(0)">
-      <i class="iconfont icon-search"></i>
-    </a>
-  </div>
-
-  <div class="search-overlay hidden">
-    <div class="search-content" tabindex="0">
-      <div class="search-title">
-        <span class="search-icon-input">
-          <a href="javascript: void(0)">
-            <i class="iconfont icon-search"></i>
-          </a>
+        <span class="title">
+          Quick sort algorithm
         </span>
-        
-          <input type="text" class="search-input" id="search-input" placeholder="Search...">
-        
-        <span class="search-close-icon" id="search-close-icon">
-          <a href="javascript: void(0)">
-            <i class="iconfont icon-close"></i>
-          </a>
-        </span>
-      </div>
-      <div class="search-result" id="search-result"></div>
+      </a>
+      
     </div>
-  </div>
+  </nav>
+  
+</div> 
+	
+<div class="comment">
 
-  <script type="text/javascript">
-    var inputArea = document.querySelector("#search-input")
-    var searchOverlayArea = document.querySelector(".search-overlay")
+    
 
-    inputArea.onclick = function() {
-      getSearchFile()
-      this.onclick = null
-    }
-
-    inputArea.onkeydown = function() {
-      if(event.keyCode == 13)
-        return false
-    }
-
-    function openOrHideSearchContent() {
-      let isHidden = searchOverlayArea.classList.contains('hidden')
-      if (isHidden) {
-        searchOverlayArea.classList.remove('hidden')
-        document.body.classList.add('hidden')
-        // inputArea.focus()
-      } else {
-        searchOverlayArea.classList.add('hidden')
-        document.body.classList.remove('hidden')
-      }
-    }
-
-    function blurSearchContent(e) {
-      if (e.target === searchOverlayArea) {
-        openOrHideSearchContent()
-      }
-    }
-
-    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
-    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
-    searchOverlayArea.addEventListener("click", blurSearchContent, false)
-
-    var searchFunc = function (path, search_id, content_id) {
-      'use strict';
-      var $input = document.getElementById(search_id);
-      var $resultContent = document.getElementById(content_id);
-      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
-      $.ajax({
-        // 0x01. load xml file
-        url: path,
-        dataType: "xml",
-        success: function (xmlResponse) {
-          // 0x02. parse xml file
-          var datas = $("entry", xmlResponse).map(function () {
-            return {
-              title: $("title", this).text(),
-              content: $("content", this).text(),
-              url: $("url", this).text()
-            };
-          }).get();
-          $resultContent.innerHTML = "";
-
-          $input.addEventListener('input', function () {
-            // 0x03. parse query to keywords list
-            var str = '<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length <= 0) {
-              return;
-            }
-            // 0x04. perform local searching
-            datas.forEach(function (data) {
-              var isMatch = true;
-              var content_index = [];
-              if (!data.title || data.title.trim() === '') {
-                data.title = "Untitled";
-              }
-              var orig_data_title = data.title.trim();
-              var data_title = orig_data_title.toLowerCase();
-              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
-              var data_content = orig_data_content.toLowerCase();
-              var data_url = data.url;
-              var index_title = -1;
-              var index_content = -1;
-              var first_occur = -1;
-              // only match artiles with not empty contents
-              if (data_content !== '') {
-                keywords.forEach(function (keyword, i) {
-                  index_title = data_title.indexOf(keyword);
-                  index_content = data_content.indexOf(keyword);
-
-                  if (index_title < 0 && index_content < 0) {
-                    isMatch = false;
-                  } else {
-                    if (index_content < 0) {
-                      index_content = 0;
-                    }
-                    if (i == 0) {
-                      first_occur = index_content;
-                    }
-                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
-                  }
-                });
-              } else {
-                isMatch = false;
-              }
-              // 0x05. show search results
-              if (isMatch) {
-                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
-                var content = orig_data_content;
-                if (first_occur >= 0) {
-                  // cut out 100 characters
-                  var start = first_occur - 20;
-                  var end = first_occur + 80;
-
-                  if (start < 0) {
-                    start = 0;
-                  }
-
-                  if (start == 0) {
-                    end = 100;
-                  }
-
-                  if (end > content.length) {
-                    end = content.length;
-                  }
-
-                  var match_content = content.substr(start, end);
-
-                  // highlight all keywords
-                  keywords.forEach(function (keyword) {
-                    var regS = new RegExp(keyword, "gi");
-                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
-                  });
-
-                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
-                }
-                str += "</li>";
-              }
-            });
-            str += "</ul>";
-            if (str.indexOf('<li>') === -1) {
-              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
-            }
-            $resultContent.innerHTML = str;
-          });
-        },
-        error: function(xhr, status, error) {
-          $resultContent.innerHTML = ""
-          if (xhr.status === 404) {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
-          } else {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
-          }
-        }
-      });
-      $(document).on('click', '#search-close-icon', function() {
-        $('#search-input').val('');
-        $('#search-result').html('');
-      });
-    }
-
-    var getSearchFile = function() {
-        var path = "/search.xml";
-        searchFunc(path, 'search-input', 'search-result');
-    }
-  </script>
-
-
-
-
+    <div id="comment">
     </div>
-  </body>
-</html>
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+
+    <script src="//unpkg.com/valine@v1.1.8-beta/dist/Valine.min.js"></script>
+
+    <script>
+        new Valine({
+            el: '#comment',
+            notify: false,
+            verify: false,
+            app_id: 'cFM0eCo0CQ9xmBXmHi1eltol-gzGzoHsz',
+            app_key: 'oh9tizsnvV2vNvWgqEvoNtQO',
+            path: window.location.pathname,
+            avatar: 'mm',
+            guest_info: ['nick', 'mail']
+        });
+    </script>
+    
+</div>	
+</article>
+
+          </div> 
+      </div>            
+    
+        <i id="toTop" class="iconfont icon-backtotop"></i>
+
+  
+    <div class="none" id="search">
+    <div class="header">
+        <input type="text" placeholder="Typing Something here." id="search-input" class="input">
+        
+        <i id="search-cancel" class="iconfont icon-cancel"></i>
+    </div>
+
+    <div id="search-result" class="result"></div>
+</div>
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/favicon.png">  
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">Home
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">Archives
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">Tags
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">About
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">Search </a>                 
+            
+         
+      
+</div>
+        
+    
+
+
+
+     
+    
+
+
+<footer class="footer">
+	<div class="inner">
+		<div class="copyright">
+			©
+			
+			2019 -
+			
+			2020
+			Lemon
+
+			<br>
+			By <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>
+	</div>
+</footer>   
+
+    
+<script src="/nayo.bundle.js"></script>
+           
+          
+</i></i></i></i></i></body></html>
