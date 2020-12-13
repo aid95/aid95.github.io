@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   
-  <title>Arch linux 설치하기   | GOMI🏝️LAND</title>
+  <title>컴퓨터 보안 기말고사 정리   | GOMI🏝️LAND</title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon.png">
@@ -100,7 +100,7 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">Arch linux 설치하기</div>
+      <div class="post-title">컴퓨터 보안 기말고사 정리</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="Update time"></i>
@@ -178,7 +178,74 @@
 </li>
 <li>(4, 5) 서로는 데이터를 무사히 받았다는 확인 절차를 수행한다.</li>
 </ul>
-<h3 id="Distribution-of-Public-keys"><a href="#Distribution-of-Public-keys" class="headerlink" title="Distribution of Public keys"></a>Distribution of Public keys</h3><h2 id="IPSec"><a href="#IPSec" class="headerlink" title="IPSec"></a>IPSec</h2><h3 id="Transport-mode"><a href="#Transport-mode" class="headerlink" title="Transport mode"></a>Transport mode</h3><h3 id="Tunnel-mode"><a href="#Tunnel-mode" class="headerlink" title="Tunnel mode"></a>Tunnel mode</h3>
+<h3 id="CA-hierarchy"><a href="#CA-hierarchy" class="headerlink" title="CA hierarchy"></a>CA hierarchy</h3><p>서로 다른 CA를 사용하는 사용자들 사이를 통신하기 위한 과정</p>
+<p><img src="/img/cs-security/ca-hierarchy.png" alt="CA hierarchy"></p>
+<ul>
+<li>X   &lt;&lt;W&gt;&gt;</li>
+<li>W   &lt;&lt;V&gt;&gt;</li>
+<li>V   &lt;&lt;Y&gt;&gt;</li>
+<li>Y   &lt;&lt;Z&gt;&gt;</li>
+<li>Z   &lt;&lt;B&gt;&gt;</li>
+</ul>
+<h2 id="Replay-Attacks"><a href="#Replay-Attacks" class="headerlink" title="Replay Attacks"></a>Replay Attacks</h2><p>공격자가 대상의 트래픽을 기록해 반복적으로 보내는 공격 기법</p>
+<h3 id="Approaches-to-coping-with-replay-attacks"><a href="#Approaches-to-coping-with-replay-attacks" class="headerlink" title="Approaches to coping with replay attacks"></a>Approaches to coping with replay attacks</h3><ul>
+<li>Sequence number to each message<ul>
+<li>많은 메세지가 생기면 overflow가 발생할 수 있음</li>
+</ul>
+</li>
+<li>Timestamps<ul>
+<li>송/수신측의 시간을 동기화할 필요가 있지만 어려움</li>
+</ul>
+</li>
+<li>Challenge/response<ul>
+<li>상대측에게 서로 약속된 질문을 통해 인증하는 방법</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kerberos"><a href="#Kerberos" class="headerlink" title="Kerberos"></a>Kerberos</h2><p>커버로스는 티켓을 기반으로 동작하는 컴퓨터 네트워크 인증 암호화 프로토콜</p>
+<h3 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h3><ul>
+<li>Secure</li>
+<li>Reliable</li>
+<li>Scalable</li>
+<li>Transparent<ul>
+<li>사용자에게 불필요한 과정을 숨겨서 사용을 단순화할 수 있어야 한다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p><img src="/img/cs-security/overview-of-kerberos.png" alt="Overview of kerberos"></p>
+<ul>
+<li>사용자는 Kerberos system으로 티켓을 요청<ul>
+<li>Kerberos system은 요청한 사용자를 인증된 사람인지 검사한다.</li>
+</ul>
+</li>
+<li>Kerberos system은 사용자에게 TGS통신을 위한 티켓(1)과 세션키(1)를 사용자의 비밀번호로 암호화해 보낸다.</li>
+<li>사용자는 Kerberos system에게 받은 티켓(1)을 세션키(1)로 암호화하여 TGS(Ticket granting server)에게 보낸다</li>
+<li>TGS는 받은 데이터를 확인하고 정상적이면 메일 서버와 통신하기 위한 티켓(2)와 세션키(2)를 보낸다.</li>
+<li>사용자는 메일 서버에 티켓(2)와 세션키(2)를 통해 통신한다.</li>
+</ul>
+<h2 id="Transport-Level-Security"><a href="#Transport-Level-Security" class="headerlink" title="Transport-Level Security"></a>Transport-Level Security</h2><p><img src="/img/cs-security/location-of-security-tcpip.png" alt="Relative location of security facilities in the TCP/IP Protocol stack"></p>
+<h3 id="SSL-Secure-Sockets-Layer"><a href="#SSL-Secure-Sockets-Layer" class="headerlink" title="SSL(Secure Sockets Layer)"></a>SSL(Secure Sockets Layer)</h3><p><img src="/img/cs-security/ssl-protocol.png" alt="SSL protocol"></p>
+<h4 id="Handshake-protocol-action"><a href="#Handshake-protocol-action" class="headerlink" title="Handshake protocol action"></a>Handshake protocol action</h4><p><img src="/img/cs-security/handshake-protocol-action.png" alt="Handshake protocol action"></p>
+<ul>
+<li>Phase1<ul>
+<li>Client : 클라이언트는 자신에게 가장 적절한 암호 알고리즘, 데이터양, 세션 아이디등을 서버에게 알린다.</li>
+</ul>
+</li>
+<li>Phase2<ul>
+<li>Server : 서버는 본인이 신뢰할 수 있는 서버임을 증명하기 위해 인증서와 key등을 전송하고 상대측에도 인증을 요구한다.</li>
+</ul>
+</li>
+<li>Phase3<ul>
+<li>Client : 클라이언트 요청된 인증서와 키를 서버측에 보내며 인증을 한다.</li>
+</ul>
+</li>
+<li>Phase4<ul>
+<li>Handshake를 종료한다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="E-Mail-security"><a href="#E-Mail-security" class="headerlink" title="E-Mail security"></a>E-Mail security</h2><h3 id="Pretty-Good-Privacy-PGP"><a href="#Pretty-Good-Privacy-PGP" class="headerlink" title="Pretty Good Privacy (PGP)"></a>Pretty Good Privacy (PGP)</h3><p><img src="/img/cs-security/pgp-functions.png" alt="PGP cryptographic functions"></p>
+
       </div>
       
         <div class="prev-or-next">
@@ -224,7 +291,7 @@
   <div class="post-catalog" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Diffie%E2%80%93Hellman-key-exchange"><span class="toc-text">Diffie–Hellman key exchange</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Man-in-the-middle-attack-Key-exchange"><span class="toc-text">Man-in-the-middle attack (Key exchange)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hash-Functions"><span class="toc-text">Hash Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Man-in-the-middle-attack-Hash"><span class="toc-text">Man-in-the-middle attack (Hash)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash-functions-message-authentication"><span class="toc-text">Hash functions message authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Message-Authentication-Code-MAC"><span class="toc-text">Message Authentication Code (MAC)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Digital-signature"><span class="toc-text">Digital signature</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#properties"><span class="toc-text">properties</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Requirments"><span class="toc-text">Requirments</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Birthday-Attacks"><span class="toc-text">Birthday Attacks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Message-Authentication-Codes"><span class="toc-text">Message Authentication Codes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MACs-based-on-Hash-functions-HMAC"><span class="toc-text">MACs based on Hash functions: HMAC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-management"><span class="toc-text">Key management</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Centralized-key-distribution"><span class="toc-text">Centralized key distribution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Distribution-of-Public-keys"><span class="toc-text">Distribution of Public keys</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPSec"><span class="toc-text">IPSec</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Transport-mode"><span class="toc-text">Transport mode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tunnel-mode"><span class="toc-text">Tunnel mode</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Diffie%E2%80%93Hellman-key-exchange"><span class="toc-text">Diffie–Hellman key exchange</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Man-in-the-middle-attack-Key-exchange"><span class="toc-text">Man-in-the-middle attack (Key exchange)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hash-Functions"><span class="toc-text">Hash Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Man-in-the-middle-attack-Hash"><span class="toc-text">Man-in-the-middle attack (Hash)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash-functions-message-authentication"><span class="toc-text">Hash functions message authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Message-Authentication-Code-MAC"><span class="toc-text">Message Authentication Code (MAC)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Digital-signature"><span class="toc-text">Digital signature</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#properties"><span class="toc-text">properties</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Requirments"><span class="toc-text">Requirments</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Birthday-Attacks"><span class="toc-text">Birthday Attacks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Message-Authentication-Codes"><span class="toc-text">Message Authentication Codes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MACs-based-on-Hash-functions-HMAC"><span class="toc-text">MACs based on Hash functions: HMAC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-management"><span class="toc-text">Key management</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Centralized-key-distribution"><span class="toc-text">Centralized key distribution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CA-hierarchy"><span class="toc-text">CA hierarchy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Replay-Attacks"><span class="toc-text">Replay Attacks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Approaches-to-coping-with-replay-attacks"><span class="toc-text">Approaches to coping with replay attacks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kerberos"><span class="toc-text">Kerberos</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Requirements"><span class="toc-text">Requirements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Overview"><span class="toc-text">Overview</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transport-Level-Security"><span class="toc-text">Transport-Level Security</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL-Secure-Sockets-Layer"><span class="toc-text">SSL(Secure Sockets Layer)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Handshake-protocol-action"><span class="toc-text">Handshake protocol action</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-Mail-security"><span class="toc-text">E-Mail security</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pretty-Good-Privacy-PGP"><span class="toc-text">Pretty Good Privacy (PGP)</span></a></li></ol></li></ol>
     </div>
   </div>
 
