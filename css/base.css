@@ -1,12 +1,25 @@
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/webfonts/JetBrainsMono-Regular.woff2")
+      format("woff2"),
+    url("https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Regular.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
 }
 
-html, body {
+html,
+body {
   font-size: 10px;
   letter-spacing: 0.01rem;
-  font-family: Consolas, "Liberation Mono", Menlo, Monaco, "Source Han Sans CN", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif
+  font-family: "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Monaco,
+    "Source Han Sans CN", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    sans-serif;
 }
 
 body.hidden {
@@ -21,15 +34,15 @@ body.hidden {
 
 /*控制整个滚动条*/
 ::-webkit-scrollbar {
-    background-color: transparent;
-    width: 6px;
-    height: 6px;
-    background-clip: padding-box;
+  background-color: transparent;
+  width: 6px;
+  height: 6px;
+  background-clip: padding-box;
 }
 
 /*滚动条中滑块部分*/
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(144,147,153,.5);
+  background-color: rgba(144, 147, 153, 0.5);
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
@@ -144,7 +157,9 @@ a:hover {
   color: #535353;
 }
 
-.tag-details .time-m-d, .archives .time-m-d, .category-details .time-m-d {
+.tag-details .time-m-d,
+.archives .time-m-d,
+.category-details .time-m-d {
   margin: 0 30px;
 }
 
@@ -290,7 +305,6 @@ a:hover {
   text-align: center;
 }
 
-
 .tag-list li {
   font-size: 1.6rem;
   display: inline-block;
@@ -328,7 +342,8 @@ a:hover {
   transform-origin: left;
 }*/
 
-.tag-list-count, .category-list-count {
+.tag-list-count,
+.category-list-count {
   padding: 0 5px;
   color: #aaa;
   font-size: 1.2rem;
@@ -378,10 +393,11 @@ a:hover {
   justify-content: space-between;
   padding: 1rem 0;
   margin: 3rem 0;
-  border-top: 1px solid rgba(88,88,88,0.1);
+  border-top: 1px solid rgba(88, 88, 88, 0.1);
 }
 
-.prev-or-next .post-foot-next, .prev-or-next .post-foot-prev {
+.prev-or-next .post-foot-next,
+.prev-or-next .post-foot-prev {
   white-space: nowrap;
 }
 
@@ -391,7 +407,9 @@ a:hover {
   padding: 0 30px;
 }
 
-.post-attach .post-pubtime, .post-attach .post-tags, .post-attach .post-categories {
+.post-attach .post-pubtime,
+.post-attach .post-tags,
+.post-attach .post-categories {
   padding: 0 10px;
 }
 
@@ -399,7 +417,8 @@ a:hover {
   .time-m-d {
     margin-right: 15px;
   }
-  .tag-details .time-m-d, .archives .time-m-d {
+  .tag-details .time-m-d,
+  .archives .time-m-d {
     margin: 0 15px;
   }
 }
@@ -496,7 +515,7 @@ a:hover {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   transition: background-color 0.2s ease;
   visibility: visible;
   padding-right: 6px;
@@ -541,7 +560,8 @@ a:hover {
   border-radius: 10px;
   background-color: #fff;
   padding: 0 8px;
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
 }
 
 .search-input {
