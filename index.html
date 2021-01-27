@@ -1,499 +1,595 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta property="og:type" content="website">
+<meta property="og:title" content="GOMI🏝️LAND">
+<meta property="og:url" content="https://blog.gomi.land/index.html">
+<meta property="og:site_name" content="GOMI🏝️LAND">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Byeongju Shin(aka. juraffe)">
+<meta name="twitter:card" content="summary"><title>GOMI🏝️LAND</title><link ref="canonical" href="https://blog.gomi.land/index.html"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
 
-  <head>
-  <meta charset="utf-8">
-  <meta name="author" content="zchengsite, 1451426471@qq.com" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  
-  <title>GOMI🏝️LAND</title>
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">GOMI🏝️LAND</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2021/01/20/core-js/">모던 JS 튜토리얼 필기</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2021-01-20</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2021-01-22</span></span></div></header><div class="post-body"><div class="post-excerpt"><blockquote>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://ko.javascript.info/" >모던 JavaScript 튜토리얼</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 사이트를 공부하며 정리한 글 입니다.</p>
+</blockquote>
 
-  
-    <link rel="apple-touch-icon" href="/images/favicon.ico">
-    <link rel="icon" href="/images/favicon.ico">
-  
-
-  <!-- Raleway-Font -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-
-  <!-- hexo site css -->
-  
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/iconfont/iconfont.css">
-<link rel="stylesheet" href="/css/github-markdown.css">
-<link rel="stylesheet" href="/css/highlight.css">
-
-
-  <!-- jquery3.3.1 -->
-  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-
-  <!-- fancybox -->
-  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
-  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
-  
-<script src="/js/fancybox.js"></script>
-
-
-  
-
-<meta name="generator" content="Hexo 5.2.0"></head>
-
-
-  <body>
-    <div id="app">
-      <div class="header">
-  <div class="avatar">
-    <a href="/">
-      <!-- 头像取消懒加载，添加no-lazy -->
+        <h1 id="모던-JavaScript-튜토리얼"   >
+          <a href="#모던-JavaScript-튜토리얼" class="heading-link"><i class="fas fa-link"></i></a><a href="#모던-JavaScript-튜토리얼" class="headerlink" title="모던 JavaScript 튜토리얼"></a>모던 JavaScript 튜토리얼</h1>
       
-        <img src="/images/avatar.png" alt="">
+        <h2 id="2-5-자료형"   >
+          <a href="#2-5-자료형" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-5-자료형" class="headerlink" title="2.5 자료형"></a>2.5 자료형</h2>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> v = <span class="string">&quot;modern javascript world&quot;</span>;</span><br><span class="line">v = <span class="number">123</span>;</span><br></pre></td></tr></table></div></figure>
+
+<p>자바스크립트(이하 JS)는 기본적으로 동적 타입언어이다. 따라서 위와 같은 코드가 허용된다.</p>
+<ul>
+<li>숫자형<ul>
+<li>숫자형은 정수 및 부동소수점 숫자를 나타낸다. 사칙연산을 지원하며 일반적인 숫자 외에 <em>Infinity</em>, <em>-Infinity</em>, <em>NaN</em> 같은 특수한 숫자 값을 표현할 수 있다.</li>
+</ul>
+</li>
+<li>bigint<ul>
+<li>JS에서 숫자형은 내부 표현 방식으로 인해 제한된 범위의 숫자를 표현할 수 있다. 큰 정수를 다루기 위해서는 <em>n</em> prefix를 정수값 마지막에 붙여 bigint임을 표시하여 사용할 수 있다.</li>
+</ul>
+</li>
+<li>문자형<ul>
+<li>JS에서 문자열은 따옴표로 묶어 표현한다. 여기서 작은 따옴표와 큰 따옴표에 대해선 차이를 두지 않지만, 역 따옴표에 대해선 내부적은 <em><em>${}</em></em>와 같은 식을 이용해 수식을 표현할 수 있다.</li>
+</ul>
+</li>
+<li>불린형</li>
+<li>null<ul>
+<li>JS에서 null은 다른 언어와 다른 성격을 가지는데 단순히 ‘존재하지 않는’, ‘null pointer’를 나타낸다면 JS은 다음과 같은 성격을 가진다.<ul>
+<li>존재하지 않는(nothing) 값</li>
+<li>비어 있는 값</li>
+<li>알 수 없는 값</li>
+</ul>
+</li>
+<li>null의 경우 typeof를 통해 타입을 출력하면 ‘object’로 표현되지만 이는 하위 호환성을 위한 의도된 버그이며 null이 object가 아닌걸 유의해야한다.</li>
+</ul>
+</li>
+<li>undefined<ul>
+<li>undefined는 할당 되지 않은 상태를 의미한다. 개발자가 직접 이를 할당할 수 있지만 이는 권장되지 않으며 undefined를 할당하는 경우는 null로 대신 사용하며 undefined는 예약어로써 남겨두는걸 권장한다.</li>
+</ul>
+</li>
+<li>객체형 (4.1 챕터)<ul>
+<li>이전 까지 한 가지의 값을 표현할 수 있는 자료형을 원시 자료형이라 부른다. 객체형은 좀 더 복잡한 개체를 표현할 수 있다.</li>
+</ul>
+</li>
+<li>심볼형 (4.7 챕터)</li>
+</ul>
+
+        <h2 id="4-1-객체"   >
+          <a href="#4-1-객체" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-1-객체" class="headerlink" title="4.1 객체"></a>4.1 객체</h2>
+      <p>객체형은 원시형 타입과 달린 다양한 형태의 데이터를 담을 수 있다. 객체는 중괄호<code>&#123;&#125;</code>를 통해서 만들 수 있고, 키와 값을 쌍으로 구성된 프로퍼티를 여러개 넣을 수 있다. 키는 <em>문자열</em>, 값은 <em>자료형</em> 이 허용된다.</p>
+
+        <h3 id="in"   >
+          <a href="#in" class="heading-link"><i class="fas fa-link"></i></a><a href="#in" class="headerlink" title="in"></a>in</h3>
+      <p>객체에 존재하지 않는 프로퍼티에 접근하려면 다른 언어와 다르게 JS는 오류가 발생하지 않고 <em>undefined</em> 를 반환한다. 이를 통해 개발자는 객체에 해당 프로퍼티가 존재하는지 확인할 수 있다. 또는 <em>in</em> 키워드를 사용해 프로퍼티 유무를 확인할 수 있는데 이때 <em>in</em> 키워드의 좌측은 찾으려는 프로퍼티 이름을 따옴표로 표현해야 한다.</p>
+<p>그렇다면 undefined와 in을 구별해서 사용할 필요가 있는가?에 대한 의문이 들수있다. 하지만 검사하려는 프로퍼티 값이 undefined인 경우 의도하지 않는 동작을 할 수 있기 때문에 프로퍼티 유무는 <em><em>in</em></em> 키워드를 사용할 필요가 있다.</p>
+
+        <h3 id="for…in"   >
+          <a href="#for…in" class="heading-link"><i class="fas fa-link"></i></a><a href="#for…in" class="headerlink" title="for…in"></a>for…in</h3>
+      <p>for…in은 객체의 모든 키를 순회할 수 있다. 순회하는 순서는 객체의 프로퍼티가 정수 프로터피의 경우 오름차순으로 정렬되어 순회하며 그 외의 경우는 추가된 순서로 순회하게 된다.</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    <span class="number">0</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">    <span class="keyword">for</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="keyword">return</span>: <span class="number">0</span>,</span><br><span class="line">    __proto__: <span class="number">0</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj.return);</span><br><span class="line"><span class="built_in">console</span>.log(obj[<span class="number">0</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(obj[<span class="string">&quot;0&quot;</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(obj.__proto__); <span class="comment">// [object Object]</span></span><br></pre></td></tr></table></div></figure>
+
+<p>프로퍼티 이름에 제약사항은 없지만 특별한 경우가 있다. <em>__proto__</em> 는 할당한 0이 아닌 Object로 나오는데 이와 관련된 내용은 <em><em>8.1 프로토타입</em></em> 상속에서 설명한다.</p>
+
+        <h2 id="4-4-메서드와-‘this’"   >
+          <a href="#4-4-메서드와-‘this’" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-4-메서드와-‘this’" class="headerlink" title="4.4 메서드와 ‘this’"></a>4.4 메서드와 ‘this’</h2>
+      <p>JS에서는 실제 존재하는 개체를 표현할때 객체를 생성한다. 객체의 프로퍼티에는 단일값(숫자, 문자열, etc…) 외에도 객체의 행동을 나타내는 함수를 프로퍼티로 할당할 수 있다.</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user = &#123;</span><br><span class="line">  name: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">  age: <span class="number">30</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">user.sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">&quot;안녕하세요!&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">user.sayHi(); <span class="comment">// 안녕하세요!</span></span><br></pre></td></tr></table></div></figure>
+
+<p>6번 라인에서 객체 user에 함수를 할당해서 객체의 동작을 넣어주었다. 이렇게 객체에 할당된 함수를 메소드라고 표현된다. 이런 메소드는 자체 연산을 수행하며 외부의 데이터를 사용하지 않는 경우도 있지만, 대부분의 메소드는 객체가 가지고 있는 값을 활용하여 연산한다. 이때 객체 내부의 값에 접근하기 위해서 <em><em>this</em></em> 키워드를 사용해 접근하게 된다.</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user = &#123;</span><br><span class="line">  name: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">  age: <span class="number">30</span>,</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">sayHi</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// &#x27;this&#x27;는 &#x27;현재 객체&#x27;를 나타냅니다.</span></span><br><span class="line">    alert(<span class="built_in">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">user.sayHi(); <span class="comment">// John</span></span><br></pre></td></tr></table></div></figure>
+
+<p><em>this</em> 를 사용하지 않고 외부 변수(user)를 통해서도 접근이 가능한데 외부에서 해당 변수의 내용이 변경된 경우 원하지 않는 동작이 이뤄질 수 있으므로 내부 프로퍼티를 이용하고 싶다면 <em>this</em> 를 이용하는게 적절하다.</p>
+
+        <h3 id="자유로운-‘this’"   >
+          <a href="#자유로운-‘this’" class="heading-link"><i class="fas fa-link"></i></a><a href="#자유로운-‘this’" class="headerlink" title="자유로운 ‘this’"></a>자유로운 ‘this’</h3>
+      <p>JS는 다른 언어와 다르게 this 키워드 방식이 다르다. 예를 들어 JS에선 모든 함수에서도 this가 사용이 가능하다. this 값은 런타임에 결정되며 컨텍스트에 따라서 달라지게 된다. 따라서 동일한 함수라도 다른 객체에 대해서 호출했다면 this는 각각 객체에 대한 값을 가지게 된다. 이처럼 JS에서의 this는 유연함을 가지고 있지만 사용자의 숙지가 없다면 찾기 어려운 실수를 범할 우려가 있다.</p>
+
+        <h3 id="‘this’가-없는-화살표-함수"   >
+          <a href="#‘this’가-없는-화살표-함수" class="heading-link"><i class="fas fa-link"></i></a><a href="#‘this’가-없는-화살표-함수" class="headerlink" title="‘this’가 없는 화살표 함수"></a>‘this’가 없는 화살표 함수</h3>
+      <p><em>() =&gt; {}*로 표현되는 화살표 함수는 자기의 고유한 this가 아니라 *</em>외부 컨텍스트의 this**가 되며, 만약 외부 컨텍스트의 this를 이용하고 싶다면 좋은 해결책이 될 것이다.</p>
+
+        <h2 id="8-1-프로토타입-상속"   >
+          <a href="#8-1-프로토타입-상속" class="heading-link"><i class="fas fa-link"></i></a><a href="#8-1-프로토타입-상속" class="headerlink" title="8.1 프로토타입 상속"></a>8.1 프로토타입 상속</h2>
+      <p>상속은 공통된 속성을 부모로 둠으로써 코드의 중복과 개발의 효율성을 높인다. Class가 없던 JS에서는 <em><em>__proto__</em></em> 를 통해서 프로토타입 상속을 실현할 수 있다.</p>
+<p>JS는 찾으려는 프로퍼티가 없는 경우 <em><em>__proto__</em></em> 를 타고 넘어가 프로퍼티를 찾게된다.</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> animal = &#123;</span><br><span class="line">  eats: <span class="literal">true</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> rabbit = &#123;</span><br><span class="line">  jumps: <span class="literal">true</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">rabbit.__proto__ = animal;</span><br></pre></td></tr></table></div></figure>
+
+<p>위 코드와 같이 rabbit 객체에는 jumps, animal 객체에는 eats가 있다. 또 <code>rabbit.__proto__ = animal;</code> 를 통해서 상속하고 있다.</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert( rabbit.eats ); <span class="comment">// true (**)</span></span><br><span class="line">alert( rabbit.jumps ); <span class="comment">// true</span></span><br></pre></td></tr></table></div></figure>
+
+<p>그러면 위와 같이 rabbit 객체는 animal 객체의 eats를 호출할 수 있게 된다. 이는 위에서 설명한 내용과 같이 rabbit 객체 내에서 eats를 찾을 수 없어 <em><em>__proto__</em></em> 에 설정된 animal 객체로 올라가 eats를 찾아 호출하게 된다.</p>
+<p>이처럼 프로토타입을 여러번 상속받게 되면 프로토타입 체이닝이라 하는데 프로토타입 체이닝엔 몇가지 제약사항이 있다.</p>
+<ul>
+<li>순환 참조는 허용하지 않는다.</li>
+<li>__proto__의 값은 null 또는 객체만 허용한다. 그 외 다른 자료형은 허용하지 않는다.</li>
+<li>객체엔 오직 하나의 [[Prototype]]만 있을 수 있다.</li>
+</ul>
+
+        <h3 id="‘this’가-나타내는-것"   >
+          <a href="#‘this’가-나타내는-것" class="heading-link"><i class="fas fa-link"></i></a><a href="#‘this’가-나타내는-것" class="headerlink" title="‘this’가 나타내는 것"></a>‘this’가 나타내는 것</h3>
+      <p>이런 프로토타입 상속이 이뤄지면 this에 무슨 값이 들어있는지 의문이 생길 수 있다. 결론적으로 this는 프로토타입에 영향을 받지 않는다.</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// animal엔 다양한 메서드가 있습니다.</span></span><br><span class="line"><span class="keyword">let</span> animal = &#123;</span><br><span class="line">  <span class="function"><span class="title">walk</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">this</span>.isSleeping) &#123;</span><br><span class="line">      alert(<span class="string">`동물이 걸어갑니다.`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">sleep</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.isSleeping = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> rabbit = &#123;</span><br><span class="line">  name: <span class="string">&quot;하얀 토끼&quot;</span>,</span><br><span class="line">  __proto__: animal</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// rabbit의 프로퍼티 isSleeping을 true로 변경합니다.</span></span><br><span class="line">rabbit.sleep();</span><br><span class="line"></span><br><span class="line">alert(rabbit.isSleeping); <span class="comment">// true</span></span><br><span class="line">alert(animal.isSleeping); <span class="comment">// undefined (프로토타입에는 isSleeping이라는 프로퍼티가 없습니다.)</span></span><br></pre></td></tr></table></div></figure>
+
+<p>코드에서 <code>isSleeping</code>은 <code>sleep()</code>에 의해 초기화가 되며, 따라서 <code>rabbit.sleep()</code>으로 인해 <em><em>rabbit</em></em>에 <em><em>isSleeping</em></em>이 초기화되었기 때문에 animal의 isSleeping은 undefined가 나오게 된다.</p>
+
+        <h3 id="for…in-반복문"   >
+          <a href="#for…in-반복문" class="heading-link"><i class="fas fa-link"></i></a><a href="#for…in-반복문" class="headerlink" title="for…in 반복문"></a>for…in 반복문</h3>
+      <p>JS에서는 상속된 프로퍼티와 객체가 직접 소유한 프로퍼티는 연산 마다 다르게 접근하게 되는데 그 중 <em>for…in</em> 은 상속된 프로퍼티와 객체가 소유한 모든 프로퍼티에 대해서 순회하게 된다.</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> animal = &#123;</span><br><span class="line">  eats: <span class="literal">true</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> rabbit = &#123;</span><br><span class="line">  jumps: <span class="literal">true</span>,</span><br><span class="line">  __proto__: animal</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for..in은 객체 자신의 키와 상속 프로퍼티의 키 모두를 순회합니다.</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> prop <span class="keyword">in</span> rabbit) alert(prop); <span class="comment">// jumps, eats</span></span><br></pre></td></tr></table></div></figure>
+
+<p>만약 객체가 직접 소유한 프로퍼티를 구분하기 위해서는 <code>hasOwnProperty</code>를 이용해 구분할 수 있다.</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> animal = &#123;</span><br><span class="line">  eats: <span class="literal">true</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> rabbit = &#123;</span><br><span class="line">  jumps: <span class="literal">true</span>,</span><br><span class="line">  __proto__: animal</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> prop <span class="keyword">in</span> rabbit) &#123;</span><br><span class="line">  <span class="keyword">let</span> isOwn = rabbit.hasOwnProperty(prop);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (isOwn) &#123;</span><br><span class="line">    alert(<span class="string">`객체 자신의 프로퍼티: <span class="subst">$&#123;prop&#125;</span>`</span>); <span class="comment">// 객체 자신의 프로퍼티: jumps</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    alert(<span class="string">`상속 프로퍼티: <span class="subst">$&#123;prop&#125;</span>`</span>); <span class="comment">// 상속 프로퍼티: eats</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/12/19/nestjs-passport/">Nest.js에서의 인증 (feat. passport.js)</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-12-19</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-12-20</span></span></div></header><div class="post-body"><div class="post-excerpt"><p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a></p>
+
+
+        <h1 id="Nest-js"   >
+          <a href="#Nest-js" class="heading-link"><i class="fas fa-link"></i></a><a href="#Nest-js" class="headerlink" title="Nest.js"></a>Nest.js</h1>
+      <p>nest.js는 node.js를 기반으로 한 웹 애플리케이션 프레임워크이다. 이번에 친구와 진행하는 포트폴리오에서 Typescript를 사용할 겸 nest.js를 이용해 서비스의 API 서버를 작성하기로 정했다.</p>
+<p>nest.js는 Java의 spring framework와 상당히 비슷한 형태라고 하는데 나는 아직 spring으로 제대로 프로젝트를 진행한 경험이 없어 이 부분에 대해선 말만 들어 잘은 모르겠음 :blush:</p>
+<p>이번글에서는 node.js 진영에서 가장 인기가 많은 passport.js를 이용해 nest.js에서의 인증 기능을 구현하는 과정을 기록해 보려고 한다. 이 글은 nest.js 공식 문서의 내용을 참고하며 작성한다!</p>
+
+        <h2 id="시작"   >
+          <a href="#시작" class="heading-link"><i class="fas fa-link"></i></a><a href="#시작" class="headerlink" title="시작"></a>시작</h2>
+      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yarn add @nestjs/passport passport passport-local @nestjs/jwt passport-jwt</span><br><span class="line">$ yarn add --dev @types/passport-local @types/passport-jwt</span><br></pre></td></tr></table></div></figure>
+
+<p>먼저 passport.js 패키지를 추가한다. passport.js은 다양한 strategy를 지원하지만 이 글에서는 passport-local과 passport-jwt를 이용할 예정이다.</p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ nest g module auth</span><br><span class="line">$ nest g service auth</span><br><span class="line">$ nest g module users</span><br><span class="line">$ nest g service users</span><br></pre></td></tr></table></div></figure>
+
+<p>패키지를 추가했다면 인증을 작성하기 위해서 auth과 user에 대해 module과 service를 생성한다. module과 service는 nest-cli를 통해 쉽게 추가할 수 있다.</p>
+<figure class="highlight typescript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This should be a real class/interface representing a user entity</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> User = <span class="built_in">any</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">UsersService</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">readonly</span> users = [</span><br><span class="line">    &#123;</span><br><span class="line">      userId: <span class="number">1</span>,</span><br><span class="line">      username: <span class="string">&#x27;john&#x27;</span>,</span><br><span class="line">      password: <span class="string">&#x27;changeme&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      userId: <span class="number">2</span>,</span><br><span class="line">      username: <span class="string">&#x27;maria&#x27;</span>,</span><br><span class="line">      password: <span class="string">&#x27;guess&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> findOne(username: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;User | <span class="literal">undefined</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.users.find(<span class="function"><span class="params">user</span> =&gt;</span> user.username === username);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p><strong>users/users.service.ts</strong>에는 사용자(User)에 대한 서비스를 작성하는데 이 경우 username을 통해 user의 정보를 가져오도록 코드를 작성한다. 공식 문서의 예제에서는 DB를 연결하지 않고 hard-code된 정보를 통해 소개해주고 있다. 이 부분은 DB와 연결할 필요가 있다.</p>
+<p>작성된 UserService는 외부 모듈에서 볼 수 있도록 <strong>users/users.module.ts</strong>모듈에 providers와 exports에 추가한다.</p>
+<figure class="highlight typescript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; UsersService &#125; <span class="keyword">from</span> <span class="string">&#x27;./users.service&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  providers: [UsersService],</span><br><span class="line">  <span class="built_in">exports</span>: [UsersService],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">UsersModule</span> </span>&#123;&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>DB를 사용하지 않고 In-memory 방식을 이용하기 때문에 이정도 작성하면 테스트를 위한 User 모듈은 끝나게 된다.</p>
+<figure class="highlight typescript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; UsersService &#125; <span class="keyword">from</span> <span class="string">&#x27;../users/users.service&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthService</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> usersService: UsersService</span>)</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> validateUser(username: <span class="built_in">string</span>, <span class="attr">pass</span>: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> user = <span class="keyword">await</span> <span class="built_in">this</span>.usersService.findOne(username);</span><br><span class="line">    <span class="keyword">if</span> (user &amp;&amp; user.password === pass) &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; password, ...result &#125; = user;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>Auth service의 validateUser는 생성자에서 UserService를 DI받아 이를 이용해 요청된 사용자의 정보를 구하고 비밀번호를 비교해 검증 단계를 수행한다. UserService를 DI하기 위해선 Module에 UsersMoudule를 추가한다.</p>
+<figure class="highlight typescript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AuthService &#125; <span class="keyword">from</span> <span class="string">&#x27;./auth.service&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; UsersModule &#125; <span class="keyword">from</span> <span class="string">&#x27;../users/users.module&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  imports: [UsersModule],</span><br><span class="line">  providers: [AuthService],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthModule</span> </span>&#123;&#125;</span><br></pre></td></tr></table></div></figure>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/12/12/cs-security/">컴퓨터 보안 기말고사 정리</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-12-12</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-12-13</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h2 id="Diffie–Hellman-key-exchange"   >
+          <a href="#Diffie–Hellman-key-exchange" class="heading-link"><i class="fas fa-link"></i></a><a href="#Diffie–Hellman-key-exchange" class="headerlink" title="Diffie–Hellman key exchange"></a>Diffie–Hellman key exchange</h2>
       
-    </a>
-    <div class="nickname"><a href="/">juraffe</a></div>
-  </div>
-  <div class="navbar">
-    <ul>
+        <h3 id="Man-in-the-middle-attack-Key-exchange"   >
+          <a href="#Man-in-the-middle-attack-Key-exchange" class="heading-link"><i class="fas fa-link"></i></a><a href="#Man-in-the-middle-attack-Key-exchange" class="headerlink" title="Man-in-the-middle attack (Key exchange)"></a>Man-in-the-middle attack (Key exchange)</h3>
+      <p><img src="/img/cs-security/man-in-the-middle-attack.png" alt="Man in the middle attack"></p>
+
+        <h2 id="Hash-Functions"   >
+          <a href="#Hash-Functions" class="heading-link"><i class="fas fa-link"></i></a><a href="#Hash-Functions" class="headerlink" title="Hash Functions"></a>Hash Functions</h2>
+      <p>긴 데이터를 암호화하는 과정은 많은 컴퓨팅 파워가 필요하기 때문에 긴 데이터의 해쉬값을 구해서 짧은 데이터를 암호화하여 적은 컴퓨팅 파워로 높은 보안성을 얻을 수 있다.</p>
+
+        <h3 id="Man-in-the-middle-attack-Hash"   >
+          <a href="#Man-in-the-middle-attack-Hash" class="heading-link"><i class="fas fa-link"></i></a><a href="#Man-in-the-middle-attack-Hash" class="headerlink" title="Man-in-the-middle attack (Hash)"></a>Man-in-the-middle attack (Hash)</h3>
+      <p><img src="/img/cs-security/man-in-the-middle-attack-hash.png" alt="Man in the middle attack"></p>
+
+        <h3 id="Hash-functions-message-authentication"   >
+          <a href="#Hash-functions-message-authentication" class="heading-link"><i class="fas fa-link"></i></a><a href="#Hash-functions-message-authentication" class="headerlink" title="Hash functions message authentication"></a>Hash functions message authentication</h3>
+      <p><img src="/img/cs-security/hash-func-message-auth.png" alt="Hash functions message authentication"></p>
+
+        <h3 id="Message-Authentication-Code-MAC"   >
+          <a href="#Message-Authentication-Code-MAC" class="heading-link"><i class="fas fa-link"></i></a><a href="#Message-Authentication-Code-MAC" class="headerlink" title="Message Authentication Code (MAC)"></a>Message Authentication Code (MAC)</h3>
       
-        <li class="nav-item" data-path="/">
-          <a href="/">Home</a>
-        </li>
+        <h4 id="Digital-signature"   >
+          <a href="#Digital-signature" class="heading-link"><i class="fas fa-link"></i></a><a href="#Digital-signature" class="headerlink" title="Digital signature"></a>Digital signature</h4>
       
-        <li class="nav-item" data-path="/archives/">
-          <a href="/archives/">Archives</a>
-        </li>
+        <h5 id="properties"   >
+          <a href="#properties" class="heading-link"><i class="fas fa-link"></i></a><a href="#properties" class="headerlink" title="properties"></a>properties</h5>
+      <ul>
+<li>송신자를 식별할 수 있어야 한다.</li>
+<li>전자 서명을 작성한 시간을 알아야 한다.</li>
+<li>메세지의 내용을 인증해야 한다.</li>
+<li>제 3자가 입증할 수 있어야 한다. (송/수신이 되었는지에 대해)</li>
+</ul>
+
+        <h5 id="Requirments"   >
+          <a href="#Requirments" class="heading-link"><i class="fas fa-link"></i></a><a href="#Requirments" class="headerlink" title="Requirments"></a>Requirments</h5>
+      <ul>
+<li>메세지 내용에 의존한다.</li>
+<li>송/수신자에 대한 고유한 값에 의존한다.</li>
+<li>전자 서명은 쉽게 작성되어야 한다.</li>
+<li>상대는 전자 서명을 신뢰할 수 있어야 한다.</li>
+<li>메세지를 위조할 수 없어야 한다.</li>
+<li>전자 서명은 저장에 문제가 없어야 한다.</li>
+</ul>
+<p><img src="/img/cs-security/digital-sig-example.png" alt="Simplified examples of Digital signatures"></p>
+<ul>
+<li>(a) 메세지의 해쉬값만 Private key로 암호화하여 송신한다. (전자서명의 가장 간단한 형태)</li>
+<li>(b) 해쉬값을 Private key로 암호화하고 메세지와 함께 대칭키로 한번 더 암호화하여 송신한다.</li>
+</ul>
+
+        <h3 id="Birthday-Attacks"   >
+          <a href="#Birthday-Attacks" class="heading-link"><i class="fas fa-link"></i></a><a href="#Birthday-Attacks" class="headerlink" title="Birthday Attacks"></a>Birthday Attacks</h3>
+      <blockquote>
+<p>생일 공격(birthday attack)은 암호학적 해시 함수의 해시 충돌을 찾아내는 암호해독 공격으로, 생일 문제의 확률적 결과를 기반으로 한다. 생일 문제에 따르면 해시 함수의 입력값을 다양하게 할수록 해시 값이 같은 두 입력값을 발견할 확률은 빠르게 증가한다. 따라서 모든 값을 대입하지 않고도 해시 충돌을 찾아낼 확률을 충분히 크게 만들 수 있다. - 위키백과, 우리 모두의 백과사전</p>
+</blockquote>
+
+        <h2 id="Message-Authentication-Codes"   >
+          <a href="#Message-Authentication-Codes" class="heading-link"><i class="fas fa-link"></i></a><a href="#Message-Authentication-Codes" class="headerlink" title="Message Authentication Codes"></a>Message Authentication Codes</h2>
+      <p><img src="/img/cs-security/basic-uses-of-message-encryption.png" alt="Basic uses of message encryption"></p>
+<ul>
+<li>(a) 기밀성과 사용자 인증</li>
+<li>(b) PU/PR key 암호화를 통한 기밀성</li>
+<li>(c) 인증과 서명 (가장 간단한 전자 서명의 형태)</li>
+<li>(d) 기밀과 인증, 서명 *</li>
+</ul>
+
+        <h2 id="MACs-based-on-Hash-functions-HMAC"   >
+          <a href="#MACs-based-on-Hash-functions-HMAC" class="heading-link"><i class="fas fa-link"></i></a><a href="#MACs-based-on-Hash-functions-HMAC" class="headerlink" title="MACs based on Hash functions: HMAC"></a>MACs based on Hash functions: HMAC</h2>
+      <blockquote>
+<p>암호학에서 HMAC(keyed-hash message authentication code, hash-based message authentication code)는 암호화 해시 함수와 기밀 암호화 키를 수반하는 특정한 유형의 메시지 인증 코드(MAC)이다. 여느 MAC처럼 메시지의 데이터 무결성과 진본 확인을 동시에 수행하기 위해 사용할 수 있다. - 위키백과, 우리 모두의 백과사전</p>
+</blockquote>
+
+        <h2 id="Key-management"   >
+          <a href="#Key-management" class="heading-link"><i class="fas fa-link"></i></a><a href="#Key-management" class="headerlink" title="Key management"></a>Key management</h2>
       
-        <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">Tags</a>
-        </li>
+        <h3 id="Centralized-key-distribution"   >
+          <a href="#Centralized-key-distribution" class="heading-link"><i class="fas fa-link"></i></a><a href="#Centralized-key-distribution" class="headerlink" title="Centralized key distribution"></a>Centralized key distribution</h3>
+      <p>개인과의 키 교환 과정에서 국가가 신뢰하는 기관을 통해 공통된 Session key를 획득하는 시나리오</p>
+<p><img src="/img/cs-security/key-distribution-scenario.png" alt="Key distribution scenario"></p>
+<ul>
+<li>(1) 송신자는 인증된 기관에게 (송신자id/수신자id/Nonce)를 요청한다.</li>
+<li>(2) 기관은 송신자를 인증하고 요청에 대한 응답을 송신자와 약속된 Key를 통해 암호화한다.<ul>
+<li>이 시점에 송신자는 Session key를 구함.</li>
+</ul>
+</li>
+<li>(2-3) 송신자는 기관으로부터 받은 블랙박스 데이터(기관이 수신자와의 Key로 암호화한 내용)을 수신자에게 전달한다.</li>
+<li>(3) 수신자는 전달받은 데이터에서 Session key를 얻을 수 있다.<ul>
+<li>수신자는 송신자가 기관으로부터 받은 데이터를 전달했다고 알 수 있음</li>
+<li>송신자와 동일한 Session key를 구함</li>
+</ul>
+</li>
+<li>(4, 5) 서로는 데이터를 무사히 받았다는 확인 절차를 수행한다.</li>
+</ul>
+
+        <h3 id="CA-hierarchy"   >
+          <a href="#CA-hierarchy" class="heading-link"><i class="fas fa-link"></i></a><a href="#CA-hierarchy" class="headerlink" title="CA hierarchy"></a>CA hierarchy</h3>
+      <p>서로 다른 CA를 사용하는 사용자들 사이를 통신하기 위한 과정</p>
+<p><img src="/img/cs-security/ca-hierarchy.png" alt="CA hierarchy"></p>
+<ul>
+<li>X   &lt;&lt;W&gt;&gt;</li>
+<li>W   &lt;&lt;V&gt;&gt;</li>
+<li>V   &lt;&lt;Y&gt;&gt;</li>
+<li>Y   &lt;&lt;Z&gt;&gt;</li>
+<li>Z   &lt;&lt;B&gt;&gt;</li>
+</ul>
+
+        <h2 id="Replay-Attacks"   >
+          <a href="#Replay-Attacks" class="heading-link"><i class="fas fa-link"></i></a><a href="#Replay-Attacks" class="headerlink" title="Replay Attacks"></a>Replay Attacks</h2>
+      <p>공격자가 대상의 트래픽을 기록해 반복적으로 보내는 공격 기법</p>
+
+        <h3 id="Approaches-to-coping-with-replay-attacks"   >
+          <a href="#Approaches-to-coping-with-replay-attacks" class="heading-link"><i class="fas fa-link"></i></a><a href="#Approaches-to-coping-with-replay-attacks" class="headerlink" title="Approaches to coping with replay attacks"></a>Approaches to coping with replay attacks</h3>
+      <ul>
+<li>Sequence number to each message<ul>
+<li>많은 메세지가 생기면 overflow가 발생할 수 있음</li>
+</ul>
+</li>
+<li>Timestamps<ul>
+<li>송/수신측의 시간을 동기화할 필요가 있지만 어려움</li>
+</ul>
+</li>
+<li>Challenge/response<ul>
+<li>상대측에게 서로 약속된 질문을 통해 인증하는 방법</li>
+</ul>
+</li>
+</ul>
+
+        <h2 id="Kerberos"   >
+          <a href="#Kerberos" class="heading-link"><i class="fas fa-link"></i></a><a href="#Kerberos" class="headerlink" title="Kerberos"></a>Kerberos</h2>
+      <p>커버로스는 티켓을 기반으로 동작하는 컴퓨터 네트워크 인증 암호화 프로토콜</p>
+
+        <h3 id="Requirements"   >
+          <a href="#Requirements" class="heading-link"><i class="fas fa-link"></i></a><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h3>
+      <ul>
+<li>Secure</li>
+<li>Reliable</li>
+<li>Scalable</li>
+<li>Transparent<ul>
+<li>사용자에게 불필요한 과정을 숨겨서 사용을 단순화할 수 있어야 한다.</li>
+</ul>
+</li>
+</ul>
+
+        <h3 id="Overview"   >
+          <a href="#Overview" class="heading-link"><i class="fas fa-link"></i></a><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3>
+      <p><img src="/img/cs-security/overview-of-kerberos.png" alt="Overview of kerberos"></p>
+<ul>
+<li>사용자는 Kerberos system으로 티켓을 요청<ul>
+<li>Kerberos system은 요청한 사용자를 인증된 사람인지 검사한다.</li>
+</ul>
+</li>
+<li>Kerberos system은 사용자에게 TGS통신을 위한 티켓(1)과 세션키(1)를 사용자의 비밀번호로 암호화해 보낸다.</li>
+<li>사용자는 Kerberos system에게 받은 티켓(1)을 세션키(1)로 암호화하여 TGS(Ticket granting server)에게 보낸다</li>
+<li>TGS는 받은 데이터를 확인하고 정상적이면 메일 서버와 통신하기 위한 티켓(2)와 세션키(2)를 보낸다.</li>
+<li>사용자는 메일 서버에 티켓(2)와 세션키(2)를 통해 통신한다.</li>
+</ul>
+
+        <h2 id="Transport-Level-Security"   >
+          <a href="#Transport-Level-Security" class="heading-link"><i class="fas fa-link"></i></a><a href="#Transport-Level-Security" class="headerlink" title="Transport-Level Security"></a>Transport-Level Security</h2>
+      <p><img src="/img/cs-security/location-of-security-tcpip.png" alt="Relative location of security facilities in the TCP/IP Protocol stack"></p>
+
+        <h3 id="SSL-Secure-Sockets-Layer"   >
+          <a href="#SSL-Secure-Sockets-Layer" class="heading-link"><i class="fas fa-link"></i></a><a href="#SSL-Secure-Sockets-Layer" class="headerlink" title="SSL(Secure Sockets Layer)"></a>SSL(Secure Sockets Layer)</h3>
+      <p><img src="/img/cs-security/ssl-protocol.png" alt="SSL protocol"></p>
+
+        <h4 id="Handshake-protocol-action"   >
+          <a href="#Handshake-protocol-action" class="heading-link"><i class="fas fa-link"></i></a><a href="#Handshake-protocol-action" class="headerlink" title="Handshake protocol action"></a>Handshake protocol action</h4>
+      <p><img src="/img/cs-security/handshake-protocol-action.png" alt="Handshake protocol action"></p>
+<ul>
+<li>Phase1<ul>
+<li>Client : 클라이언트는 자신에게 가장 적절한 암호 알고리즘, 데이터양, 세션 아이디등을 서버에게 알린다.</li>
+</ul>
+</li>
+<li>Phase2<ul>
+<li>Server : 서버는 본인이 신뢰할 수 있는 서버임을 증명하기 위해 인증서와 key등을 전송하고 상대측에도 인증을 요구한다.</li>
+</ul>
+</li>
+<li>Phase3<ul>
+<li>Client : 클라이언트 요청된 인증서와 키를 서버측에 보내며 인증을 한다.</li>
+</ul>
+</li>
+<li>Phase4<ul>
+<li>Handshake를 종료한다.</li>
+</ul>
+</li>
+</ul>
+
+        <h2 id="E-Mail-security"   >
+          <a href="#E-Mail-security" class="heading-link"><i class="fas fa-link"></i></a><a href="#E-Mail-security" class="headerlink" title="E-Mail security"></a>E-Mail security</h2>
       
-        <li class="nav-item" data-path="/friends/">
-          <a href="/friends/">Friends</a>
-        </li>
+        <h3 id="Pretty-Good-Privacy-PGP"   >
+          <a href="#Pretty-Good-Privacy-PGP" class="heading-link"><i class="fas fa-link"></i></a><a href="#Pretty-Good-Privacy-PGP" class="headerlink" title="Pretty Good Privacy (PGP)"></a>Pretty Good Privacy (PGP)</h3>
+      <p><img src="/img/cs-security/pgp-functions.png" alt="PGP cryptographic functions"></p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/12/multicoreos64-day6/">64bit 멀티코어 OS 원리와 구조 - Day 6</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-12</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-12-11</span></span></div></header><div class="post-body"><div class="post-excerpt"><blockquote>
+<p>이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.</p>
+</blockquote>
+
+        <h1 id="IA-32e-모드용-세그먼트-디스크립터-추가"   >
+          <a href="#IA-32e-모드용-세그먼트-디스크립터-추가" class="heading-link"><i class="fas fa-link"></i></a><a href="#IA-32e-모드용-세그먼트-디스크립터-추가" class="headerlink" title="IA-32e 모드용 세그먼트 디스크립터 추가"></a>IA-32e 모드용 세그먼트 디스크립터 추가</h1>
+      <p>리얼 모드에서 보호 모드로 전환에서 보호 모드용 세그먼트 디스크립터가 필요했듯이, 보호 모드에서 IA-32e 모드로 전환하기 위해서도 IA-32e 모드용 세그먼트 디스크립터가 필요하다.</p>
+<p>IA-32e 모드 커널용 코드 디스크립터와 데이터 디스크텁는 앞서 보호 모드와 방법이 유사하다. 이유는 보호 모드 세그먼트 디스크립터와 거의 같은 크기와 필드를 가지고 있기 때문이다. 차이점은 IA-32e 모드에서는 디스크립터의 기준 주소, 세그먼트 크기 값에 상관없이 64GB 전체 영역으로 설정된다. 또 세그먼트 디스크립터의 L비트가 호환 모드 or 64bit 모드를 선택하는 데 사용된다.</p>
+<p>우리의 경우 64비트 모드를 사용하기 때문에, L비트를 1, D비트를 0으로 설정한다.</p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/11/nodejs-study-day1/">Express.js 스터디 1</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-11</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2021-01-20</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="Express-js-스터디-1일"   >
+          <a href="#Express-js-스터디-1일" class="heading-link"><i class="fas fa-link"></i></a><a href="#Express-js-스터디-1일" class="headerlink" title="Express.js 스터디 1일"></a>Express.js 스터디 1일</h1>
       
-        <li class="nav-item" data-path="/about/">
-          <a href="/about/">About</a>
-        </li>
+        <h2 id="설치"   >
+          <a href="#설치" class="heading-link"><i class="fas fa-link"></i></a><a href="#설치" class="headerlink" title="설치"></a>설치</h2>
+      <p>Express.js를 사용하기 위해서는 먼저 node.js와 NPM이 설치된 상황에서 진행할 수 있다. 윈도우 기준으로 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://nodejs.org/ko/" >Node.js 공식 홈페이지</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>에서 설치파일을 다운로드 받을 수 있다.</p>
+<p>설치가 완려되면 아래의 명령어를 통해 express.js를 설치한다.</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 종속성 항목을 추가하며 설치</span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install express --save</span></span><br><span class="line"></span><br><span class="line">// 종속성 항목을 추가하지 않고 설치</span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install express</span></span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="Hello-World"   >
+          <a href="#Hello-World" class="heading-link"><i class="fas fa-link"></i></a><a href="#Hello-World" class="headerlink" title="Hello, World!"></a>Hello, World!</h2>
+      <p>설치가 완료되면 app.js를 통해 간단한 예제를 작성하여 테스트할 수 있다.</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.send(<span class="string">&#x27;Hello World!&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Example app listening at http://localhost:<span class="subst">$&#123;port&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">node app.js</span></span><br></pre></td></tr></table></div></figure>
+
+<p>1행에서 express 모듈을 불러와 2행에 express 모듈의 인스턴스를 생성한다. 생성된 express 인스턴스인 app을 통해 5행에서 ‘/‘ 경로에 대한 GET메소드 라우트를 지정하고 listen을 통해 서버를 열게 된다. 이렇듯 node.js는 매우 간단하게 웹 애플리케이션을 생성할 수 있게 된다.</p>
+
+        <h2 id="Express-generator"   >
+          <a href="#Express-generator" class="heading-link"><i class="fas fa-link"></i></a><a href="#Express-generator" class="headerlink" title="Express generator"></a>Express generator</h2>
+      <p>Express generator를 통해 간편하게 애플리케이션의 골격을 생성할 수 있다.</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install express-generator -g</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npx express-generator &lt;APP NAME&gt; --view=pug</span></span><br></pre></td></tr></table></div></figure>
+
+<p>첫번째 명령어를 통해서 express-generator를 전역으로 설치하고, 두번째 명령어를 통해서 <code>APP NAME</code>에 해당하는 express 애플리케이션이 생성된다. 여기서 <code>--view=pug</code>는 뷰 엔진에 해당하며 <code>ejs, hbs, hjs, jade, pug, twig, vash</code>등이 있다. 기본으로 jade로 지정되며 만약 뷰 엔진이 필요없는 경우 <code>--no-view</code>를 이용해 생성할 수 있다뷰</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> myapp</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install</span></span><br></pre></td></tr></table></div></figure>
+
+<p>생성 이후 express 애플리케이션 내부로 폴더를 이용해 종속성을 설치하면 기초 개발 준비가 끝나게 된다.</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── app.js</span><br><span class="line">├── bin</span><br><span class="line">│   └── www</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">│   ├── images</span><br><span class="line">│   ├── javascripts</span><br><span class="line">│   └── stylesheets</span><br><span class="line">│       └── style.css</span><br><span class="line">├── routes</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   └── users.js</span><br><span class="line">└── views</span><br><span class="line">    ├── error.pug</span><br><span class="line">    ├── index.pug</span><br><span class="line">    └── layout.pug</span><br></pre></td></tr></table></div></figure>
+
+<p>파일의 구조에서 Javascript와 관련된 폴더 및 파일은 <code>app.js, bin/www, routes/*</code>이며 웹 리소스&amp;템플릿에 관련된 폴더는 <code>public/*, views/*</code>에 해당된다.</p>
+<p>bin/www에서는 서버 구동과 관련된 코드가 포함되어 있고, app.js에서는 routes/*의 라우터들과 리소스 폴더 및 뷰 템플릿 폴더를 지정하는 등 서버 구동 이전에 필요한 설정을 하게 된다.</p>
+
+        <h2 id="기본-라우팅"   >
+          <a href="#기본-라우팅" class="heading-link"><i class="fas fa-link"></i></a><a href="#기본-라우팅" class="headerlink" title="기본 라우팅"></a>기본 라우팅</h2>
+      <p>app.js를 자세히 보면</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// view engine setup</span></span><br><span class="line">app.set(<span class="string">&#x27;views&#x27;</span>, path.join(__dirname, <span class="string">&#x27;views&#x27;</span>));</span><br><span class="line">app.set(<span class="string">&#x27;view engine&#x27;</span>, <span class="string">&#x27;pug&#x27;</span>)</span><br></pre></td></tr></table></div></figure>
+
+<p>먼저 뷰 엔진을 지정하며 뷰 엔진의 종류는 위 express-generator에 –view 인자를 지정된 엔진을 사용한다.</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(logger(<span class="string">&#x27;dev&#x27;</span>));</span><br><span class="line">app.use(express.json());</span><br><span class="line">app.use(express.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line">app.use(cookieParser());</span><br></pre></td></tr></table></div></figure>
+
+<p>개발에 유용한 다양한 미들웨어를 추가하고 리소스파일(js, css, image등)의 경로를 지정하게 된다.</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">&#x27;/&#x27;</span>, indexRouter);</span><br><span class="line">app.use(<span class="string">&#x27;/users&#x27;</span>, usersRouter);</span><br></pre></td></tr></table></div></figure>
+
+<p>use는 미들웨어로 등록할 callback함수를 인자로 받는데, 첫번째 인자로 경로를 줄 경우 해당 경로에 대한 미들웨어를 추가할 수 있다. 이 경우 routes/*에 있는 라우트를 미들웨어로 등록하는데 각각 ‘/‘, ‘/users’경로를 구분하여 등록하게 된다. 때문에 두 라우터는 별개의 상황에서 동작하게 된다.</p>
+
+        <h2 id="정적-파일-제공"   >
+          <a href="#정적-파일-제공" class="heading-link"><i class="fas fa-link"></i></a><a href="#정적-파일-제공" class="headerlink" title="정적 파일 제공"></a>정적 파일 제공</h2>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(express.static(path.join(__dirname, <span class="string">&#x27;public&#x27;</span>)))</span><br></pre></td></tr></table></div></figure>
+
+<p>정적 파일을 제공하기 위해서는 정적 파일이 존재하는 경로를 static 미들웨어 함수를 통해 등록할 필요가 있다.</p>
+<p>static을 통해 여러 정적 파일 경로를 등록할 경우 등록된 순서에 따라 정적 파일을 검색한다. 이 부분도 use의 첫번째 인자로 경로를 주게 되면 가상 경로로 지정할 수 있다.</p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/06/10/basic-dp-algorithm/">기초 DP알고리즘 문제</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-06-10</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-06-11</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="배낭-알고리즘-a-k-a-Knapsack-problem"   >
+          <a href="#배낭-알고리즘-a-k-a-Knapsack-problem" class="heading-link"><i class="fas fa-link"></i></a><a href="#배낭-알고리즘-a-k-a-Knapsack-problem" class="headerlink" title="배낭 알고리즘(a.k.a Knapsack problem)"></a>배낭 알고리즘(a.k.a Knapsack problem)</h1>
+      <p>배낭 알고리즘은 쪼갤 수 없는 물건이 제한된 가방에 최대한의 가치로 담는 문제이다. Fractional Knapsack 문제는 탐욕 알고리즘으로 풀 수 있었지만, 조건에서 쪼갤 수 있어서 가능했다. 앞서 쪼갤 수 없는 물건을 최대한의 가치를 가지며 담기 위해서는 DP를 통해서 해결하게 된다.</p>
+<p><img src="/img/basic-dp-algorithm/dp-algorithm-1.png" alt="Knapsack problem 점화식"></p>
+<p>알고리즘 설명에 대략적인 설명은 다음과 같다.</p>
+<ul>
+<li>넣을 물건 또는 가방이 있는가?</li>
+<li>현재 들고 있는 물건을 넣기 위한 공간이 충분한가?</li>
+<li>들고 있는 물건을 넣었을 때와 넣지 않았을 때 어느 것이 더 좋은가?</li>
+</ul>
+<p>위 과정을 보면 알 수 있듯 문제를 해결하기 위해서는 모든 경우(각각의 물건을 담았을 경우, 담지 않았을 경우)를 계산하여 항상 제일 나은 선택을 유지하며 계산해야 한다. 이때 사용되는 기법이 메모제이션으로 아래와 같이 사용된다.</p>
+<p><img src="/img/basic-dp-algorithm/dp-algorithm-2.jpg" alt="Knapsack problem 과정"></p>
+<p>2차원 배열로 가로축은 가방의 현재 무게, 세로 축은 현재 물건의 번호이며 각각의 요소 안에는 제일 나은 선택으로 만들어진 가방의 가치(value)가 기록되며 배열 아래에 물건에 w(weight), v(value)가 기록되어 있다.</p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/05/15/multicoreos64-day5/">64bit 멀티코어 OS 원리와 구조 - Day 5</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-05-15</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-12-11</span></span></div></header><div class="post-body"><div class="post-excerpt"><blockquote>
+<p>이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.</p>
+</blockquote>
+
+        <h1 id="페이지-기능을-활성화하여-64비트-전환-준비"   >
+          <a href="#페이지-기능을-활성화하여-64비트-전환-준비" class="heading-link"><i class="fas fa-link"></i></a><a href="#페이지-기능을-활성화하여-64비트-전환-준비" class="headerlink" title="페이지 기능을 활성화하여 64비트 전환 준비"></a>페이지 기능을 활성화하여 64비트 전환 준비</h1>
       
-    </ul>
-  </div>
-</div>
+        <h2 id="선형-주소와-4단계-페이징-기법"   >
+          <a href="#선형-주소와-4단계-페이징-기법" class="heading-link"><i class="fas fa-link"></i></a><a href="#선형-주소와-4단계-페이징-기법" class="headerlink" title="선형 주소와 4단계 페이징 기법"></a>선형 주소와 4단계 페이징 기법</h2>
+      <p>페이징에 사용하는 각 테이블은 512개의 엔트리로 구성되며 다음 레벨에서 사용할 테이블의 기준 주소를 포함한다. 그리고 가장 마지막 레벨인 페이지 디렉터리의 엔트리는 2MB 페이지의 기준 주소를 포함한다.</p>
+<blockquote>
+<p>책 P.250 내용에 포함된 사진을 보시면 이해가 쉽습니다.</p>
+</blockquote>
+<p>선형 주소를 실제 물리 주소로 변환하는 과정은 CR3 레지스터에 설정된 PML4 테이블의 기준 주소로 PML4 엔트리 -&gt; 페이지 디렉터리 포인터 엔트리 -&gt; 디렉터리 엔트리로 진행하여 2MB 페이지의 기준 주소를 찾은 다음 선형 주소의 하위 21비트 오프셋을 더하면 된다.</p>
+<p>이 과정에서 알 수 있듯이 PML4(Page Map Level 4)에서는 (1)PML4 테이블, (2)페이지 디렉터리 포인터 테이블, (3) 페이지 디렉터리 등 세 가지 자료구조를 생성해야 한다. 각 테이블은 8바이트로 구성되며 각 엔트리는 다음 레벨 테이블의 기준 주소외에도 다양한 필드를 포함한다.</p>
 
+        <h2 id="페이지-테이블-구성과-공간-할당"   >
+          <a href="#페이지-테이블-구성과-공간-할당" class="heading-link"><i class="fas fa-link"></i></a><a href="#페이지-테이블-구성과-공간-할당" class="headerlink" title="페이지 테이블 구성과 공간 할당"></a>페이지 테이블 구성과 공간 할당</h2>
+      <p>MINT64 OS는 2MB 크기의 페이지를 사용해 최대 64GB의 물리 메모리를 매핑한다고 하면, <code>페이지 디렉터리</code>는 <code>8바이트</code> 크기의 엔트리 512개로 구성되며 각 엔트리는 2MB 페이지에 대한 정보를 담고 있다. 따라서 한 페이지 디렉터리는 2MB x 512개로 <code>1GB</code>이며 하나의 페이지 디렉터리는 8바이트 x 512개로 <code>4KB</code>의 메모리를 차지한다. 총 64GB를 관리하기 위해서는 4KB의 페이지 디렉터리 64개가 필요하니 총 <code>256KB</code>가 된다.</p>
+<p>앞서 페이지 디렉터리의 포인터를 가지고 있는 <code>페이지 디렉터리 포인터 테이블</code> 역시 페이지 디렉터리와 마찬가지로 8바이트 크기의 엔트리 512개로 구성되고 앞서 페이지 디렉터리 64개를 관리하기 위해서 총 64개의 필드가 필요하다. 64개의 크기는 기존 512개로 충분히 커버가 가능하기 때문에 총 4KB(기본 크기)가 필요하다.</p>
+<p>페이지 디렉터리 포인터 테이블을 가리키는 <code>PML4 테이블</code>은 다른 테이블과 마찬가지로 8바이트 크기인 PML4 테이블 엔트리 512개로 구성되며 각 엔트리는 페이지 디렉터리 포인터 테이블의 정보를 담고 있다. 때문에 앞서 페이지 디렉터리 포인터 테이블을 관리하기 위해선 1개의 엔트리만 있으면 되며, 기본 크기 4KB가 필요하다.</p>
+<p>이로써 총 264KB의 메모리가 필요하며 이 크기는 지금까지 만든 OS 이미지가 5KB가 안된다는걸 생각하면 큰 크기이다. 이런 큰 크기의 메모리를 이미지에 포함한다면 부팅시간이 지연되고, 4KB로 정렬하기 위해서 추가적으로 불필요한 공간이 낭비된다.</p>
+<p>이 문제를 해결하기 위해서 MINTOS64에서는 IA-32e 모드 커널을 0x200000(2MB)주소에 복사했고 그 이전의 0x100000(1MB)~0x200000(2MB)까지의 메모리 영역을 비워뒀다. 이곳에 PML4, 페이지 디렉터리 포인터 테이블, 페이지 디렉터리를 순서대로 위치시킨다.</p>
 
-<script src="/js/activeNav.js"></script>
+        <h3 id="공통-속성-필드-설정"   >
+          <a href="#공통-속성-필드-설정" class="heading-link"><i class="fas fa-link"></i></a><a href="#공통-속성-필드-설정" class="headerlink" title="공통 속성 필드 설정"></a>공통 속성 필드 설정</h3>
+      <p>PML4 테이블 엔트리, 페이지 디렉터리 포인터 엔트리, 페이지 디렉터리 엔트리는 공통적인 속성을 가지고 각 속성은 다음과 같다.</p>
+<ul>
+<li>A, P, Avail, EXB<ul>
+<li>MINT64 OS에선 기본 기능외에 다른 기능은 사용하지 않는다. 따라서 EXB(코드 실행 제한), A(메모리 접근), Avail(커널 임시 영역 사용)를 0으로 설정한다. 하지만 P 필드는 해당 엔트리의 유효성을 나타내므로 반드시 1로 설정한다.</li>
+</ul>
+</li>
+<li>PCD와 PWT<ul>
+<li>IA-32e 모드 커널은 보호 모드 커널과 달리 실제 OS를 구성하는 핵심 역할이며 속도 향상을 위해서 캐시를 사용한다. 캐시 정책은 Write-Through와 Write-Back 방식이 있지만 Write-Back이 더 효율적이다. 따라서 PCD와 PWT 비트를 설정해 Write-Back 방식을 사용하게 한다.</li>
+</ul>
+</li>
+<li>U/S와 R/W<ul>
+<li>MINT64 OS는 유저레벨과 커널레벨을 구분하여 잘못된 접근을 막아 보호해야 한다. 하지만 현재는 유저레벨이 존재하지 않기 때문에 코드 영역, 데이터 영역등을 따로 구분하지 않고 모든 영역을 커널 레벨 영역으로 지정하고 읽기와 쓰기가 가능하게 설정한다.</li>
+</ul>
+</li>
+</ul>
 
+        <h3 id="프로세서의-페이징-기능-활성화"   >
+          <a href="#프로세서의-페이징-기능-활성화" class="heading-link"><i class="fas fa-link"></i></a><a href="#프로세서의-페이징-기능-활성화" class="headerlink" title="프로세서의 페이징 기능 활성화"></a>프로세서의 페이징 기능 활성화</h3>
+      <p>페이징 기능을 활성화 하기 위해서는 CR0의 PG, CR3와 CR4 레지스터의 PAE를 설정할 필요가 있다.</p>
+<p>PG비트는 CR0의 최상위 비트이며 PG를 설정하는 순간 페이징 기능이 활성화되기 때문에 설정하기 전 CR3 레지스터의 PML4 테이블의 주소를 설정해야한다. 여기서 추가적으로 CR2 레지스터는 페이지 접근 또는 오류가 발생했을때 예외처리를 하는 역할을 담당한다.</p>
+<p>보호 모드에서의 3단계 페이징 기능을 사용하는것이 목적이라면 CR0, CR3레지스터로 충분하지만, 우리의 최종목적은 IA-32e 모드에서 동작하며 2MB의 크기를 가지는 페이징 활성화며 프로세스에 통지하는것이다. 이런 작업을 CR4 레지스터의 PAE(Physical Address Extensions) 비트와 페이지 디렉터리 엔트리의 PS 비트를 1로 설정하여 처리한다. 따라서 페이징 기능 활성화를 위해 레지스터를 CR4-&gt;CR3-&gt;CR0 순으로 설정하는게 좋다.</p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/05/07/raspberry-install/">라즈베리파리 사용</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-05-07</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-12-11</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="라즈베리파이"   >
+          <a href="#라즈베리파이" class="heading-link"><i class="fas fa-link"></i></a><a href="#라즈베리파이" class="headerlink" title="라즈베리파이"></a>라즈베리파이</h1>
+      <p>이번 학기 IOT 프로그래밍 수업을 듣게 되며, 묻혀둔 라즈베리파이를 꺼내 들게 되었다. 꽤 지난 모델이라 설치도 기억이 흐릿해 나중을 위해서라도 이렇게 기록한다.</p>
 
+        <h2 id="라즈비안-OS-구하기"   >
+          <a href="#라즈비안-OS-구하기" class="heading-link"><i class="fas fa-link"></i></a><a href="#라즈비안-OS-구하기" class="headerlink" title="라즈비안 OS 구하기"></a>라즈비안 OS 구하기</h2>
+      <p>SD카드와 라즈베리파이가 준비된 상태를 전제로 가장 먼저 해야 할 건 라즈비안 OS를 구하는 것이다. 공식 홈페이지는 최신 버전만 찾기 때문에 과거 버전도 모두 있는 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://downloads.raspberrypi.org/raspbian/images/" >이곳</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>을 이용하는 게 좋다.</p>
 
-      <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="모던 JS 튜토리얼 필기">
-        <div class="time-m-d">2021-01-20</div>
-        <div class="title">
-          <a href="/2021/01/20/core-js/">
-            
-              
-                <span>모던 JS 튜토리얼 필기</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Nest.js에서의 인증 (feat. passport.js)">
-        <div class="time-m-d">2020-12-19</div>
-        <div class="title">
-          <a href="/2020/12/19/nestjs-passport/">
-            
-              
-                <span>Nest.js에서의 인증 (feat. passport.js)</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="컴퓨터 보안 기말고사 정리">
-        <div class="time-m-d">2020-12-12</div>
-        <div class="title">
-          <a href="/2020/12/12/cs-security/">
-            
-              
-                <span>컴퓨터 보안 기말고사 정리</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="64bit 멀티코어 OS 원리와 구조 - Day 6">
-        <div class="time-m-d">2020-08-12</div>
-        <div class="title">
-          <a href="/2020/08/12/multicoreos64-day6/">
-            
-              
-                <span>64bit 멀티코어 OS 원리와 구조 - Day 6</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Express.js 스터디 1">
-        <div class="time-m-d">2020-08-11</div>
-        <div class="title">
-          <a href="/2020/08/11/nodejs-study-day1/">
-            
-              
-                <span>Express.js 스터디 1</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="기초 DP알고리즘 문제">
-        <div class="time-m-d">2020-06-10</div>
-        <div class="title">
-          <a href="/2020/06/10/basic-dp-algorithm/">
-            
-              
-                <span>기초 DP알고리즘 문제</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="64bit 멀티코어 OS 원리와 구조 - Day 5">
-        <div class="time-m-d">2020-05-15</div>
-        <div class="title">
-          <a href="/2020/05/15/multicoreos64-day5/">
-            
-              
-                <span>64bit 멀티코어 OS 원리와 구조 - Day 5</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="라즈베리파리 사용">
-        <div class="time-m-d">2020-05-07</div>
-        <div class="title">
-          <a href="/2020/05/07/raspberry-install/">
-            
-              
-                <span>라즈베리파리 사용</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="64bit 멀티코어 OS 원리와 구조 - Day 4">
-        <div class="time-m-d">2020-05-03</div>
-        <div class="title">
-          <a href="/2020/05/03/multicoreos64-day4/">
-            
-              
-                <span>64bit 멀티코어 OS 원리와 구조 - Day 4</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="64bit 멀티코어 OS 원리와 구조 - Day 3">
-        <div class="time-m-d">2020-05-01</div>
-        <div class="title">
-          <a href="/2020/05/01/multicoreos64-day3/">
-            
-              
-                <span>64bit 멀티코어 OS 원리와 구조 - Day 3</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-  </div>
-  <nav class="post-navigation">
-    
-    <span class="page-num">1 / 2</span>
-    
-      <a href="/page/2/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+        <h2 id="SD카드에-라즈비안-OS-쓰기"   >
+          <a href="#SD카드에-라즈비안-OS-쓰기" class="heading-link"><i class="fas fa-link"></i></a><a href="#SD카드에-라즈비안-OS-쓰기" class="headerlink" title="SD카드에 라즈비안 OS 쓰기"></a>SD카드에 라즈비안 OS 쓰기</h2>
+      <p><img src="/img/raspberry-install/install.png" alt="Win32Disk Imager"></p>
+<p>이미지를 구했으면 SD카드에 라즈비안 OS를 써야 한다. 이때 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://sourceforge.net/projects/win32diskimager/" >Win32Disk Imager</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>를 사용하면 간단히 사용할 수 있다. 사용법은 직관적이고 간단하니 추가적인 설명이 필요가 없다.</p>
 
-        <div class="footer">
-  <div class="social">
-    <ul>
+        <h2 id="SSH-활성화"   >
+          <a href="#SSH-활성화" class="heading-link"><i class="fas fa-link"></i></a><a href="#SSH-활성화" class="headerlink" title="SSH 활성화"></a>SSH 활성화</h2>
+      <p>나는 라즈베리파이에 모니터를 연결하지 않고 사용하기 때문에 SSH에 접속할 필요가 있었다. 하지만 기본적으로 라즈비안에서는 SSH가 비활성화되어있기 때문에 위 <code>SD카드에 라즈비안 OS 쓰기</code> 과정 이후, SD카드에 <code>ssh</code> 파일을 생성해야 한다. 이때 내용은 없어도 된다. 단지 ssh 파일이 존재하면 SSH가 활성화된다.</p>
+<p>이후 라즈베리파이에 SD카드를 장착하고 전원을 넣으면 구동이 되고 SSH에 접속할 수 있다. 만약 접속 IP를 알 수 없다면, 공유기 관리화면(192.168.0.1)에서 <code>현재 연결된 디바이스 목록</code>을 참고하면 된다.</p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/05/03/multicoreos64-day4/">64bit 멀티코어 OS 원리와 구조 - Day 4</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-05-03</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-12-11</span></span></div></header><div class="post-body"><div class="post-excerpt"><blockquote>
+<p>이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.</p>
+</blockquote>
+
+        <h1 id="A20-게이트를-활성화하여-1MB-이상-영역에-접근해보자"   >
+          <a href="#A20-게이트를-활성화하여-1MB-이상-영역에-접근해보자" class="heading-link"><i class="fas fa-link"></i></a><a href="#A20-게이트를-활성화하여-1MB-이상-영역에-접근해보자" class="headerlink" title="A20 게이트를 활성화하여 1MB 이상 영역에 접근해보자"></a>A20 게이트를 활성화하여 1MB 이상 영역에 접근해보자</h1>
       
-        <li>
-          <a title="github" target="_blank" rel="noopener" href="https://github.com/aid95">
-            <i class="iconfont icon-github"></i>
-          </a>
-        </li>
+        <h2 id="IA-32e-모드-커널과-메모리-맵"   >
+          <a href="#IA-32e-모드-커널과-메모리-맵" class="heading-link"><i class="fas fa-link"></i></a><a href="#IA-32e-모드-커널과-메모리-맵" class="headerlink" title="IA-32e 모드 커널과 메모리 맵"></a>IA-32e 모드 커널과 메모리 맵</h2>
+      <p>왜 1MB 이상의 메모리에 접근해야 하는가에 대해서는 앞서 부트 로더에 의해 커널 이미지가 0x10000 메모리에 로딩되고, 1MB 이하의 어드레스 중에서 비디오 메모리가 위치하는 0xA0000 이하를 커널 공간으로 사용한다고 하면, 보호 모드 커널과 IA-32e 모드 커널의 최대 크기는 <code>0xA0000-0x10000(576KB)</code>이 됩니다. 그리고 이후에 초기화되지 않은 영역(.bss 섹션)이 포함된다면 더 작은 크기를 사용해야 합니다. 이 처럼 별다른 기능을 하지 않는 커널을 사용하게 된다면 문제가 없지만 계속해서 이 상태로 유지한다면 이후 다양한 기능이 추가되며 커널이 커지게 되면 메모리가 부족한 현상이 발생하게 됩니다.</p>
+<p>MINT64 OS는 이러한 문제를 해결하려고 커널 이미지를 모두 0x10000 어드레스에 복사하되, 덩치가 큰 IA-32e 모드 커널은 2MB의 어드레스로 복사하여 2MB~6MB(총 4MB의 크기)의 영역을 별도로 할당했습니다. (책 231p의 그림을 보시는게 이해하기 더 좋습니다.)</p>
+
+        <h2 id="1MB-어드레스와-A20-게이트"   >
+          <a href="#1MB-어드레스와-A20-게이트" class="heading-link"><i class="fas fa-link"></i></a><a href="#1MB-어드레스와-A20-게이트" class="headerlink" title="1MB 어드레스와 A20 게이트"></a>1MB 어드레스와 A20 게이트</h2>
+      <p>초창기 XT PC의 최대 어드레스는 1MB였습니다. 만약 하드웨어의 한계로 1MB 이상의 어드레스에 접근하면 하위 주소만 남아 접근하게 되었습니다 (0x10FFEF -&gt; 0xFFEF). 하지만 이후 16MB 주소까지 접근할 수 있는 AT PC가 탄생하면서 XT PC의 특수한 주소 계산법(1MB 이상의 주소를 1MB 이하의 주소로 맵핑) 때문에 문제가 발생합니다. 이 호환성 문제를 해결하기 위해 탄생한게 <code>A20 게이트</code> 입니다.</p>
+<p>A20은 주소의 20번째 비트를 의미하며, 이를 활성화/비활성화 함으로 20번째 비트를 항상 0으로 고정할 수 있었습니다. A20 게이트가 비활성화된 상태에서는 20번째 비트가 항상 0을 유지하기 때문에 홀수 MB에 접근할 수 없습니다. 그래서 최초 부팅 이후 1MB<del>4MB의 초기화를 하면 0</del>1MB, 2<del>3MB가 초기화되고 0</del>1MB 영역은 BIOS와 보호 모드 커널 영역으로 사용하고 있으므로 수행중인 부분이 초기화가 되어버립니다.</p>
+
+        <h3 id="A20-게이트-활성화-방법"   >
+          <a href="#A20-게이트-활성화-방법" class="heading-link"><i class="fas fa-link"></i></a><a href="#A20-게이트-활성화-방법" class="headerlink" title="A20 게이트 활성화 방법"></a>A20 게이트 활성화 방법</h3>
+      <p>A20 게이트를 활성화하는 방법은 크게 세 가지가 있습니다.</p>
+<ul>
+<li>키보드 컨트롤러로 활성화<ul>
+<li>키보드 컨트롤러에 A20 게이트를 연결하여 제어, 느리고 소스 코드가 복잡하지만 마우스와 키보드가 있는 환경에선 쉽게 접근할 수 있다.</li>
+</ul>
+</li>
+<li>시스템 컨트롤 포트로 활성화<ul>
+<li>시스템 제어에 관련된 I/O 포트를 통해 A20 게이트를 활성화한다. 키보드 컨트롤러보다 속도가 빠르고 소스 코드가 간략</li>
+</ul>
+</li>
+<li>BIOS 서비스로 활성화<ul>
+<li>BIOS를 활용하기에 세 가지 방법중 가장 확실하다.</li>
+</ul>
+</li>
+</ul>
+<p>이 방법중 책에서는 시스템 컨트롤러 포트, BIOS 방법을 활용합니다.</p>
+
+        <h4 id="시스템-컨트롤러-포트"   >
+          <a href="#시스템-컨트롤러-포트" class="heading-link"><i class="fas fa-link"></i></a><a href="#시스템-컨트롤러-포트" class="headerlink" title="시스템 컨트롤러 포트"></a>시스템 컨트롤러 포트</h4>
+      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">in</span> al, 0x92</span><br><span class="line">or al, 0x02</span><br><span class="line">and al, 0xFE</span><br><span class="line">out 0x92, al</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="BIOS"   >
+          <a href="#BIOS" class="heading-link"><i class="fas fa-link"></i></a><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h4>
+      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mov ax, 0x2401</span><br><span class="line">int 0x15</span><br><span class="line"></span><br><span class="line">jc .A20GATEERROR</span><br><span class="line">jmp .A20GATESUCCESS</span><br><span class="line">.A20GATEERROR</span><br><span class="line">    ..error handling..</span><br><span class="line"></span><br><span class="line">.A20GATESUCCESS</span><br><span class="line">    ..success logic..</span><br></pre></td></tr></table></div></figure>
+
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/05/01/multicoreos64-day3/">64bit 멀티코어 OS 원리와 구조 - Day 3</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-05-01</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-12-11</span></span></div></header><div class="post-body"><div class="post-excerpt"><blockquote>
+<p>이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.</p>
+</blockquote>
+
+        <h1 id="C언어로-커널을-작성하자"   >
+          <a href="#C언어로-커널을-작성하자" class="heading-link"><i class="fas fa-link"></i></a><a href="#C언어로-커널을-작성하자" class="headerlink" title="C언어로 커널을 작성하자"></a>C언어로 커널을 작성하자</h1>
       
-        <li>
-          <a title="email" href="">
-            <i class="iconfont icon-envelope"></i>
-          </a>
-        </li>
+        <h2 id="실행-가능한-C-코드-커널-생성-방법"   >
+          <a href="#실행-가능한-C-코드-커널-생성-방법" class="heading-link"><i class="fas fa-link"></i></a><a href="#실행-가능한-C-코드-커널-생성-방법" class="headerlink" title="실행 가능한 C 코드 커널 생성 방법"></a>실행 가능한 C 코드 커널 생성 방법</h2>
       
-        <li>
-          <a title="facebook" href="">
-            <i class="iconfont icon-facebooksquare"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="twitter" target="_blank" rel="noopener" href="https://twitter.com/ju_raffe_">
-            <i class="iconfont icon-twitter"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="wechat" href="">
-            <i class="iconfont icon-wechat"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="weibo" href="">
-            <i class="iconfont icon-weibo"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="rss" href="/atom.xml">
-            <i class="iconfont icon-rss"></i>
-          </a>
-        </li>
-      
-    </ul>
-  </div>
-  
-    <div class="footer-more">
-      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2020</a>
-    </div>
-  
-    <div class="footer-more">
-      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
-    </div>
-  
-</div>
+        <h3 id="빌드-조건과-제약-사항"   >
+          <a href="#빌드-조건과-제약-사항" class="heading-link"><i class="fas fa-link"></i></a><a href="#빌드-조건과-제약-사항" class="headerlink" title="빌드 조건과 제약 사항"></a>빌드 조건과 제약 사항</h3>
+      <p>지금까지 작성된 코드는 단일 파일로 NASM 컴파일을 통해 바이너리 파일 형태로 만들어졌다. 직전 EntryPoint.s 코드도 단일 파일로 작성되었고, 512byte로 정렬되어 이미지 파일에 결합(Disk.img 파일에 포함)하는 구조다. 이 장에서는 보호 모드 EntryPoint(이하, 엔트리포인트)의 뒷부분에 C언어로 작성한 커널을 연결하고, C 커널의 시작 부분으로 이동하는 것이 목표이다.</p>
+<p>먼저, 엔트리 포인트가 C언어 코드를 실행하려면 3가지 제약 조건을 만족해야 한다.</p>
+<ul>
+<li>C 라이브러리를 사용하지 않게 빌드해야 한다.<ul>
+<li>부팅된 후 보호 모드 커널이 실행되면 C 라이브러리가 없음으로 라이브러리에 포함된 함수(printf, scanf, …)를 호출할 수 없다.</li>
+</ul>
+</li>
+<li>0x10200 위치에서 실행하게끔 빌드해야 한다.<ul>
+<li>0x10000의 위치에는 이전 장(6장)에서 작성한 EntryPoint.s가 512byte(1 섹터) 만큼 위치하기 때문에 0x1000 + 0x200(512byte) 뒤인 0x10200에 위치해야 한다.</li>
+</ul>
+</li>
+<li>코드나 데이터 외에 기타 정보를 포함하지 않은 순수한 바이너리 파일 형태야 한다.<ul>
+<li>GCC를 통해 컴파일하면 ELF 또는 PE 와 같은 OS에 의존적인 실행 파일 포맷으로 생성된다. 이런 파일을 포맷이 포함되게 되면 이 정보를 처리하기 위한 부가적인 복잡한 코드를 생성해야 하기 때문에 순수한 바이너리 파일을 생성해야 한다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding Main.c</span><br></pre></td></tr></table></div></figure>
 
-      </div>
+<p>라이브러리를 사용하지 않고 홀로 사용하기 위해서 GCC 컴파일러는 <code>-ffreestanding</code>옵션을 지원하고 있으며, <code>-c</code>과 함께 라이브러리를 사용하지 않는 오브젝트 파일을 생성할 수 있다.</p>
 
-      <div class="back-to-top hidden">
-  <a href="javascript: void(0)">
-    <i class="iconfont icon-chevronup"></i>
-  </a>
-</div>
+        <h3 id="섹션-배치와-링커-스크립트-라이브러리를-사용하지-않는-링크"   >
+          <a href="#섹션-배치와-링커-스크립트-라이브러리를-사용하지-않는-링크" class="heading-link"><i class="fas fa-link"></i></a><a href="#섹션-배치와-링커-스크립트-라이브러리를-사용하지-않는-링크" class="headerlink" title="섹션 배치와 링커 스크립트, 라이브러리를 사용하지 않는 링크"></a>섹션 배치와 링커 스크립트, 라이브러리를 사용하지 않는 링크</h3>
+      <blockquote>
+<p>이 부분은 불필요한 섹션을 제거(또는 이동)하여 섹션을 재배치하고 보호 모드 엔트리포인트에서 커널로 이동하는 설정을 다루고 있습니다. 따라서 코드는 책의 내용을 참고하시는게 좋습니다.</p>
+</blockquote>
+<p>작성하는 커널의 위치는 0x10000의 보호 모드 엔트리포인트에서 1섹터(512byte)만큼 떨어진 0x10200에 위치하도록 한다.</p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; x86_64-pc-linux-ld.exe -Ttext 0x10200 Main.o -o Main.elf</span><br></pre></td></tr></table></div></figure>
 
-
-<script src="/js/backtotop.js"></script>
-
-
-
-      
-  <div class="search-icon" id="search-icon">
-    <a href="javascript: void(0)">
-      <i class="iconfont icon-search"></i>
-    </a>
-  </div>
-
-  <div class="search-overlay hidden">
-    <div class="search-content" tabindex="0">
-      <div class="search-title">
-        <span class="search-icon-input">
-          <a href="javascript: void(0)">
-            <i class="iconfont icon-search"></i>
-          </a>
-        </span>
-        
-          <input type="text" class="search-input" id="search-input" placeholder="Search...">
-        
-        <span class="search-close-icon" id="search-close-icon">
-          <a href="javascript: void(0)">
-            <i class="iconfont icon-close"></i>
-          </a>
-        </span>
-      </div>
-      <div class="search-result" id="search-result"></div>
-    </div>
-  </div>
-
-  <script type="text/javascript">
-    var inputArea = document.querySelector("#search-input")
-    var searchOverlayArea = document.querySelector(".search-overlay")
-
-    inputArea.onclick = function() {
-      getSearchFile()
-      this.onclick = null
-    }
-
-    inputArea.onkeydown = function() {
-      if(event.keyCode == 13)
-        return false
-    }
-
-    function openOrHideSearchContent() {
-      let isHidden = searchOverlayArea.classList.contains('hidden')
-      if (isHidden) {
-        searchOverlayArea.classList.remove('hidden')
-        document.body.classList.add('hidden')
-        // inputArea.focus()
-      } else {
-        searchOverlayArea.classList.add('hidden')
-        document.body.classList.remove('hidden')
-      }
-    }
-
-    function blurSearchContent(e) {
-      if (e.target === searchOverlayArea) {
-        openOrHideSearchContent()
-      }
-    }
-
-    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
-    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
-    searchOverlayArea.addEventListener("click", blurSearchContent, false)
-
-    var searchFunc = function (path, search_id, content_id) {
-      'use strict';
-      var $input = document.getElementById(search_id);
-      var $resultContent = document.getElementById(content_id);
-      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
-      $.ajax({
-        // 0x01. load xml file
-        url: path,
-        dataType: "xml",
-        success: function (xmlResponse) {
-          // 0x02. parse xml file
-          var datas = $("entry", xmlResponse).map(function () {
-            return {
-              title: $("title", this).text(),
-              content: $("content", this).text(),
-              url: $("url", this).text()
-            };
-          }).get();
-          $resultContent.innerHTML = "";
-
-          $input.addEventListener('input', function () {
-            // 0x03. parse query to keywords list
-            var str = '<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length <= 0) {
-              return;
-            }
-            // 0x04. perform local searching
-            datas.forEach(function (data) {
-              var isMatch = true;
-              var content_index = [];
-              if (!data.title || data.title.trim() === '') {
-                data.title = "Untitled";
-              }
-              var orig_data_title = data.title.trim();
-              var data_title = orig_data_title.toLowerCase();
-              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
-              var data_content = orig_data_content.toLowerCase();
-              var data_url = data.url;
-              var index_title = -1;
-              var index_content = -1;
-              var first_occur = -1;
-              // only match artiles with not empty contents
-              if (data_content !== '') {
-                keywords.forEach(function (keyword, i) {
-                  index_title = data_title.indexOf(keyword);
-                  index_content = data_content.indexOf(keyword);
-
-                  if (index_title < 0 && index_content < 0) {
-                    isMatch = false;
-                  } else {
-                    if (index_content < 0) {
-                      index_content = 0;
-                    }
-                    if (i == 0) {
-                      first_occur = index_content;
-                    }
-                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
-                  }
-                });
-              } else {
-                isMatch = false;
-              }
-              // 0x05. show search results
-              if (isMatch) {
-                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
-                var content = orig_data_content;
-                if (first_occur >= 0) {
-                  // cut out 100 characters
-                  var start = first_occur - 20;
-                  var end = first_occur + 80;
-
-                  if (start < 0) {
-                    start = 0;
-                  }
-
-                  if (start == 0) {
-                    end = 100;
-                  }
-
-                  if (end > content.length) {
-                    end = content.length;
-                  }
-
-                  var match_content = content.substr(start, end);
-
-                  // highlight all keywords
-                  keywords.forEach(function (keyword) {
-                    var regS = new RegExp(keyword, "gi");
-                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
-                  });
-
-                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
-                }
-                str += "</li>";
-              }
-            });
-            str += "</ul>";
-            if (str.indexOf('<li>') === -1) {
-              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
-            }
-            $resultContent.innerHTML = str;
-          });
-        },
-        error: function(xhr, status, error) {
-          $resultContent.innerHTML = ""
-          if (xhr.status === 404) {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
-          } else {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
-          }
-        }
-      });
-      $(document).on('click', '#search-close-icon', function() {
-        $('#search-input').val('');
-        $('#search-result').html('');
-      });
-    }
-
-    var getSearchFile = function() {
-        var path = "/search.xml";
-        searchFunc(path, 'search-input', 'search-result');
-    }
-  </script>
-
-
-
-
-    </div>
-  </body>
-</html>
+<p>그리고 커널의 엔트리 포인터를 Main함수로 만들기 위해서 다음과 같이 엔트리 포인터를 설정한다.</p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; x86_64-pc-linux-ld.exe -e Main Main.o -o Main.elf</span><br></pre></td></tr></table></div></figure>
+</div></div></article></section><nav class="paginator"><div class="paginator-inner"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right"></i></a></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.svg" alt="avatar"></div><p class="sidebar-ov-author__text">hello world</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">Archives</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Byeongju Shin(aka. juraffe)</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.2.0</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

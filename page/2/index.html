@@ -1,449 +1,192 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta property="og:type" content="website">
+<meta property="og:title" content="GOMI🏝️LAND">
+<meta property="og:url" content="https://blog.gomi.land/page/2/index.html">
+<meta property="og:site_name" content="GOMI🏝️LAND">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Byeongju Shin(aka. juraffe)">
+<meta name="twitter:card" content="summary"><title>GOMI🏝️LAND</title><link ref="canonical" href="https://blog.gomi.land/page/2/index.html"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
 
-  <head>
-  <meta charset="utf-8">
-  <meta name="author" content="zchengsite, 1451426471@qq.com" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-    <meta name="robots" content="noindex" />
-  
-  
-  <title>GOMI🏝️LAND</title>
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">GOMI🏝️LAND</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/04/30/archlinux-install/">Arch linux 설치하기</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-04-30</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2021-01-20</span></span></div></header><div class="post-body"><div class="post-excerpt"><blockquote>
+<p>이 글은 인터넷에 작성된 Arch linux를 설치하는 방법을 개인적으로 정리한 글입니다. 글의 대부분의 내용은 아래 ‘레퍼런스’에 출처가 작성되어있으니 자세한 내용을 원본 글에서 참조하시는걸 추천해 드립니다.</p>
+</blockquote>
+<p><img src="/img/archlinux-install/archlinux-install-1.jpg" alt="ArchLinux Install"></p>
+<p>Arch Linux를 설치하며 가상 먼저 하는 것은 당연히 arch linux의 설치 ISO 파일을 구하는 것부터 시작된다. 먼저 PC에서 설치하는 것보단 Virtual Box 같은 가상 PC에서 설치하기 위해서 USB에 굽는 과정을 생략했다.</p>
+<p>먼저 한국 미러링 서버에서 받기 원한다면 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://ftp.lanet.kr/pub/archlinux/iso/2020.04.01/" >이곳</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>에서 다운로드받을 수 있다. 다른 나라를 이용하고 싶다면 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.archlinux.org/download/" >이곳</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>에서 원하는 나라의 미러링 서버를 확인할 수 있다.</p>
 
-  
-    <link rel="apple-touch-icon" href="/images/favicon.ico">
-    <link rel="icon" href="/images/favicon.ico">
-  
+        <h2 id="레퍼런스"   >
+          <a href="#레퍼런스" class="heading-link"><i class="fas fa-link"></i></a><a href="#레퍼런스" class="headerlink" title="레퍼런스"></a>레퍼런스</h2>
+      <p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=JpV6eW_4JQk" >How to Install Arch Linux on VirtualBox</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://whjeon.com/arch-install/#seolchi_junbi_seolchiyong_usb_jejag" >아치 리눅스 설치 가이드</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/04/29/multicoreos64-day2/">64bit 멀티코어 OS 원리와 구조 - Day 2</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-04-29</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-12-11</span></span></div></header><div class="post-body"><div class="post-excerpt"><blockquote>
+<p>이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.</p>
+</blockquote>
 
-  <!-- Raleway-Font -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+        <h2 id="이미지-로딩-구현"   >
+          <a href="#이미지-로딩-구현" class="heading-link"><i class="fas fa-link"></i></a><a href="#이미지-로딩-구현" class="headerlink" title="이미지 로딩 구현"></a>이미지 로딩 구현</h2>
+      <p>책에서 구현하게 될 OS는 부트 로더, 보호 모드 커널, IA-32e 모드 커널로 구성되고 섹터 단위로 정렬되 하나의 부팅 이미지로 만들어지며 두 번째 섹터부터 읽어 메모리에 복사하면 이미지 로딩이 끝나게 된다. 책에서 구현하는 OS는 메모리 0x10000번지에 복사하게 되며, 이 주소는 정해진게 아니라 부트 로더 이후에 바로 복사해도 되지만, 책의 뒷장에서 0x10000 이하 번지를 다른 용도로 사용하기 위해서 비워둔다. </p>
+<p>x86 프로세서는 스택과 관련된 레지스터가 3개 있는데 SS, SP, BP가 있다. 이때 SS를 어떻게 설정하느냐에 따라서 스택의 크기가 달라지는데 예를 들어 SS를 <code>0x0000</code>으로 설정한다면 <code>0x00000~0x0FFFF</code> SS를 <code>0x1000</code>으로 설정하면 <code>0x010000~0x01FFFF</code>까지 된다. 이렇게 SS를 통해서 스택의 범위를 지정할 순 있지만, 스택의 크기는 정하지 못하는데 32bit의 스택 한 칸의 크기는 4byte이다. </p>
 
-  <!-- hexo site css -->
-  
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/iconfont/iconfont.css">
-<link rel="stylesheet" href="/css/github-markdown.css">
-<link rel="stylesheet" href="/css/highlight.css">
+        <h2 id="리얼-모드에서-보호-모드로의-전환"   >
+          <a href="#리얼-모드에서-보호-모드로의-전환" class="heading-link"><i class="fas fa-link"></i></a><a href="#리얼-모드에서-보호-모드로의-전환" class="headerlink" title="리얼 모드에서 보호 모드로의 전환"></a>리얼 모드에서 보호 모드로의 전환</h2>
+      <p>보호 모드로 전환하는 단계는 크게 6단계라고 할 수 있다. 2단계는 보호 모드 전환을 위한 자료구조 생성, 나머지 4단계는 생성된 자료구조를 프로세서에 설정을 한다. 2단계에서 생성할 필수 자료구조는 <code>세그먼트 디스크립터</code>와 <code>GDT</code>이다. 이 두 자료구조는 전환 즉시 프로세서에 의해 참조되므로 미리 생성해야 한다.</p>
 
+        <h3 id="세그먼트-디스크립터-생성"   >
+          <a href="#세그먼트-디스크립터-생성" class="heading-link"><i class="fas fa-link"></i></a><a href="#세그먼트-디스크립터-생성" class="headerlink" title="세그먼트 디스크립터 생성"></a>세그먼트 디스크립터 생성</h3>
+      <p>세그먼트 디스크립터는 세그먼테이션 기법(메모리 관리 기법)에서 <code>세그먼트의 정보</code>를 나타내는 자료구조이다. 여기서 세그먼트는 메모리 공간을 <code>임의의 크기로 나눈 영역</code>을 의미한다. 세그먼트 디스크립터는 크게 <code>코드  세그먼트, 데이터 세그먼트 디스크립터</code>로 나뉜다. </p>
+<ul>
+<li>코드 세그먼트 : 실행가능한 코드가 포함된 세그먼트에 대한 정보 CS 세그먼트 셀렉터에 사용</li>
+<li>데이터 세그먼트 : 데이터가 포함된 세그먼트에 대한 정보를 나타냄, CS를 제외한 나머지 세그먼트에 사용할 수 있음.</li>
+</ul>
+<blockquote>
+<p>세그먼트 디스크립트 구조는 책의 사진이 더욱 이해하기 쉬워 연관된 필드를 작성하는 것으로 대체합니다.</p>
+</blockquote>
 
-  <!-- jquery3.3.1 -->
-  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <h4 id="세그먼트-디스크립터-구조"   >
+          <a href="#세그먼트-디스크립터-구조" class="heading-link"><i class="fas fa-link"></i></a><a href="#세그먼트-디스크립터-구조" class="headerlink" title="세그먼트 디스크립터 구조"></a>세그먼트 디스크립터 구조</h4>
+      <ul>
+<li>S, 타입 : S 필드로 세그먼트 디스크립트임을 표시하고, 타입 필드로 읽기/쓰기, 실행/읽기 으로 설정한다.</li>
+<li>크기, G : 크기 필드는 총 20비트이며 최댓값은 1MB지만, 전체 4GB를 접근하기엔 무리가 있다. 따라서 G 필드를 활용해 1MB에 4KB가 곱해진 4GB에 접근할 수 있도록 한다.</li>
+<li>D/B, L, 권한 : 기본 오퍼랜드 크기, 권한 설정</li>
+<li>P, AVL : 기타 등등 ^^;;</li>
+</ul>
 
-  <!-- fancybox -->
-  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
-  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
-  
-<script src="/js/fancybox.js"></script>
+        <h3 id="GDT"   >
+          <a href="#GDT" class="heading-link"><i class="fas fa-link"></i></a><a href="#GDT" class="headerlink" title="GDT"></a>GDT</h3>
+      <p>GDT(Global Descriptor Table)은 <code>연속된 디스크립터의 집합</code>이다. 앞서 코드 세그먼트 디스크립터와 데이터 세그먼트 디스크립터를 어셈블리어로 생성하였는데 이를 연속된 영역이 GDT이다. 다만 한 가지 제약이 있는데 가장 앞부분에 NULL 디스크립터를 추가해야한다는 점이다. NULL 디스크립터는 프로세서에 의해 예약된 모든 필드가 NULL(=0)인 디스크립터이다. 모든 값이 NULL이기에 일반적으론 참조되지 않는다.</p>
+<p>GDT는 디스크립터의 집합이므로 디스크립터가 필요한 프로세서에게 GDT의 시작 주소와 크기를 알려줘야 한다. 따라서 <code>GDT의 시작주소, 크기 정보를 가지고 있는 자료구조(GDTR)</code>가 필요하게 된다.</p>
+<p>32bit의 기준 주소 필드는 데이터 세그먼트의 기준 주소와 상관없이 0번째 주소를 기준으로 하는 선형 주소이다. 따라서 GDT의 시작 어드레스를 실제 메모리 공간상의 주소로 변환할 필요가 없다.</p>
 
+        <h3 id="보호-모드로-전환"   >
+          <a href="#보호-모드로-전환" class="heading-link"><i class="fas fa-link"></i></a><a href="#보호-모드로-전환" class="headerlink" title="보호 모드로 전환"></a>보호 모드로 전환</h3>
+      <p>보호 모드로 전환하려면 GDTR 레지스터 설정, CR0 컨트롤 레지스터 설정, jmp 명령 수행 3단계만 수행하면 된다.</p>
+<p>먼저 프로세서에 GDT 정보를 설정하려면 lgdt(load GDT) 명령어를 사용한다. lgdt는 앞서 어셈블리로 작성했던 <code>GDT의 시작 주소, GDT 크기</code>를 오퍼랜드로 받는다. 단 한 줄로 GDT가 로드된 것이다.</p>
+<p>다음은, CR0 컨트롤 레지스터를 설정하는데 CR0 컨트롤 레지스터는 보호 모드 전환에 관련된 필드 외에 캐시, 페이징, 실수 연산 장치 등과 관련된 필드가 포함되어 있다. CR0 컨트롤 레지스터 또한 세그먼테이션 기능외에는 사용하지 않기에 책을 통해 확인하자.</p>
+<p>앞서 리얼 모드에서 세그먼트 레지스터(aka. 세그먼트 셀렉터)는 세그먼트의 시작 주소를 저장하는 레지스터였다. 보호 모드의 세그먼트(세그먼트 레지스터 아님)는 리얼 모드와 달리 다양한 정보를 포함하고 있어 세그먼트 정보는 디스크립터에 저장하고, 세그먼트 레지스터(aka. 세그먼트 셀렉터)는 그 디스크립터를 지시하는 용도로 사용한다. <code>[세그먼트 레지스터] -&gt; [디스크립터(세그먼트 정보가 포함되어 있음.)]</code>와 같은 모양을 가지고 있다고 할 수 있다. 보호 모드 또한 세그먼트 셀렉터에 어드레스를 설정하여 GDT 내의 디스크립터를 참조한다. 다만, 세그먼트의 기준 주소 대신 <code>GDT 내의 디스크립터의 주소</code>를 사용한다. 예를 들어 NULL 디스크립터 다음의 커널 코드 세그먼트 디스크립터를 사용하고 싶다면, 디스크립터의 크기가 8byte임을 고려해 세그먼트 셀렉터에 <code>8</code>을 넣으면 된다. 요약하자면 주소가 아닌 오프셋으로 접근한다.</p>
+<blockquote>
+<p>EntryPoint.s 파일의 내용은 책 또는 공식 Github를 참고!</p>
+</blockquote>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/04/28/multicoreos64-day1/">64bit 멀티코어 OS 원리와 구조 - Day 1</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-04-28</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-12-11</span></span></div></header><div class="post-body"><div class="post-excerpt"><blockquote>
+<p>이 글은 ‘64비트 멀티코어 OS 원리와 구조 - 한승훈 저자’을 공부하며 정리한 내용을 작성했습니다.</p>
+</blockquote>
 
-  
+        <h2 id="세상에서-가장-간단한-BootLoader"   >
+          <a href="#세상에서-가장-간단한-BootLoader" class="heading-link"><i class="fas fa-link"></i></a><a href="#세상에서-가장-간단한-BootLoader" class="headerlink" title="세상에서 가장 간단한 BootLoader"></a>세상에서 가장 간단한 BootLoader</h2>
+      <p>부트 로더를 정상적으로 불러오기 위해서는 한가지 규칙이 있다. 먼저 부트 섹터 512Byte의 마지막 2Byte는 반드시 0x55, 0xAA를 가져야 한다. 아래는 세상에서 가장 간단한 부트로더를 작성한 소스 코드이다.</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[ORG 0x00]</span><br><span class="line">[BITS 16]</span><br><span class="line"></span><br><span class="line">SECTION .text</span><br><span class="line">jmp $</span><br><span class="line">times 510 - ($ - $$)	db	0x00</span><br><span class="line">db 0x55</span><br><span class="line">db 0xAA</span><br></pre></td></tr></table></div></figure>
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+<p>위 코드에서 <code>[ORG 0x00]</code>은 0x00 메모리 주소에서 시작한다는 의미이며, <code>[BITS 16]</code>은 아래 코드는 16bit라고 알려준다. <code>SECTION .text</code>은 .text 섹션의 시작을 의미하고 <code>jmp $</code>은 현재 위치에서 무한 Loop을 하며 대기하게 한다. 여기까지 총 몇 Byte가 작성된 지 소스 코드로는 확인이 어렵기에 510byte (512byte에서 마지막 0x55, 0xAA 2byte를 뺀 숫자)만큼 채우기 위해서 <code>times 510 - ($ - $$) db 0x00</code>이라고 표현한다. 이 의미는 $(현재 주소)이에서 $$(섹션의 주소)를 뺀 값, 다시 말해 총 생성된 opcode 크기를 뺀 나머지를 <code>0x00</code>으로 채우겠다는 의미이다. 이후 <code>0x55, 0xAA</code>를 채우면 정확히 512byte 크기의 바이너리 파일이 생성되게 된다.</p>
 
+        <h2 id="화면-버퍼-제어"   >
+          <a href="#화면-버퍼-제어" class="heading-link"><i class="fas fa-link"></i></a><a href="#화면-버퍼-제어" class="headerlink" title="화면 버퍼 제어"></a>화면 버퍼 제어</h2>
+      <p>어릴 적 컴퓨터를 키면 깜빡이는 커서와 함께 뜻 모를 영어들이 주룩주룩 나오는 걸 본 기억이 있다. 현재 작성된 Boot Loader에 위와 같은 기능을 구현하기 위해서는 <code>비디오 메모리</code>에 형식에 맞춰 데이터를 넣어주는 거로 구현할 수 있다. 그러기 위해선 비디오 메모리의 시작 주소 <code>0xB8000</code>에 문자 1 Byte, 속성 1 Byte 총 2 Byte인 형식에 맞춰 가로 80, 세로 25자 총 <code>4000 Byte</code>에 작성하게 된다.</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">... 생략 ...</span><br><span class="line">SECTION .text</span><br><span class="line">mov ax, 0xb800</span><br><span class="line">mov ds, ax</span><br><span class="line">mov byte[0x00], &#39;J&#39;</span><br><span class="line">mov byte[0x01], 0x4A</span><br><span class="line">jmp $</span><br><span class="line">... 생략 ...</span><br></pre></td></tr></table></div></figure>
 
-  <body>
-    <div id="app">
-      <div class="header">
-  <div class="avatar">
-    <a href="/">
-      <!-- 头像取消懒加载，添加no-lazy -->
-      
-        <img src="/images/avatar.png" alt="">
-      
-    </a>
-    <div class="nickname"><a href="/">juraffe</a></div>
-  </div>
-  <div class="navbar">
-    <ul>
-      
-        <li class="nav-item" data-path="/">
-          <a href="/">Home</a>
-        </li>
-      
-        <li class="nav-item" data-path="/archives/">
-          <a href="/archives/">Archives</a>
-        </li>
-      
-        <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">Tags</a>
-        </li>
-      
-        <li class="nav-item" data-path="/friends/">
-          <a href="/friends/">Friends</a>
-        </li>
-      
-        <li class="nav-item" data-path="/about/">
-          <a href="/about/">About</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
+<p>이렇게 작성하고 QEMU를 실행하면 첫 글자가 빨간 배경의 J가 보이게 된다.</p>
 
-
-<script src="/js/activeNav.js"></script>
-
-
-
-      <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="Arch linux 설치하기">
-        <div class="time-m-d">2020-04-30</div>
-        <div class="title">
-          <a href="/2020/04/30/archlinux-install/">
-            
-              
-                <span>Arch linux 설치하기</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="64bit 멀티코어 OS 원리와 구조 - Day 2">
-        <div class="time-m-d">2020-04-29</div>
-        <div class="title">
-          <a href="/2020/04/29/multicoreos64-day2/">
-            
-              
-                <span>64bit 멀티코어 OS 원리와 구조 - Day 2</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="64bit 멀티코어 OS 원리와 구조 - Day 1">
-        <div class="time-m-d">2020-04-28</div>
-        <div class="title">
-          <a href="/2020/04/28/multicoreos64-day1/">
-            
-              
-                <span>64bit 멀티코어 OS 원리와 구조 - Day 1</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Merge sort algorithm">
-        <div class="time-m-d">2020-04-27</div>
-        <div class="title">
-          <a href="/2020/04/27/merge-sort/">
-            
-              
-                <span>Merge sort algorithm</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Quick sort algorithm">
-        <div class="time-m-d">2020-04-24</div>
-        <div class="title">
-          <a href="/2020/04/24/quick-sort/">
-            
-              
-                <span>Quick sort algorithm</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Dijkstra Algorithm">
-        <div class="time-m-d">2020-04-22</div>
-        <div class="title">
-          <a href="/2020/04/22/dijkstra-algorithm/">
-            
-              
-                <span>Dijkstra Algorithm</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-  </div>
-  <nav class="post-navigation">
-    
-      <a href="/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">2 / 2</span>
-    
-  </nav>
-</div>
-
-        <div class="footer">
-  <div class="social">
-    <ul>
-      
-        <li>
-          <a title="github" target="_blank" rel="noopener" href="https://github.com/aid95">
-            <i class="iconfont icon-github"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="email" href="">
-            <i class="iconfont icon-envelope"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="facebook" href="">
-            <i class="iconfont icon-facebooksquare"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="twitter" target="_blank" rel="noopener" href="https://twitter.com/ju_raffe_">
-            <i class="iconfont icon-twitter"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="wechat" href="">
-            <i class="iconfont icon-wechat"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="weibo" href="">
-            <i class="iconfont icon-weibo"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="rss" href="/atom.xml">
-            <i class="iconfont icon-rss"></i>
-          </a>
-        </li>
-      
-    </ul>
-  </div>
-  
-    <div class="footer-more">
-      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2020</a>
-    </div>
-  
-    <div class="footer-more">
-      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
-    </div>
-  
-</div>
-
-      </div>
-
-      <div class="back-to-top hidden">
-  <a href="javascript: void(0)">
-    <i class="iconfont icon-chevronup"></i>
-  </a>
-</div>
-
-
-<script src="/js/backtotop.js"></script>
+        <h2 id="세그먼트-초기화"   >
+          <a href="#세그먼트-초기화" class="heading-link"><i class="fas fa-link"></i></a><a href="#세그먼트-초기화" class="headerlink" title="세그먼트 초기화"></a>세그먼트 초기화</h2>
+      <p>BIOS가 Boot Loader를 디스크에서 메모리(메모리의 0x7c00에 복사한다.)에 복사를 하게 되고 Boot Loader가 코드를 수행하기 전 세그먼트를 초기화하지 않으면 BIOS에서 사용했던 세그먼트 값으로 인해 예기치 못한 오류가 생길 수 있다. 그렇기 때문에 Boot Loader에선 먼저 세그먼트를 초기화 해주는 게 중요하다. 이 책에서는 CS(코드 세그먼트), DS(데이터 세그먼트), ES(비디오 메모리를 위해 사용될 세그먼트)를 각각 0x07c0, 0x07c0, 0xb800으로 초기화한다. 여기서 CS는 mov 명령어로 수정할 수 없기 때문에 jmp 명령어를 이용하는데 코드는 다음과 같다.</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jmp 0x07c0:START</span><br><span class="line">START:</span><br><span class="line">	mov ax, 0x07c0</span><br><span class="line">	mov ds, ax</span><br><span class="line">	mov ax, 0xb800</span><br><span class="line">	mov es, ax</span><br></pre></td></tr></table></div></figure>
 
 
 
-      
-  <div class="search-icon" id="search-icon">
-    <a href="javascript: void(0)">
-      <i class="iconfont icon-search"></i>
-    </a>
-  </div>
+        <h2 id="화면-정리-및-메세지-출력"   >
+          <a href="#화면-정리-및-메세지-출력" class="heading-link"><i class="fas fa-link"></i></a><a href="#화면-정리-및-메세지-출력" class="headerlink" title="화면 정리 및 메세지 출력"></a>화면 정리 및 메세지 출력</h2>
+      <p>우리는 지금까지 Boot loader를 만들고, 세그먼트를 초기화했다. 이제 미리 출력된 메시지를 지우고, 우리의 메시지를 출력하도록 해보자.</p>
+<p>먼저 화면을 정리하기 위해서는 기존 비디오 메모리에 있던 내용을 지워줄 필요가 있다.</p>
+<figure class="highlight c"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i&lt;<span class="number">80</span>*<span class="number">25</span>*<span class="number">2</span></span><br><span class="line">    vdomem[i]=<span class="number">0</span></span><br><span class="line">    vdomem[i+<span class="number">1</span>]=<span class="number">0x0A</span></span><br><span class="line">    i+=<span class="number">2</span></span><br></pre></td></tr></table></div></figure>
 
-  <div class="search-overlay hidden">
-    <div class="search-content" tabindex="0">
-      <div class="search-title">
-        <span class="search-icon-input">
-          <a href="javascript: void(0)">
-            <i class="iconfont icon-search"></i>
-          </a>
-        </span>
-        
-          <input type="text" class="search-input" id="search-input" placeholder="Search...">
-        
-        <span class="search-close-icon" id="search-close-icon">
-          <a href="javascript: void(0)">
-            <i class="iconfont icon-close"></i>
-          </a>
-        </span>
-      </div>
-      <div class="search-result" id="search-result"></div>
-    </div>
-  </div>
+<p>의사 코드로 표현하면 위 코드처럼 표현할 수 있다. 이를 어셈블리어로 움기면 다음과 같다.</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">	mov si, 0</span><br><span class="line">.SCREENCLEARLOOP:</span><br><span class="line">	mov byte[es:si], 0</span><br><span class="line">	mov byte[es:si+1], 0x0a</span><br><span class="line">	add si, 2</span><br><span class="line">	cmp si, 80*25*2</span><br><span class="line">	jl .SCREENCLEARLOOP</span><br></pre></td></tr></table></div></figure>
 
-  <script type="text/javascript">
-    var inputArea = document.querySelector("#search-input")
-    var searchOverlayArea = document.querySelector(".search-overlay")
-
-    inputArea.onclick = function() {
-      getSearchFile()
-      this.onclick = null
-    }
-
-    inputArea.onkeydown = function() {
-      if(event.keyCode == 13)
-        return false
-    }
-
-    function openOrHideSearchContent() {
-      let isHidden = searchOverlayArea.classList.contains('hidden')
-      if (isHidden) {
-        searchOverlayArea.classList.remove('hidden')
-        document.body.classList.add('hidden')
-        // inputArea.focus()
-      } else {
-        searchOverlayArea.classList.add('hidden')
-        document.body.classList.remove('hidden')
-      }
-    }
-
-    function blurSearchContent(e) {
-      if (e.target === searchOverlayArea) {
-        openOrHideSearchContent()
-      }
-    }
-
-    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
-    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
-    searchOverlayArea.addEventListener("click", blurSearchContent, false)
-
-    var searchFunc = function (path, search_id, content_id) {
-      'use strict';
-      var $input = document.getElementById(search_id);
-      var $resultContent = document.getElementById(content_id);
-      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
-      $.ajax({
-        // 0x01. load xml file
-        url: path,
-        dataType: "xml",
-        success: function (xmlResponse) {
-          // 0x02. parse xml file
-          var datas = $("entry", xmlResponse).map(function () {
-            return {
-              title: $("title", this).text(),
-              content: $("content", this).text(),
-              url: $("url", this).text()
-            };
-          }).get();
-          $resultContent.innerHTML = "";
-
-          $input.addEventListener('input', function () {
-            // 0x03. parse query to keywords list
-            var str = '<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length <= 0) {
-              return;
-            }
-            // 0x04. perform local searching
-            datas.forEach(function (data) {
-              var isMatch = true;
-              var content_index = [];
-              if (!data.title || data.title.trim() === '') {
-                data.title = "Untitled";
-              }
-              var orig_data_title = data.title.trim();
-              var data_title = orig_data_title.toLowerCase();
-              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
-              var data_content = orig_data_content.toLowerCase();
-              var data_url = data.url;
-              var index_title = -1;
-              var index_content = -1;
-              var first_occur = -1;
-              // only match artiles with not empty contents
-              if (data_content !== '') {
-                keywords.forEach(function (keyword, i) {
-                  index_title = data_title.indexOf(keyword);
-                  index_content = data_content.indexOf(keyword);
-
-                  if (index_title < 0 && index_content < 0) {
-                    isMatch = false;
-                  } else {
-                    if (index_content < 0) {
-                      index_content = 0;
-                    }
-                    if (i == 0) {
-                      first_occur = index_content;
-                    }
-                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
-                  }
-                });
-              } else {
-                isMatch = false;
-              }
-              // 0x05. show search results
-              if (isMatch) {
-                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
-                var content = orig_data_content;
-                if (first_occur >= 0) {
-                  // cut out 100 characters
-                  var start = first_occur - 20;
-                  var end = first_occur + 80;
-
-                  if (start < 0) {
-                    start = 0;
-                  }
-
-                  if (start == 0) {
-                    end = 100;
-                  }
-
-                  if (end > content.length) {
-                    end = content.length;
-                  }
-
-                  var match_content = content.substr(start, end);
-
-                  // highlight all keywords
-                  keywords.forEach(function (keyword) {
-                    var regS = new RegExp(keyword, "gi");
-                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
-                  });
-
-                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
-                }
-                str += "</li>";
-              }
-            });
-            str += "</ul>";
-            if (str.indexOf('<li>') === -1) {
-              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
-            }
-            $resultContent.innerHTML = str;
-          });
-        },
-        error: function(xhr, status, error) {
-          $resultContent.innerHTML = ""
-          if (xhr.status === 404) {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
-          } else {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
-          }
-        }
-      });
-      $(document).on('click', '#search-close-icon', function() {
-        $('#search-input').val('');
-        $('#search-result').html('');
-      });
-    }
-
-    var getSearchFile = function() {
-        var path = "/search.xml";
-        searchFunc(path, 'search-input', 'search-result');
-    }
-  </script>
+<p>다음으로 문자열을 출력하는 코드를 작성한다.</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">	mov si, 0</span><br><span class="line">	mov di, 0</span><br><span class="line">.MESSAGELOOP:</span><br><span class="line">	mov cl, byte[si+MESSAGE1]</span><br><span class="line">	cmp cl, 0</span><br><span class="line">	je .MESSAGED</span><br><span class="line">	</span><br><span class="line">	mov byte [es:di], cl</span><br><span class="line">	add si, 1</span><br><span class="line">	add di, 2</span><br><span class="line">	</span><br><span class="line">	jmp .MESSAGELOOP</span><br><span class="line">.MESSAGED:</span><br><span class="line">	</span><br><span class="line">MESSAGE1: db &#39;JUNOS BootLoader...!&#39;, 0</span><br></pre></td></tr></table></div></figure>
 
 
 
+        <h2 id="최종-BootLoader"   >
+          <a href="#최종-BootLoader" class="heading-link"><i class="fas fa-link"></i></a><a href="#최종-BootLoader" class="headerlink" title="최종 BootLoader"></a>최종 BootLoader</h2>
+      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">[ORG 0x00]</span><br><span class="line">[BITS 16]</span><br><span class="line"></span><br><span class="line">SECTION .text</span><br><span class="line"></span><br><span class="line">jmp 0x07c0:START</span><br><span class="line">START:</span><br><span class="line">	mov ax, 0x07c0</span><br><span class="line">	mov ds, ax</span><br><span class="line">	mov ax, 0xb800</span><br><span class="line">	mov es, ax</span><br><span class="line">	</span><br><span class="line">	mov si, 0</span><br><span class="line">.SCREENCLEARLOOP:</span><br><span class="line">	mov byte[es:si], 0</span><br><span class="line">	mov byte[es:si+1], 0x0a</span><br><span class="line">	add si, 2</span><br><span class="line">	cmp si, 80*25*2</span><br><span class="line">	jl .SCREENCLEARLOOP</span><br><span class="line">	</span><br><span class="line">	mov si, 0</span><br><span class="line">	mov di, 0</span><br><span class="line">.MESSAGELOOP:</span><br><span class="line">	mov cl, byte[si+MESSAGE1]</span><br><span class="line">	cmp cl, 0</span><br><span class="line">	je .MESSAGED</span><br><span class="line">	mov byte [es:di], cl</span><br><span class="line">	add si, 1</span><br><span class="line">	add di, 2</span><br><span class="line">	jmp .MESSAGELOOP</span><br><span class="line">.MESSAGED:</span><br><span class="line">	jmp $</span><br><span class="line">	</span><br><span class="line">MESSAGE1: db &#39;JUNOS BootLoader...!&#39;, 0</span><br><span class="line"></span><br><span class="line">times 510 - ($ - $$)	db	0x00</span><br><span class="line">db 0x55</span><br><span class="line">db 0xAA</span><br></pre></td></tr></table></div></figure></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/04/27/merge-sort/">Merge sort algorithm</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-04-27</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-12-11</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="합병-정렬-merge-sort"   >
+          <a href="#합병-정렬-merge-sort" class="heading-link"><i class="fas fa-link"></i></a><a href="#합병-정렬-merge-sort" class="headerlink" title="합병 정렬(merge sort)"></a>합병 정렬(merge sort)</h1>
+      <p>합병 정렬은 분할정복 알고리즘이며 길이가 N인 리스트를 길이가 1인 리스트로 쪼개고 다시 쪼개진 각각의 리스트를 정렬하며 합병해 최종적으로 정렬된 리스트를 가지게 된다.</p>
+<p>함수의 구조를 보면 알겠지만, 중앙 위치를 찾고 중앙 위치를 기준으로 좌측, 우측을 나눠 재귀 호출된다. 재귀 종료 조건은 <code>start &lt; end</code>의 조건에 맞지 않는다면 더 나뉠 수 없다고 판단하여 쪼개는 과정이 종료된다. 최종적으로 마지막 <code>merge</code>함수를 이용해 각 리스트를 합병한다. 중요한 점은 이때 임시버퍼를 사용해야 하는데, 만약 임시버퍼를 사용할 수 없는 조건이라면 합병 정렬은 사용할 수 없다.</p>
 
-    </div>
-  </body>
-</html>
+        <h2 id="구현"   >
+          <a href="#구현" class="heading-link"><i class="fas fa-link"></i></a><a href="#구현" class="headerlink" title="구현"></a>구현</h2>
+      <figure class="highlight rust"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() -&gt; <span class="built_in">Result</span>&lt;(), std::io::Error&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> arr = [<span class="number">1</span>, <span class="number">30</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">13</span>, <span class="number">11</span>];</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> tmp: [<span class="built_in">isize</span>; <span class="number">11</span>] = [<span class="number">0</span>; <span class="number">11</span>];</span><br><span class="line">    tmp.clone_from_slice(&amp;arr);</span><br><span class="line">    MySortor::sort(&amp;<span class="keyword">mut</span> arr, &amp;<span class="keyword">mut</span> tmp);</span><br><span class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> &amp;arr &#123;</span><br><span class="line">        <span class="built_in">print!</span>(<span class="string">&quot;&#123;&#125; &quot;</span>, v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="literal">Ok</span>(())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">MySortor</span></span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> MySortor &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">sort</span></span>(arr: &amp;<span class="keyword">mut</span> [<span class="built_in">isize</span>], tmp: &amp;<span class="keyword">mut</span> [<span class="built_in">isize</span>]) &#123;</span><br><span class="line">        MySortor::merge_sort(arr, tmp, <span class="number">0</span>, arr.len() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">merge_sort</span></span>(arr: &amp;<span class="keyword">mut</span> [<span class="built_in">isize</span>], tmp: &amp;<span class="keyword">mut</span> [<span class="built_in">isize</span>], start: <span class="built_in">usize</span>, end: <span class="built_in">usize</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> start &lt; end &#123;</span><br><span class="line">            <span class="keyword">let</span> mid = (start + end) / <span class="number">2</span>;</span><br><span class="line">            MySortor::merge_sort(arr, tmp, start, mid);</span><br><span class="line">            MySortor::merge_sort(arr, tmp, mid + <span class="number">1</span>, end);</span><br><span class="line">            MySortor::merge(arr, tmp, start, mid, end);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">merge</span></span>(arr: &amp;<span class="keyword">mut</span> [<span class="built_in">isize</span>], tmp: &amp;<span class="keyword">mut</span> [<span class="built_in">isize</span>], start: <span class="built_in">usize</span>, mid: <span class="built_in">usize</span>, end: <span class="built_in">usize</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> p1 = start;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> p2 = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> store_index = start;</span><br><span class="line">        tmp.clone_from_slice(arr);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> p1 &lt;= mid &amp;&amp; p2 &lt;= end &#123;</span><br><span class="line">            <span class="keyword">if</span> tmp[p1] &lt;= tmp[p2] &#123;</span><br><span class="line">                arr[store_index] = tmp[p1];</span><br><span class="line">                p1 += <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                arr[store_index] = tmp[p2];</span><br><span class="line">                p2 += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            store_index += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> e = mid <span class="keyword">as</span> <span class="built_in">isize</span> - p1 <span class="keyword">as</span> <span class="built_in">isize</span>;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..=e &#123;</span><br><span class="line">            arr[store_index + i <span class="keyword">as</span> <span class="built_in">usize</span>] = tmp[p1 + i <span class="keyword">as</span> <span class="built_in">usize</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="필기노트"   >
+          <a href="#필기노트" class="heading-link"><i class="fas fa-link"></i></a><a href="#필기노트" class="headerlink" title="필기노트"></a>필기노트</h2>
+      <p><img src="/img/merge-sort/merge-sort-1.jpg" alt="merge-sort-1"></p>
+
+        <h2 id="레퍼런스"   >
+          <a href="#레퍼런스" class="heading-link"><i class="fas fa-link"></i></a><a href="#레퍼런스" class="headerlink" title="레퍼런스"></a>레퍼런스</h2>
+      <p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://gmlwjd9405.github.io/2018/05/08/algorithm-merge-sort.html" >[알고리즘] 합병 정렬(merge sort)이란</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=QAyl79dCO_k&t=317s" >[자료구조 알고리즘] 병합정렬(Merge Sort) 구현하기</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/04/24/quick-sort/">Quick sort algorithm</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-04-24</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-12-11</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="퀵-정렬-알고리즘"   >
+          <a href="#퀵-정렬-알고리즘" class="heading-link"><i class="fas fa-link"></i></a><a href="#퀵-정렬-알고리즘" class="headerlink" title="퀵 정렬 알고리즘"></a>퀵 정렬 알고리즘</h1>
+      <p>퀵 정렬은 피벗을 기준으로 좌/우에 자신보다 큰/작은 값을 몰고, 문제를 조금씩 나눠가며 정렬을 하게 된다. 최악의 경우(항상 피벗이 모든 값 중 가장 작은 경우) O(n^2)를 가지는 상황이 나올 수 있지만, 확률적으로 그럴 일은 적기에 평균적으로 O(NlogN)의 시간복잡도를 가진다.</p>
+
+        <h2 id="구현"   >
+          <a href="#구현" class="heading-link"><i class="fas fa-link"></i></a><a href="#구현" class="headerlink" title="구현"></a>구현</h2>
+      <figure class="highlight rust"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> myarr = MyArray::new();</span><br><span class="line">    myarr.values.extend_from_slice(&amp;[<span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]);</span><br><span class="line">    myarr.sort();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> &amp;myarr.values &#123;</span><br><span class="line">        <span class="built_in">print!</span>(<span class="string">&quot;&#123;&#125; &quot;</span>, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">MyArray</span></span> &#123;</span><br><span class="line">    values: <span class="built_in">Vec</span>&lt;<span class="built_in">usize</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> MyArray &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">new</span></span>() -&gt; MyArray &#123;</span><br><span class="line">        MyArray &#123; values: <span class="built_in">Vec</span>::new() &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">sort</span></span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.quick_sort(<span class="number">0</span>, <span class="keyword">self</span>.values.len() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">quick_sort</span></span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, left: <span class="built_in">usize</span>, right: <span class="built_in">usize</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> left &lt; right &#123;</span><br><span class="line">            <span class="keyword">let</span> pivot = <span class="keyword">self</span>.partition(left, right);</span><br><span class="line">            <span class="keyword">self</span>.quick_sort(left, pivot - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">self</span>.quick_sort(pivot + <span class="number">1</span>, right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">partition</span></span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, left: <span class="built_in">usize</span>, right: <span class="built_in">usize</span>) -&gt; <span class="built_in">usize</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> is_swap = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> swap_pos = left;</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> left..right &#123;</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">self</span>.values[x] &lt;= <span class="keyword">self</span>.values[right] &#123;</span><br><span class="line">                <span class="keyword">self</span>.values.swap(swap_pos, x);</span><br><span class="line">                swap_pos += <span class="number">1</span>;</span><br><span class="line">                is_swap = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> is_swap                                                          <span class="comment">// 이미 정렬된 상태였을 경우는 제외</span></span><br><span class="line">           || (!is_swap &amp;&amp; (<span class="keyword">self</span>.values[swap_pos] &gt; <span class="keyword">self</span>.values[right]))    <span class="comment">// 피봇보다 값들이 모두 큰 경우 피봇을 가장 앞으로 이동.</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">self</span>.values.swap(swap_pos, right);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        swap_pos</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+        <h2 id="필기노트"   >
+          <a href="#필기노트" class="heading-link"><i class="fas fa-link"></i></a><a href="#필기노트" class="headerlink" title="필기노트"></a>필기노트</h2>
+      <p><img src="/img/quick-sort/quick-sort-1.jpg" alt="Quick sort 1"></p>
+<p><img src="/img/quick-sort/quick-sort-2.jpg" alt="Quick sort 2"></p>
+
+        <h2 id="레퍼런스"   >
+          <a href="#레퍼런스" class="heading-link"><i class="fas fa-link"></i></a><a href="#레퍼런스" class="headerlink" title="레퍼런스"></a>레퍼런스</h2>
+      <p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=7BDzle2n47c" >[자료구조 알고리즘] 퀵정렬(Quicksort)에 대해 알아보고 자바로 구현하기</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=cWH49IKDIiI&t=590s" >퀵소트 / 퀵정렬 5분만에 이해하기 - Gunny</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/04/22/dijkstra-algorithm/">Dijkstra Algorithm</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-04-22</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-12-11</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="다익스트라-알고리즘"   >
+          <a href="#다익스트라-알고리즘" class="heading-link"><i class="fas fa-link"></i></a><a href="#다익스트라-알고리즘" class="headerlink" title="다익스트라 알고리즘"></a>다익스트라 알고리즘</h1>
+      <p>Dijkstra algorithm(이하 다익스트라 알고리즘)은 음의 가중치가 없는 그래프에서 한 노드에서 다른 모든 노드까지의 가장 짧은 거리를 구하는 알고리즘 중 하나이다.</p>
+<p>선형구조로 구현된 다익스트라 알고리즘은 O(N^2)의 시간복잡도를 가지지만 힙을 이용해 구현하게 되면 O(NlogN)의 시간복잡도를 가지게 된다. 최단 거리를 구하는 경우는 현실에서도 흔하기 때문에 많이 사용되는 알고리즘이다.</p>
+
+        <h2 id="구현"   >
+          <a href="#구현" class="heading-link"><i class="fas fa-link"></i></a><a href="#구현" class="headerlink" title="구현"></a>구현</h2>
+      <figure class="highlight rust"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::&#123;HashMap, HashSet&#125;;</span><br><span class="line"><span class="keyword">use</span> std::collections::BinaryHeap;</span><br><span class="line"><span class="keyword">use</span> std::cmp::Ordering;</span><br><span class="line"><span class="keyword">use</span> std::fmt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> v1 = Vertex::new(<span class="string">&quot;v1&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> v2 = Vertex::new(<span class="string">&quot;v2&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> v3 = Vertex::new(<span class="string">&quot;v3&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> v4 = Vertex::new(<span class="string">&quot;v4&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> v5 = Vertex::new(<span class="string">&quot;v5&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> vertex_graph = HashMap::new();</span><br><span class="line">    vertex_graph.insert(v1, <span class="built_in">vec!</span>[(v2, <span class="number">10</span>), (v4, <span class="number">5</span>)]);</span><br><span class="line">    vertex_graph.insert(v2, <span class="built_in">vec!</span>[(v4, <span class="number">2</span>), (v3, <span class="number">1</span>)]);</span><br><span class="line">    vertex_graph.insert(v3, <span class="built_in">vec!</span>[(v4, <span class="number">4</span>)]);</span><br><span class="line">    vertex_graph.insert(v4, <span class="built_in">vec!</span>[(v2, <span class="number">3</span>), (v3, <span class="number">9</span>), (v5, <span class="number">2</span>)]);</span><br><span class="line">    vertex_graph.insert(v5, <span class="built_in">vec!</span>[(v1, <span class="number">7</span>), (v3, <span class="number">6</span>)]);</span><br><span class="line">    <span class="keyword">let</span> distances = dijkstra(v1, &amp;vertex_graph);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (v, d) <span class="keyword">in</span> &amp;distances &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125; &#123;&#125;&quot;</span>, v, d);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">dijkstra</span></span>&lt;<span class="symbol">&#x27;a</span>&gt;(</span><br><span class="line">    s: Vertex&lt;<span class="symbol">&#x27;a</span>&gt;,</span><br><span class="line">    vl: &amp;HashMap&lt;Vertex&lt;<span class="symbol">&#x27;a</span>&gt;, <span class="built_in">Vec</span>&lt;(Vertex&lt;<span class="symbol">&#x27;a</span>&gt;, <span class="built_in">usize</span>)&gt;&gt;,</span><br><span class="line">) -&gt; HashMap&lt;Vertex&lt;<span class="symbol">&#x27;a</span>&gt;, <span class="built_in">usize</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> result = HashMap::new();</span><br><span class="line">    result.insert(s, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> to_visit = BinaryHeap::new();</span><br><span class="line">    to_visit.push(Visit &#123;</span><br><span class="line">        vertex: s,</span><br><span class="line">        distance: <span class="number">0</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> visited = HashSet::new();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">let</span> <span class="literal">Some</span>(Visit &#123; vertex, distance &#125;) = to_visit.pop() &#123;</span><br><span class="line">        <span class="keyword">if</span> !visited.insert(vertex) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">Some</span>(other_vertexs) = vl.get(&amp;vertex) &#123;</span><br><span class="line">            <span class="keyword">for</span> (other_vertex, cost) <span class="keyword">in</span> other_vertexs &#123;</span><br><span class="line">                <span class="keyword">let</span> accu_distance = distance + cost;</span><br><span class="line">                <span class="keyword">let</span> is_shorter = </span><br><span class="line">                    result.get(other_vertex)</span><br><span class="line">                        .map_or(<span class="literal">true</span>, |&amp;d| accu_distance &lt; d);</span><br><span class="line">                <span class="keyword">if</span> is_shorter &#123;</span><br><span class="line">                    result.insert(*other_vertex, accu_distance);</span><br><span class="line">                    to_visit.push(Visit &#123;</span><br><span class="line">                        vertex: *other_vertex,</span><br><span class="line">                        distance: accu_distance,</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Vertex</span></span>&lt;<span class="symbol">&#x27;a</span>&gt; &#123;</span><br><span class="line">    name: &amp;<span class="symbol">&#x27;a</span> <span class="built_in">str</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;<span class="symbol">&#x27;a</span>&gt; Vertex&lt;<span class="symbol">&#x27;a</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">new</span></span>(name: &amp;<span class="symbol">&#x27;a</span> <span class="built_in">str</span>) -&gt; Vertex&lt;<span class="symbol">&#x27;a</span>&gt; &#123;</span><br><span class="line">        Vertex &#123; name &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;<span class="symbol">&#x27;a</span>&gt; fmt::Display <span class="keyword">for</span> Vertex&lt;<span class="symbol">&#x27;a</span>&gt; &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">fmt</span></span>(&amp;<span class="keyword">self</span>, f: &amp;<span class="keyword">mut</span> fmt::Formatter&lt;<span class="symbol">&#x27;_</span>&gt;) -&gt; fmt::<span class="built_in">Result</span> &#123;</span><br><span class="line">        <span class="built_in">write!</span>(f, <span class="string">&quot;&#123;&#125;&quot;</span>, <span class="keyword">self</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Visit</span></span>&lt;V&gt; &#123;</span><br><span class="line">    vertex: V,</span><br><span class="line">    distance: <span class="built_in">usize</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;V&gt; <span class="built_in">Eq</span> <span class="keyword">for</span> Visit&lt;V&gt; &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;V&gt; <span class="built_in">PartialEq</span> <span class="keyword">for</span> Visit&lt;V&gt; &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">eq</span></span>(&amp;<span class="keyword">self</span>, other: &amp;<span class="keyword">Self</span>) -&gt; <span class="built_in">bool</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.distance.eq(&amp;other.distance)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;V&gt; <span class="built_in">Ord</span> <span class="keyword">for</span> Visit&lt;V&gt; &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">cmp</span></span>(&amp;<span class="keyword">self</span>, other: &amp;<span class="keyword">Self</span>) -&gt; Ordering &#123;</span><br><span class="line">        other.distance.cmp(&amp;<span class="keyword">self</span>.distance)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;V&gt; <span class="built_in">PartialOrd</span> <span class="keyword">for</span> Visit&lt;V&gt; &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">partial_cmp</span></span>(&amp;<span class="keyword">self</span>, other: &amp;<span class="keyword">Self</span>) -&gt; <span class="built_in">Option</span>&lt;Ordering&gt; &#123;</span><br><span class="line">        <span class="literal">Some</span>(other.distance.cmp(&amp;<span class="keyword">self</span>.distance))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+        <h2 id="필기노트"   >
+          <a href="#필기노트" class="heading-link"><i class="fas fa-link"></i></a><a href="#필기노트" class="headerlink" title="필기노트"></a>필기노트</h2>
+      <p><img src="/img/dijkstra-algorithm/Dijkstra-2.jpg" alt="Dijkstra algorithm1"></p>
+<p><img src="/img/dijkstra-algorithm/Dijkstra-3.jpg" alt="Dijkstra algorithm2"></p>
+
+        <h2 id="레퍼런스"   >
+          <a href="#레퍼런스" class="heading-link"><i class="fas fa-link"></i></a><a href="#레퍼런스" class="headerlink" title="레퍼런스"></a>레퍼런스</h2>
+      <p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://namu.wiki/w/%EB%8B%A4%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9D%BC%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" >다익스트라 알고리즘 - 니무위키</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://blog.naver.com/ndb796/221234424646" >23. 다익스트라(Dijkstra) 알고리즘</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://codereview.stackexchange.com/questions/202677/dijkstras-algorithm-in-rust" >dijkstra-algorithm-in-rust</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</div></div></article></section><nav class="paginator"><div class="paginator-inner"><a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.svg" alt="avatar"></div><p class="sidebar-ov-author__text">hello world</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">Archives</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Byeongju Shin(aka. juraffe)</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.2.0</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>
