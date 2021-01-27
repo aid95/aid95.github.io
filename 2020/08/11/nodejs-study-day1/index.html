@@ -1,9 +1,20 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="Express.js 스터디 1일                           설치       Express.js를 사용하기 위해서는 먼저 node.js와 NPM이 설치된 상황에서 진행할 수 있다. 윈도우 기준으로 Node.js 공식 홈페이지에서 설치파일을 다운로드 받을 수 있다. 설치가 완려되면 아래의 명령어를 통해 e">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Express.js 스터디 1 | JURAFFE🏝️LAND</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="javascript,node.js,express.js,webdev" />
+    
+    <meta name="description" content="Express.js 스터디 1일설치Express.js를 사용하기 위해서는 먼저 node.js와 NPM이 설치된 상황에서 진행할 수 있다. 윈도우 기준으로 Node.js 공식 홈페이지에서 설치파일을 다운로드 받을 수 있다. 설치가 완려되면 아래의 명령어를 통해 express.js를 설치한다. 12345&#x2F;&#x2F; 종속성 항목을 추가하며 설치$ npm install">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Express.js 스터디 1">
-<meta property="og:url" content="https://blog.gomi.land/2020/08/11/nodejs-study-day1/index.html">
-<meta property="og:site_name" content="GOMI🏝️LAND">
-<meta property="og:description" content="Express.js 스터디 1일                           설치       Express.js를 사용하기 위해서는 먼저 node.js와 NPM이 설치된 상황에서 진행할 수 있다. 윈도우 기준으로 Node.js 공식 홈페이지에서 설치파일을 다운로드 받을 수 있다. 설치가 완려되면 아래의 명령어를 통해 e">
+<meta property="og:url" content="https://aid95.github.io/2020/08/11/nodejs-study-day1/index.html">
+<meta property="og:site_name" content="JURAFFE🏝️LAND">
+<meta property="og:description" content="Express.js 스터디 1일설치Express.js를 사용하기 위해서는 먼저 node.js와 NPM이 설치된 상황에서 진행할 수 있다. 윈도우 기준으로 Node.js 공식 홈페이지에서 설치파일을 다운로드 받을 수 있다. 설치가 완려되면 아래의 명령어를 통해 express.js를 설치한다. 12345&#x2F;&#x2F; 종속성 항목을 추가하며 설치$ npm install">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-11T08:40:11.000Z">
 <meta property="article:modified_time" content="2021-01-20T08:24:07.576Z">
@@ -12,87 +23,627 @@
 <meta property="article:tag" content="node.js">
 <meta property="article:tag" content="express.js">
 <meta property="article:tag" content="webdev">
-<meta name="twitter:card" content="summary"><title>Express.js 스터디 1 | GOMI🏝️LAND</title><link ref="canonical" href="https://blog.gomi.land/2020/08/11/nodejs-study-day1/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&amp;display=swap"><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: undefined,
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"default","highlight":"light","wordWrap":false},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<meta name="twitter:card" content="summary">
+    
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">GOMI🏝️LAND</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Express.js 스터디 1</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-11</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2021-01-20</span></span></div></header><div class="post-body">
-        <h1 id="Express-js-스터디-1일"   >
-          <a href="#Express-js-스터디-1일" class="heading-link"><i class="fas fa-link"></i></a><a href="#Express-js-스터디-1일" class="headerlink" title="Express.js 스터디 1일"></a>Express.js 스터디 1일</h1>
-      
-        <h2 id="설치"   >
-          <a href="#설치" class="heading-link"><i class="fas fa-link"></i></a><a href="#설치" class="headerlink" title="설치"></a>설치</h2>
-      <p>Express.js를 사용하기 위해서는 먼저 node.js와 NPM이 설치된 상황에서 진행할 수 있다. 윈도우 기준으로 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://nodejs.org/ko/" >Node.js 공식 홈페이지</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>에서 설치파일을 다운로드 받을 수 있다.</p>
+    
+        <link rel="alternate" href="/" title="JURAFFE🏝️LAND" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/">CE</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/Algorithm/">Algorithm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/Embedded/">Embedded</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/OS/">OS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/Security/">Security</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CE/Study/">Study</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/javascript/">javascript</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/CE/Study/">Study</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-nodejs-study-day1" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Express.js 스터디 1
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2020/08/11/nodejs-study-day1/" class="article-date">
+            <time datetime="2020-08-11T08:40:11.000Z" itemprop="datePublished">2020-08-11</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/express-js/" rel="tag">express.js</a>, <a class="tag-link-link" href="/tags/javascript/" rel="tag">javascript</a>, <a class="tag-link-link" href="/tags/node-js/" rel="tag">node.js</a>, <a class="tag-link-link" href="/tags/webdev/" rel="tag">webdev</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="Express-js-스터디-1일"><a href="#Express-js-스터디-1일" class="headerlink" title="Express.js 스터디 1일"></a>Express.js 스터디 1일</h1><h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><p>Express.js를 사용하기 위해서는 먼저 node.js와 NPM이 설치된 상황에서 진행할 수 있다. 윈도우 기준으로 <a target="_blank" rel="noopener" href="https://nodejs.org/ko/">Node.js 공식 홈페이지</a>에서 설치파일을 다운로드 받을 수 있다.</p>
 <p>설치가 완려되면 아래의 명령어를 통해 express.js를 설치한다.</p>
-<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 종속성 항목을 추가하며 설치</span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install express --save</span></span><br><span class="line"></span><br><span class="line">// 종속성 항목을 추가하지 않고 설치</span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install express</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 종속성 항목을 추가하며 설치</span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install express --save</span></span><br><span class="line"></span><br><span class="line">// 종속성 항목을 추가하지 않고 설치</span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install express</span></span><br></pre></td></tr></table></figure>
 
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello, World!"></a>Hello, World!</h2><p>설치가 완료되면 app.js를 통해 간단한 예제를 작성하여 테스트할 수 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.send(<span class="string">&#x27;Hello World!&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Example app listening at http://localhost:<span class="subst">$&#123;port&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-        <h2 id="Hello-World"   >
-          <a href="#Hello-World" class="heading-link"><i class="fas fa-link"></i></a><a href="#Hello-World" class="headerlink" title="Hello, World!"></a>Hello, World!</h2>
-      <p>설치가 완료되면 app.js를 통해 간단한 예제를 작성하여 테스트할 수 있다.</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.send(<span class="string">&#x27;Hello World!&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Example app listening at http://localhost:<span class="subst">$&#123;port&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></div></figure>
-
-<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">node app.js</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">node app.js</span></span><br></pre></td></tr></table></figure>
 
 <p>1행에서 express 모듈을 불러와 2행에 express 모듈의 인스턴스를 생성한다. 생성된 express 인스턴스인 app을 통해 5행에서 ‘/‘ 경로에 대한 GET메소드 라우트를 지정하고 listen을 통해 서버를 열게 된다. 이렇듯 node.js는 매우 간단하게 웹 애플리케이션을 생성할 수 있게 된다.</p>
-
-        <h2 id="Express-generator"   >
-          <a href="#Express-generator" class="heading-link"><i class="fas fa-link"></i></a><a href="#Express-generator" class="headerlink" title="Express generator"></a>Express generator</h2>
-      <p>Express generator를 통해 간편하게 애플리케이션의 골격을 생성할 수 있다.</p>
-<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install express-generator -g</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npx express-generator &lt;APP NAME&gt; --view=pug</span></span><br></pre></td></tr></table></div></figure>
+<h2 id="Express-generator"><a href="#Express-generator" class="headerlink" title="Express generator"></a>Express generator</h2><p>Express generator를 통해 간편하게 애플리케이션의 골격을 생성할 수 있다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install express-generator -g</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npx express-generator &lt;APP NAME&gt; --view=pug</span></span><br></pre></td></tr></table></figure>
 
 <p>첫번째 명령어를 통해서 express-generator를 전역으로 설치하고, 두번째 명령어를 통해서 <code>APP NAME</code>에 해당하는 express 애플리케이션이 생성된다. 여기서 <code>--view=pug</code>는 뷰 엔진에 해당하며 <code>ejs, hbs, hjs, jade, pug, twig, vash</code>등이 있다. 기본으로 jade로 지정되며 만약 뷰 엔진이 필요없는 경우 <code>--no-view</code>를 이용해 생성할 수 있다뷰</p>
-<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> myapp</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> myapp</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install</span></span><br></pre></td></tr></table></figure>
 
 <p>생성 이후 express 애플리케이션 내부로 폴더를 이용해 종속성을 설치하면 기초 개발 준비가 끝나게 된다.</p>
-<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── app.js</span><br><span class="line">├── bin</span><br><span class="line">│   └── www</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">│   ├── images</span><br><span class="line">│   ├── javascripts</span><br><span class="line">│   └── stylesheets</span><br><span class="line">│       └── style.css</span><br><span class="line">├── routes</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   └── users.js</span><br><span class="line">└── views</span><br><span class="line">    ├── error.pug</span><br><span class="line">    ├── index.pug</span><br><span class="line">    └── layout.pug</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── app.js</span><br><span class="line">├── bin</span><br><span class="line">│   └── www</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">│   ├── images</span><br><span class="line">│   ├── javascripts</span><br><span class="line">│   └── stylesheets</span><br><span class="line">│       └── style.css</span><br><span class="line">├── routes</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   └── users.js</span><br><span class="line">└── views</span><br><span class="line">    ├── error.pug</span><br><span class="line">    ├── index.pug</span><br><span class="line">    └── layout.pug</span><br></pre></td></tr></table></figure>
 
 <p>파일의 구조에서 Javascript와 관련된 폴더 및 파일은 <code>app.js, bin/www, routes/*</code>이며 웹 리소스&amp;템플릿에 관련된 폴더는 <code>public/*, views/*</code>에 해당된다.</p>
 <p>bin/www에서는 서버 구동과 관련된 코드가 포함되어 있고, app.js에서는 routes/*의 라우터들과 리소스 폴더 및 뷰 템플릿 폴더를 지정하는 등 서버 구동 이전에 필요한 설정을 하게 된다.</p>
-
-        <h2 id="기본-라우팅"   >
-          <a href="#기본-라우팅" class="heading-link"><i class="fas fa-link"></i></a><a href="#기본-라우팅" class="headerlink" title="기본 라우팅"></a>기본 라우팅</h2>
-      <p>app.js를 자세히 보면</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// view engine setup</span></span><br><span class="line">app.set(<span class="string">&#x27;views&#x27;</span>, path.join(__dirname, <span class="string">&#x27;views&#x27;</span>));</span><br><span class="line">app.set(<span class="string">&#x27;view engine&#x27;</span>, <span class="string">&#x27;pug&#x27;</span>)</span><br></pre></td></tr></table></div></figure>
+<h2 id="기본-라우팅"><a href="#기본-라우팅" class="headerlink" title="기본 라우팅"></a>기본 라우팅</h2><p>app.js를 자세히 보면</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// view engine setup</span></span><br><span class="line">app.set(<span class="string">&#x27;views&#x27;</span>, path.join(__dirname, <span class="string">&#x27;views&#x27;</span>));</span><br><span class="line">app.set(<span class="string">&#x27;view engine&#x27;</span>, <span class="string">&#x27;pug&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
 <p>먼저 뷰 엔진을 지정하며 뷰 엔진의 종류는 위 express-generator에 –view 인자를 지정된 엔진을 사용한다.</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(logger(<span class="string">&#x27;dev&#x27;</span>));</span><br><span class="line">app.use(express.json());</span><br><span class="line">app.use(express.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line">app.use(cookieParser());</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(logger(<span class="string">&#x27;dev&#x27;</span>));</span><br><span class="line">app.use(express.json());</span><br><span class="line">app.use(express.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line">app.use(cookieParser());</span><br></pre></td></tr></table></figure>
 
 <p>개발에 유용한 다양한 미들웨어를 추가하고 리소스파일(js, css, image등)의 경로를 지정하게 된다.</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">&#x27;/&#x27;</span>, indexRouter);</span><br><span class="line">app.use(<span class="string">&#x27;/users&#x27;</span>, usersRouter);</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">&#x27;/&#x27;</span>, indexRouter);</span><br><span class="line">app.use(<span class="string">&#x27;/users&#x27;</span>, usersRouter);</span><br></pre></td></tr></table></figure>
 
 <p>use는 미들웨어로 등록할 callback함수를 인자로 받는데, 첫번째 인자로 경로를 줄 경우 해당 경로에 대한 미들웨어를 추가할 수 있다. 이 경우 routes/*에 있는 라우트를 미들웨어로 등록하는데 각각 ‘/‘, ‘/users’경로를 구분하여 등록하게 된다. 때문에 두 라우터는 별개의 상황에서 동작하게 된다.</p>
-
-        <h2 id="정적-파일-제공"   >
-          <a href="#정적-파일-제공" class="heading-link"><i class="fas fa-link"></i></a><a href="#정적-파일-제공" class="headerlink" title="정적 파일 제공"></a>정적 파일 제공</h2>
-      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(express.static(path.join(__dirname, <span class="string">&#x27;public&#x27;</span>)))</span><br></pre></td></tr></table></div></figure>
+<h2 id="정적-파일-제공"><a href="#정적-파일-제공" class="headerlink" title="정적 파일 제공"></a>정적 파일 제공</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(express.static(path.join(__dirname, <span class="string">&#x27;public&#x27;</span>)))</span><br></pre></td></tr></table></figure>
 
 <p>정적 파일을 제공하기 위해서는 정적 파일이 존재하는 경로를 static 미들웨어 함수를 통해 등록할 필요가 있다.</p>
 <p>static을 통해 여러 정적 파일 경로를 등록할 경우 등록된 순서에 따라 정적 파일을 검색한다. 이 부분도 use의 첫번째 인자로 경로를 주게 되면 가상 경로로 지정할 수 있다.</p>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="https://blog.gomi.land">Byeongju Shin(aka. juraffe)</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="https://blog.gomi.land/2020/08/11/nodejs-study-day1/">https://blog.gomi.land/2020/08/11/nodejs-study-day1/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://blog.gomi.land/tags/javascript/">javascript</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://blog.gomi.land/tags/node-js/">node.js</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://blog.gomi.land/tags/express-js/">express.js</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://blog.gomi.land/tags/webdev/">webdev</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/08/12/multicoreos64-day6/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">64bit 멀티코어 OS 원리와 구조 - Day 6</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/06/10/basic-dp-algorithm/"><span class="paginator-prev__text">기초 DP알고리즘 문제</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Express-js-%EC%8A%A4%ED%84%B0%EB%94%94-1%EC%9D%BC"><span class="toc-number">1.</span> <span class="toc-text">
-          Express.js 스터디 1일</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%84%A4%EC%B9%98"><span class="toc-number">1.1.</span> <span class="toc-text">
-          설치</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-World"><span class="toc-number">1.2.</span> <span class="toc-text">
-          Hello, World!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Express-generator"><span class="toc-number">1.3.</span> <span class="toc-text">
-          Express generator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%B0%EB%B3%B8-%EB%9D%BC%EC%9A%B0%ED%8C%85"><span class="toc-number">1.4.</span> <span class="toc-text">
-          기본 라우팅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A0%95%EC%A0%81-%ED%8C%8C%EC%9D%BC-%EC%A0%9C%EA%B3%B5"><span class="toc-number">1.5.</span> <span class="toc-text">
-          정적 파일 제공</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.svg" alt="avatar"></div><p class="sidebar-ov-author__text">hello world</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">Archives</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Byeongju Shin(aka. juraffe)</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.2.0</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://aid95.github.io/2020/08/11/nodejs-study-day1/" data-id="ckkfjrnea000suoulfwjr64qw" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/aid95" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2020/08/12/multicoreos64-day6/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            64bit 멀티코어 OS 원리와 구조 - Day 6
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2020/06/10/basic-dp-algorithm/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">기초 DP알고리즘 문제</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/01/20/core-js/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javascript/">javascript</a></p>
+                            <p class="item-title"><a href="/2021/01/20/core-js/" class="title">모던 JS 튜토리얼 필기</a></p>
+                            <p class="item-date"><time datetime="2021-01-20T07:14:31.000Z" itemprop="datePublished">2021-01-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/12/19/nestjs-passport/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://nestjs.com/img/logo_text.svg)" alt="Nest.js에서의 인증 (feat. passport.js)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CE/Algorithm/">Algorithm</a></p>
+                            <p class="item-title"><a href="/2020/12/19/nestjs-passport/" class="title">Nest.js에서의 인증 (feat. passport.js)</a></p>
+                            <p class="item-date"><time datetime="2020-12-19T09:56:15.000Z" itemprop="datePublished">2020-12-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/12/12/cs-security/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/img/cs-security/man-in-the-middle-attack.png)" alt="컴퓨터 보안 기말고사 정리" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CE/Security/">Security</a></p>
+                            <p class="item-title"><a href="/2020/12/12/cs-security/" class="title">컴퓨터 보안 기말고사 정리</a></p>
+                            <p class="item-date"><time datetime="2020-12-12T13:11:28.000Z" itemprop="datePublished">2020-12-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/08/12/multicoreos64-day6/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CE/OS/">OS</a></p>
+                            <p class="item-title"><a href="/2020/08/12/multicoreos64-day6/" class="title">64bit 멀티코어 OS 원리와 구조 - Day 6</a></p>
+                            <p class="item-date"><time datetime="2020-08-11T15:33:52.000Z" itemprop="datePublished">2020-08-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/08/11/nodejs-study-day1/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CE/Study/">Study</a></p>
+                            <p class="item-title"><a href="/2020/08/11/nodejs-study-day1/" class="title">Express.js 스터디 1</a></p>
+                            <p class="item-date"><time datetime="2020-08-11T08:40:11.000Z" itemprop="datePublished">2020-08-11</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CE/">CE</a><span class="category-list-count">15</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CE/Algorithm/">Algorithm</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CE/Embedded/">Embedded</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CE/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CE/OS/">OS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CE/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CE/Study/">Study</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/archlinux/" rel="tag">archlinux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootloader/" rel="tag">bootloader</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/" rel="tag">cs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/embedded/" rel="tag">embedded</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/express-js/" rel="tag">express.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kernel/" rel="tag">kernel</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/" rel="tag">node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/os/" rel="tag">os</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberry/" rel="tag">raspberry</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rust-lang/" rel="tag">rust-lang</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/" rel="tag">sort</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webdev/" rel="tag">webdev</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/algorithm/" style="font-size: 16px;">algorithm</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/bootloader/" style="font-size: 10px;">bootloader</a> <a href="/tags/cs/" style="font-size: 10px;">cs</a> <a href="/tags/embedded/" style="font-size: 10px;">embedded</a> <a href="/tags/express-js/" style="font-size: 10px;">express.js</a> <a href="/tags/javascript/" style="font-size: 12px;">javascript</a> <a href="/tags/kernel/" style="font-size: 18px;">kernel</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/os/" style="font-size: 20px;">os</a> <a href="/tags/raspberry/" style="font-size: 10px;">raspberry</a> <a href="/tags/rust-lang/" style="font-size: 16px;">rust-lang</a> <a href="/tags/security/" style="font-size: 10px;">security</a> <a href="/tags/sort/" style="font-size: 14px;">sort</a> <a href="/tags/study/" style="font-size: 10px;">study</a> <a href="/tags/webdev/" style="font-size: 10px;">webdev</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCritGVo7pLJLUS8wEu32vow">(G)I-DLE Youtube</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://www.facebook.com/G.I.DLE.CUBE">(G)I-DLE Instagram</a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://twitter.com/G_I_DLE">(G)I-DLE Twitter</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2021 Byeongju Shin(aka. juraffe)</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'cou9ar';
+    
+    
+    var disqus_url = 'https://aid95.github.io/2020/08/11/nodejs-study-day1/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>
