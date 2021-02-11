@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://aid95.github.io/img/core-js/javascript-logo.png">
 <meta property="article:published_time" content="2021-01-20T07:14:31.000Z">
-<meta property="article:modified_time" content="2021-02-08T06:08:13.128Z">
+<meta property="article:modified_time" content="2021-02-11T06:21:46.643Z">
 <meta property="article:author" content="Byeongju Shin(aka. juraffe)">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="study">
@@ -405,6 +405,23 @@
 <p>만약 객체가 직접 소유한 프로퍼티를 구분하기 위해서는 <code>hasOwnProperty</code>를 이용해 구분할 수 있다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> animal = &#123;</span><br><span class="line">  eats: <span class="literal">true</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> rabbit = &#123;</span><br><span class="line">  jumps: <span class="literal">true</span>,</span><br><span class="line">  __proto__: animal,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> prop <span class="keyword">in</span> rabbit) &#123;</span><br><span class="line">  <span class="keyword">let</span> isOwn = rabbit.hasOwnProperty(prop);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (isOwn) &#123;</span><br><span class="line">    alert(<span class="string">`객체 자신의 프로퍼티: <span class="subst">$&#123;prop&#125;</span>`</span>); <span class="comment">// 객체 자신의 프로퍼티: jumps</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    alert(<span class="string">`상속 프로퍼티: <span class="subst">$&#123;prop&#125;</span>`</span>); <span class="comment">// 상속 프로퍼티: eats</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="11-7-마이크로태스크"><a href="#11-7-마이크로태스크" class="headerlink" title="11.7 마이크로태스크"></a>11.7 마이크로태스크</h2><p>JS에서 프로미스 핸들러 <code>.then/catch/finally</code> 는 항상 비동기적으로 실행된다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="built_in">Promise</span>.resolve();</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function">() =&gt;</span> alert(<span class="string">&quot;프라미스 성공!&quot;</span>));</span><br><span class="line"></span><br><span class="line">alert(<span class="string">&quot;코드 종료&quot;</span>); <span class="comment">// 이 얼럿 창이 가장 먼저 나타납니다.</span></span><br></pre></td></tr></table></figure>
+
+<p>코드를 실행하면 <code>코드 종료</code> 이후에 <code>프로미스 성공!</code> 이 출력되는걸 볼 수 있습니다. 비동기 작업을 처리하려면 적절한 관리가 필요하다. 이를 위해 ECMA에선 <code>PromiseJobs</code> 또는 V8 엔진에서 <code>마이크로태스크 큐</code> 라고 부르는 내부 큐를 명시한다. 명세서는 아래와 같이 이를 설명하고 있다.</p>
+<ul>
+<li>마이크로태스크 큐는 먼저 들어온 작업을 먼저 실행한다. (FIFO)</li>
+<li>실행할 것이 아무것도 남아있지 않을 때만 마이크로태스크 큐에 있는 작업이 실행된다.</li>
+</ul>
+<p>정리하면 프라미스가 준비되면 프라미스의 핸들러(.then/catch/finally)는 큐에 들어가고 대기하다 코드 수행이 끝난 뒤 자유로운 상태에가 되면 큐에 있던 작업을 꺼내 실행하게 된다.</p>
+<p>여러 개의 프라미스 핸들러들로 체인을 만든 경우, 각 핸들러는 비동기적으로 실행된다. 각각의 핸들러는 현재 코드가 완료되고, 큐에 적체된 이전 핸들러의 실행이 완료되었을 때 실행된다.</p>
+<h3 id="처리되지-못한-거부"><a href="#처리되지-못한-거부" class="headerlink" title="처리되지 못한 거부"></a>처리되지 못한 거부</h3><p><code>처리되지 못한 거부</code> 는 마이크로태스크 큐 끝에서 프라미스 에러가 처리되지 못할 때 발생한다. 개발자는 에러가 생길 것을 대비하여 프라미스 체인에 <code>.catch</code> 를 추가해 에러를 핸들링한다. 하지만 .catch를 추가하지 않고 마이크로태스크 큐가 끝날 때까지 에러가 핸들링되지 못한 경우 <code>unhandledrejction</code> 이벤트가 발생하게 된다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="built_in">Promise</span>.reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;프라미스 실패!&quot;</span>));</span><br><span class="line"><span class="comment">// promise.catch(err =&gt; alert(&#x27;잡았다!&#x27;));</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;unhandledrejection&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> alert(event.reason));</span><br></pre></td></tr></table></figure>
+
+<p>만약 에러 핸들링이 <code>setTimeout</code> 과 같이 나중에 핸들링하도록 만들면 어떤일이 벌어지는지 알아보자.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="built_in">Promise</span>.reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;프라미스 실패!&quot;</span>));</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> promise.catch(<span class="function"><span class="params">err</span> =&gt;</span> alert(<span class="string">&#x27;잡았다!&#x27;</span>)), <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Error: 프라미스 실패!</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;unhandledrejection&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> alert(event.reason));</span><br></pre></td></tr></table></figure>
+
+<p>이 경우 <code>프라미스 실패!</code> 가 출력되고 <code>잡았다!</code> 가 출력되는 걸 알 수 있다. 이유는 <code>.catch</code> 가 1초 후에 핸들링되기 마이크로태스크 큐가 비게 되고 엔진은 <code>거부(rejcted) 상태</code> 이면 <code>unhandledrejection</code> 핸들러를 트리거 하게 된다. 또 unhandledrejection이 트리거 되었어도 .catch에 의해 또 다시 트리거 되었기 때문에 <code>잡았다!</code> 가 출력되어진다.</p>
 <h1 id="모던-JavaScript-튜토리얼-Part-2"><a href="#모던-JavaScript-튜토리얼-Part-2" class="headerlink" title="모던 JavaScript 튜토리얼 Part.2"></a>모던 JavaScript 튜토리얼 Part.2</h1><h2 id="6-3-이벤트-루프와-매크로·마이크로태스크"><a href="#6-3-이벤트-루프와-매크로·마이크로태스크" class="headerlink" title="6.3 이벤트 루프와 매크로·마이크로태스크"></a>6.3 이벤트 루프와 매크로·마이크로태스크</h2><p>브라우저 측 자바스크립트 실행 흐름은 Node.js와 마찬가지로 <em>이벤트 루프</em> 에 기반한다. 이 챕터에서는 이벤트 루프의 이론과 실습을 알아본다.</p>
 <h3 id="이벤트-루프"><a href="#이벤트-루프" class="headerlink" title="이벤트 루프"></a>이벤트 루프</h3><p>이벤트 루프는 task(이하 테스크)를 기다리다 테스크가 들어오면 이를 처리하는 단순한 정의를 가진다. 이벤트 루프를 처리하는 JS 엔진의 알고리즘은 다음과 같다.</p>
 <ol>
@@ -452,7 +469,7 @@
 
 
 
-    <a data-url="https://aid95.github.io/2021/01/20/core-js/" data-id="ckkxfqlhf003qhkulb59j2gvl" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://aid95.github.io/2021/01/20/core-js/" data-id="ckl0h5y6y003yusuler2y4eni" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -651,7 +668,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2020/08/11/nodejs-study-day1/" class="thumbnail">
+                            <a href="/2020/08/11/expressjs-study-day1/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -663,7 +680,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/CE/">CE</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CE/Study/">Study</a></p>
-                            <p class="item-title"><a href="/2020/08/11/nodejs-study-day1/" class="title">Express.js 스터디 1</a></p>
+                            <p class="item-title"><a href="/2020/08/11/expressjs-study-day1/" class="title">Express.js 스터디</a></p>
                             <p class="item-date"><time datetime="2020-08-11T08:40:11.000Z" itemprop="datePublished">2020-08-11</time></p>
                         </div>
                     </li>
